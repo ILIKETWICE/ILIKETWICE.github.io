@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kuberbetes on 权掌天下 Blog</title>
+    <link>https://www.my-blog.wang/tags/kuberbetes/</link>
+    <description>Recent content in kuberbetes on 权掌天下 Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.my-blog.wang/tags/kuberbetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title> 为什么微服务一定要有网关？ </title>
+      <link>https://www.my-blog.wang/2020/01/13/why-microservice-gateway/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/2020/01/13/why-microservice-gateway/</guid>
+      <description>一、什么是服务网关 服务网关 = 路由转发 + 过滤器 1、路由转发：接收一切外界请求，转发到后端的微服务上去； 2、过滤器：在服务网关中可以完成一系列的</description>
+    </item>
+    
+  </channel>
+</rss>

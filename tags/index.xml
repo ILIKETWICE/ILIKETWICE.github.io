@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 权掌天下 Blog</title>
+    <link>https://www.my-blog.wang/tags/</link>
+    <description>Recent content in Tags on 权掌天下 Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.my-blog.wang/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ServiceMesh</title>
+      <link>https://www.my-blog.wang/tags/servicemesh/</link>
+      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/servicemesh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://www.my-blog.wang/tags/linux/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Architecture</title>
+      <link>https://www.my-blog.wang/tags/architecture/</link>
+      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kuberbetes</title>
+      <link>https://www.my-blog.wang/tags/kuberbetes/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/kuberbetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Network</title>
+      <link>https://www.my-blog.wang/tags/network/</link>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Aliyun</title>
+      <link>https://www.my-blog.wang/tags/aliyun/</link>
+      <pubDate>Thu, 09 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/aliyun/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx</title>
+      <link>https://www.my-blog.wang/tags/nginx/</link>
+      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gitlab</title>
+      <link>https://www.my-blog.wang/tags/gitlab/</link>
+      <pubDate>Tue, 07 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mesos</title>
+      <link>https://www.my-blog.wang/tags/mesos/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/mesos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tcp</title>
+      <link>https://www.my-blog.wang/tags/tcp/</link>
+      <pubDate>Mon, 30 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/tcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Https</title>
+      <link>https://www.my-blog.wang/tags/https/</link>
+      <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/https/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloudnative</title>
+      <link>https://www.my-blog.wang/tags/cloudnative/</link>
+      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/cloudnative/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Heart</title>
+      <link>https://www.my-blog.wang/tags/heart/</link>
+      <pubDate>Sat, 21 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/heart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prometheus</title>
+      <link>https://www.my-blog.wang/tags/prometheus/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://www.my-blog.wang/tags/python/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://www.my-blog.wang/tags/kubernetes/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

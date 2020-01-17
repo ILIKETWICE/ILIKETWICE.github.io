@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tcp on 权掌天下 Blog</title>
+    <link>https://www.my-blog.wang/tags/tcp/</link>
+    <description>Recent content in Tcp on 权掌天下 Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.my-blog.wang/tags/tcp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title> TCP 协议，握手挥手不是你想的那么简单 </title>
+      <link>https://www.my-blog.wang/2019/12/30/tcp-handshake/</link>
+      <pubDate>Mon, 30 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/2019/12/30/tcp-handshake/</guid>
+      <description>TCP 报文段结构 一谈到 TCP 协议，大家最先想到的词就是「面向连接」和「可靠」。没错，TCP 协议的设计就是为了能够在客户端和服务器之间建立起一个可靠连</description>
+    </item>
+    
+    <item>
+      <title> 浅谈 TCP 的三次握手和四次挥手 </title>
+      <link>https://www.my-blog.wang/2019/12/27/talk-tcp/</link>
+      <pubDate>Fri, 27 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/2019/12/27/talk-tcp/</guid>
+      <description>什么是OSI 七层模型? 开放式系统互联通信参考模型（英语：Open System Interconnection Reference Model，缩写为 OSI），简称为 OSI 模型（OSI model），一种概念</description>
+    </item>
+    
+  </channel>
+</rss>
