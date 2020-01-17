@@ -3,37 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.my-blog.wang/2020/01/17/why-tcp-third-hand/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.my-blog.wang/categories/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.my-blog.wang/post/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.my-blog.wang/tags/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.my-blog.wang/tags/tcp/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.my-blog.wang/categories/tech/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.my-blog.wang/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.my-blog.wang/2020/01/16/what-is-servicemesh/</loc>
     <lastmod>2020-01-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.my-blog.wang/categories/</loc>
-    <lastmod>2020-01-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.my-blog.wang/post/</loc>
-    <lastmod>2020-01-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.my-blog.wang/tags/servicemesh/</loc>
-    <lastmod>2020-01-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.my-blog.wang/tags/</loc>
-    <lastmod>2020-01-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.my-blog.wang/categories/tech/</loc>
-    <lastmod>2020-01-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.my-blog.wang/</loc>
     <lastmod>2020-01-16T00:00:00+00:00</lastmod>
   </url>
   
@@ -139,11 +149,6 @@
   
   <url>
     <loc>https://www.my-blog.wang/2019/12/30/tcp-handshake/</loc>
-    <lastmod>2019-12-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.my-blog.wang/tags/tcp/</loc>
     <lastmod>2019-12-30T00:00:00+00:00</lastmod>
   </url>
   
