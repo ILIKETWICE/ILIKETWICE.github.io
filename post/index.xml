@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 权掌天下 Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.my-blog.wang/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title> 面试 HTTP ，99% 的面试官都爱问这些问题 </title>
+      <link>https://www.my-blog.wang/2020/05/19/http-interviews/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/2020/05/19/http-interviews/</guid>
+      <description>HTTP 和 HTTPS 的区别 HTTP 是一种 超文本传输协议(Hypertext Transfer Protocol)，HTTP 是一个在计算机世界里专门在两点之间传输文字、图片、音频、</description>
+    </item>
     
     <item>
       <title> 详解 TCP 连接的“三次握手”与“四次挥手” </title>

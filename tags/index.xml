@@ -6,10 +6,19 @@
     <description>Recent content in Tags on 权掌天下 Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.my-blog.wang/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Http</title>
+      <link>https://www.my-blog.wang/tags/http/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.my-blog.wang/tags/http/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Tcp</title>
