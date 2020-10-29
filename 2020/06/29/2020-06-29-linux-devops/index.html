@@ -138,7 +138,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('https://image.my-blog.wang/header/header.jpg') no-repeat center center;
+         style="background: url('/img/background/header-background.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      2.7k 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      29
        分钟
     </span>
   
@@ -204,12 +204,60 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年7月1日 下午
+                  本文最后更新于：2020年10月29日 下午
                 
               </p>
             
             <article class="markdown-body">
-              <h3 id="kube-proxy挂掉的影响"><a href="#kube-proxy挂掉的影响" class="headerlink" title="kube-proxy挂掉的影响"></a>kube-proxy挂掉的影响</h3><p>service的访问请求将不会转发到Pod上，用户无法访问</p>
+              <h3 id="K8S集群组件及作用"><a href="#K8S集群组件及作用" class="headerlink" title="K8S集群组件及作用"></a>K8S集群组件及作用</h3><ul>
+<li><p><strong>API Server</strong>：集群资源操作的唯一入口，结果存储在etcd中</p>
+</li>
+<li><p><strong>etcd</strong>：保存集群的配置信息和各种资源的状态信息</p>
+</li>
+<li><p><strong>Controller Manager</strong>：责管理集群各种资源，保证资源处于预期的状态，Controller Manager由多种controller组成，包括replication controller、endpoints controller、namespace controller、serviceaccounts controller等</p>
+</li>
+<li><p><strong>Schedule</strong>：资源调度，负责决定将Pod放到哪个Node上运行</p>
+</li>
+<li><p><strong>Kubelet</strong>：创建和运行schedule调度过来的Pod，并向master报告运行状态</p>
+</li>
+<li><p><strong>Kube-proxy</strong>：负责将访问的service的数据流转发到后端的容器</p>
+</li>
+<li><p>网络组件：flannel，calico</p>
+</li>
+</ul>
+<h3 id="K8S-CNI组件及其原理"><a href="#K8S-CNI组件及其原理" class="headerlink" title="K8S CNI组件及其原理"></a>K8S CNI组件及其原理</h3><ul>
+<li><strong>flannel</strong></li>
+</ul>
+<p>Flannel 是一个overlay网络，工作在二层网络，flanneld进程会使用VXLAN协议把原始IP包加上目的MAC地址封装成二层数据帧，由linux内核把数据帧封装成UDP报文经过物理网络发送到另一台机器，然后另外一台机flanneld进行解包操作。</p>
+<p>host-gw模式：直接把节点作为一个网关，比如节点node-02上的pod子网是10.64.1.0/24，那么集群中所有节点上都会增加一条路由指向node-02，要求宿主机在同一个二层网络</p>
+<ul>
+<li><strong>calico</strong></li>
+</ul>
+<p>Calico是一个基于BGP的纯三层的网络方案，Calico在每个计算节点都利用Linux Kernel实现了一个高效的vRouter来负责数据转发。每个vRouter都通过BGP1协议把在本节点上运行的容器的路由信息向整个Calico网络广播，并自动设置到达其他节点的路由转发规则，没有额外的封包解包，能够节约CPU运算，提高网络效率。</p>
+<h3 id="K8S-pod之间无法通信，排查思路"><a href="#K8S-pod之间无法通信，排查思路" class="headerlink" title="K8S pod之间无法通信，排查思路"></a>K8S pod之间无法通信，排查思路</h3><p>跨主机pod之间无法通信：</p>
+<ul>
+<li><p>iptables问题，执行命令：</p>
+<pre><code class="hljs tp">iptables -<span class="hljs-keyword">P</span> FORWARD <span class="hljs-keyword">ACC</span>EPT  
+iptables -<span class="hljs-keyword">P</span> INPUT <span class="hljs-keyword">ACC</span>EPT</code></pre>
+</li>
+<li><p>docker配置问题，没连上flannel</p>
+</li>
+</ul>
+<h3 id="kube-proxy的三种代理模式及原理"><a href="#kube-proxy的三种代理模式及原理" class="headerlink" title="kube-proxy的三种代理模式及原理"></a>kube-proxy的三种代理模式及原理</h3><ul>
+<li><p><strong>userspace：</strong></p>
+<p>1、为每个service在node上打开一个随机端口（代理端口）</p>
+<p>2、建立iptables规则，将clusterip的请求重定向到代理端口</p>
+<p>3、到达代理端口（用户空间）的请求再由kubeproxy转发到后端pod。</p>
+<p>这里为什么需要建iptables规则，因为kube-proxy 监听的端口在用户空间，所以需要一层 iptables 把访问服务的连接重定向给 kube-proxy 服务，这里就存在内核态到用户态的切换，代价很大，因此就有了iptables。</p>
+</li>
+<li><p><strong>iptables：</strong></p>
+<p>iptables由kube-proxy动态的管理，kube-proxy不再负责转发，数据包的走向完全由iptables规则决定，这样的过程不存在内核态到用户态的切换，效率明显会高很多。但是随着service的增加，iptables规则会不断增加，导致内核十分繁忙</p>
+</li>
+<li><p><strong>ipvs：</strong></p>
+<p>用ipset存储iptables规则，这样规则的数量就能够得到有效控制，而在查找时就类似hash表的查找</p>
+</li>
+</ul>
+<h3 id="kube-proxy挂掉的影响"><a href="#kube-proxy挂掉的影响" class="headerlink" title="kube-proxy挂掉的影响"></a>kube-proxy挂掉的影响</h3><p>service的访问请求将不会转发到Pod上，用户无法访问</p>
 <h3 id="k8s-service涉及到的组件"><a href="#k8s-service涉及到的组件" class="headerlink" title="k8s service涉及到的组件"></a>k8s service涉及到的组件</h3><p>kube-proxy、pod、Replication Controller</p>
 <h3 id="ingress和service的区别"><a href="#ingress和service的区别" class="headerlink" title="ingress和service的区别"></a>ingress和service的区别</h3><p>Service可以看作是一组提供相同服务的Pod对外的访问接口。借助Service，应用可以方便地实现服务发现和负载均衡。Ingress 是全局的，为了代理不同后端 Service 而设置的负载均衡服务。</p>
 <p>Service 有三种对外暴露的方法，但是由于每个 Service 都要有一个负载均衡的服务，所以采用 Service 的话，会造成既浪费成本又高的现象。而ingress是一个全局的负载均衡器,然后我只需要通过访问 URL 就可以把请求转发给不同的后端 Service ，从而可以访问到界面，而不是每个 Service 都需要负载均衡。</p>
@@ -220,9 +268,34 @@
 <p>IPC命名空间：Pod中的多个容器能够使用SystemV IPC或POSIX消息队列进行通信。</p>
 <p>UTS命名空间：Pod中的多个容器共享一个主机名；Volumes（共享存储卷）：</p>
 <p>Pod中的各个容器可以访问在Pod级别定义的Volumes。</p>
-<h3 id="kafka相比mq的优势"><a href="#kafka相比mq的优势" class="headerlink" title="kafka相比mq的优势"></a>kafka相比mq的优势</h3><p>mq的作用：解耦、最终一致性、广播、流浪控制及削峰</p>
-<p>优点<br> 性能卓越，单机写入TPS约在百万条/秒，最大的优点，就是吞吐量高。<br> 时效性：ms级<br> 可用性：非常高，kafka是分布式的，一个数据多个副本，少数机器宕机，不会丢失数据，不会导致不可用<br> 消费者采用Pull方式获取消息, 消息有序, 通过控制能够保证所有消息被消费且仅被消费一次;<br> 有优秀的第三方Kafka Web管理界面Kafka-Manager；<br> 在日志领域比较成熟，被多家公司和多个开源项目使用；<br> 功能支持：功能较为简单，主要支持简单的MQ功能，在大数据领域的实时计算以及日志采集被大规模使用</p>
-<p>缺点<br> Kafka单机超过64个队列/分区，Load会发生明显的飙高现象，队列越多，load越高，发送消息响应时间变长<br> 使用短轮询方式，实时性取决于轮询间隔时间；<br> 消费失败不支持重试；<br> 支持消息顺序，但是一台代理宕机后，就会产生消息乱序；</p>
+<h3 id="K8S-PLEG错误处理"><a href="#K8S-PLEG错误处理" class="headerlink" title="K8S PLEG错误处理"></a>K8S PLEG错误处理</h3><p><strong>问题</strong>：k8s node节点显示 no ready</p>
+<p><strong>过程1</strong>：pleg是pod生命周期事件生成器，pleg在每次迭代检查中会 调用docker ps来检测容器状态的变化，并调用docker Inspect来获取这些容器的详细信息。在完成每次迭代之后，它更新一个时间戳。如果时间戳有一段时间没有更新(即3分钟)，则运行状况检查失败。</p>
+<p><strong>过程2</strong>：执行docker ps果然很慢</p>
+<p><strong>解决</strong>：因为是测试环境，跑了太多的pod，机器资源已被占用满，重启了机器，执行systemctl daemon-reexec，</p>
+<p>临时解决了，systemctl的一个小bug。</p>
+<h3 id="Mysql-主从不同步检查思路"><a href="#Mysql-主从不同步检查思路" class="headerlink" title="Mysql 主从不同步检查思路"></a>Mysql 主从不同步检查思路</h3><p>1、master，slave节点个执行show master status查看，如果有NO，重新做主从</p>
+<p>2、也可能是在slave上进行了写操作，或者slave机器重启，或者事务回滚</p>
+<p>3、解决方法：停掉主从同步，忽略一次错误，再开启同步：</p>
+<h3 id="Mysql备份方案"><a href="#Mysql备份方案" class="headerlink" title="Mysql备份方案"></a>Mysql备份方案</h3><p>每三天做全量备份，中间每天做增量，增量根据position值或者时间点进行备份</p>
+<h3 id="nginx状态码"><a href="#nginx状态码" class="headerlink" title="nginx状态码"></a>nginx状态码</h3><p>301 永久重定向</p>
+<p>302 临时重定向</p>
+<p>403 服务器拒绝请求</p>
+<p>404 访问的资源不存咋</p>
+<p>500 服务器内部错误</p>
+<p>502 错误网关</p>
+<p>503 服务不可达</p>
+<h3 id="nginx获取用户真实ip"><a href="#nginx获取用户真实ip" class="headerlink" title="nginx获取用户真实ip"></a>nginx获取用户真实ip</h3><pre><code class="hljs nginx"><span class="hljs-attribute">proxy_set_header</span>   Host             <span class="hljs-variable">$host</span>;
+<span class="hljs-attribute">proxy_set_header</span>   X-Real-IP        <span class="hljs-variable">$remote_addr</span>;
+<span class="hljs-attribute">proxy_set_header</span>   X-Forwarded-For  <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;
+<span class="hljs-attribute">set_real_ip_from</span> <span class="hljs-number">0.0.0.0</span>/<span class="hljs-number">0</span>;         <span class="hljs-comment"># 额外增加的配置            </span>
+<span class="hljs-attribute">real_ip_header</span>  X-Forwarded-For;    <span class="hljs-comment"># 额外增加的配置            </span>
+<span class="hljs-attribute">real_ip_recursive</span>   <span class="hljs-literal">on</span>;             <span class="hljs-comment"># 额外增加的配置</span></code></pre>
+
+<h3 id="端口time-wait解决"><a href="#端口time-wait解决" class="headerlink" title="端口time_wait解决"></a>端口time_wait解决</h3><pre><code class="hljs stylus">net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-class">.tcp_syncookies</span> = <span class="hljs-number">1</span> 表示开启SYN Cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为<span class="hljs-number">0</span>，表示关闭；
+net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-class">.tcp_tw_reuse</span> = <span class="hljs-number">1</span> 表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为<span class="hljs-number">0</span>，表示关闭；
+net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-class">.tcp_tw_recycle</span> = <span class="hljs-number">1</span> 表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为<span class="hljs-number">0</span>，表示关闭。
+net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-class">.tcp_fin_timeout</span> 修改系默认的 TIMEOUT 时间</code></pre>
+
 <h3 id="linux系统执行命令很卡"><a href="#linux系统执行命令很卡" class="headerlink" title="linux系统执行命令很卡"></a>linux系统执行命令很卡</h3><ul>
 <li>top命令查看系统资源使用情况，cpu、内存、负载</li>
 <li>iostat命令查看磁盘IO使用情况</li>

@@ -543,9 +543,12 @@ Apollo：同样为Apache的ActiveMQ的子项目的号称下一代消息引擎
         
           
         
-        <div>kube-proxy挂掉的影响service的访问请求将不会转发到Pod上，用户无法访问
-k8s service涉及到的组件kube-proxy、pod、Replication Controller
-ingress和service的区别Service可以看作是一组提供相同服务的Pod对外的访问接口。借助Service，应用可以方便地实现服务发现和负载均衡。Ingress 是全局的，为了代理不同后端</div>
+        <div>K8S集群组件及作用
+API Server：集群资源操作的唯一入口，结果存储在etcd中
+
+etcd：保存集群的配置信息和各种资源的状态信息
+
+Controller Manager：责管理集群各种资源，保证资源处于预期的状态，Controller Manager由多种controller组成，包括replication controller、endpoints controller、namespa</div>
       </a>
 
       <div class="index-btm post-metas">
