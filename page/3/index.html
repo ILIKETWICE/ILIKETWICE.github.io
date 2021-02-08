@@ -167,43 +167,6 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/10/2020-01-10-sync-async/"> 迄今为止把同步/异步/阻塞/非阻塞/BIO/NIO/AIO讲的这么清楚的好文章 </a>
-
-      <a href="/2020/01/10/2020-01-10-sync-async/" class="index-excerpt">
-        
-        
-          
-        
-        <div>常规的误区
-假设有一个展示用户详情的需求，分两步，先调用一个HTTP接口拿到详情数据，然后使用适合的视图展示详情数据。
-如果网速很慢，代码发起一个HTTP请求后，就卡住不动了，直到十几秒后才拿到HTTP响应，然后继续往下执行。
-这个时候你问别人，刚刚代码发起的这个请求是不是一个同步请求，对方一定回答是。这是对的，它确实是。
-但你要问它为什么是呢？对方一定是这样回答的，“因为发起请求后，代码就卡住不</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-10
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Network/">Network</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/01/09/2020-01-09-aliyun-terway/"> 阿里云terway源码分析 </a>
 
       <a href="/2020/01/09/2020-01-09-aliyun-terway/" class="index-excerpt">
@@ -523,6 +486,40 @@ TCP 协议需要一个四元组（源IP，源端口，目的IP，目的端口）
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/TCP/">TCP</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/26/2019-12-26-nginx-reload/"> Nginx 中 reload 流程 </a>
+
+      <a href="/2019/12/26/2019-12-26-nginx-reload/" class="index-excerpt">
+        
+        
+          
+        
+        <div>今天这篇文章主要来介绍下 Nginx 的 reload 流程。实际上在之前文章中，在更改了 nginx 配置文件时，我们都会执行 nginx -s reload 命令，我们执行这条命令的原因是希望 nginx 不停止服务始终在处理新的请求的同时把 nginx 的配置文件平滑的把旧的 nginx.conf 配置更新为新的 nginx.conf 配置。
+这样一个功能对于 nginx 非常有必要，但是有</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-26
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Nginx/">Nginx</a>
             
           </div>
         

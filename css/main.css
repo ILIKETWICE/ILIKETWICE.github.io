@@ -593,7 +593,7 @@ sup > a::before,
 }
 @supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
   .navbar .dropdown-collapse {
-    background: rgba(47,65,84,0.7);
+    background: #2f4154;
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
   }
@@ -611,7 +611,7 @@ sup > a::before,
 }
 @supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
   .top-nav-collapse {
-    background: rgba(47,65,84,0.7);
+    background: #2f4154;
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
   }
@@ -623,7 +623,7 @@ sup > a::before,
 }
 @supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
   .navbar-col-show {
-    background: rgba(47,65,84,0.7);
+    background: #2f4154;
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
   }
