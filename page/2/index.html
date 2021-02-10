@@ -167,6 +167,43 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/11/2020-06-11-nginx-config-location/"> Nginx location匹配规则 </a>
+
+      <a href="/2020/06/11/2020-06-11-nginx-config-location/" class="index-excerpt">
+        
+        
+          
+        
+        <div>#一、location语法
+location [=|~|~*|^~] uri &#123; … &#125;
+
+其中，方括号中的四种标识符是可选项，用来改变请求字符串和uri的匹配方式。uri是待匹配的请求字符串，可以是不包含正则的字符串，这种模式被称为“标准的uri”；也可以包含正则，这种模式被称为”正则uri”。例如：
+location ~ .*.(php|php5)?$ {　　root /v</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-11
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Nginx/">Nginx</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/05/26/2020-05-26-nginx-config-location-proxypass/"> Nginx配置location中proxy_pass的&#39;/&#39;号的作用 </a>
 
       <a href="/2020/05/26/2020-05-26-nginx-config-location-proxypass/" class="index-excerpt">
@@ -490,43 +527,6 @@ shell是如何运行程序的在说明清楚问题之前，我们必须了解she
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Kubernetes/">Kubernetes</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/10/2020-01-10-sync-async/"> 迄今为止把同步/异步/阻塞/非阻塞/BIO/NIO/AIO讲的这么清楚的好文章 </a>
-
-      <a href="/2020/01/10/2020-01-10-sync-async/" class="index-excerpt">
-        
-        
-          
-        
-        <div>常规的误区
-假设有一个展示用户详情的需求，分两步，先调用一个HTTP接口拿到详情数据，然后使用适合的视图展示详情数据。
-如果网速很慢，代码发起一个HTTP请求后，就卡住不动了，直到十几秒后才拿到HTTP响应，然后继续往下执行。
-这个时候你问别人，刚刚代码发起的这个请求是不是一个同步请求，对方一定回答是。这是对的，它确实是。
-但你要问它为什么是呢？对方一定是这样回答的，“因为发起请求后，代码就卡住不</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-10
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Network/">Network</a>
             
           </div>
         
