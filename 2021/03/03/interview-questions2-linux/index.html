@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="望翔">
   <meta name="keywords" content="">
-  <title> 图解 Git 工作原理  - 权掌天下 Blog</title>
+  <title> 运维面试题系列--Linux问题  - 权掌天下 Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -151,8 +151,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2021-02-11 08:37">
-      2021年2月11日 早上
+    <time datetime="2021-03-03 00:00">
+      2021年3月3日 凌晨
     </time>
   </div>
 
@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      971 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      11
        分钟
     </span>
   
@@ -204,75 +204,98 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月20日 下午
+                  本文最后更新于：2021年3月4日 下午
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/1.png" srcset="/img/loading.gif" alt=""></p>
-<p>上面的四条命令在工作目录、暂存目录(也叫做索引)和仓库之间复制文件。</p>
+              <h2 id="linux系统"><a href="#linux系统" class="headerlink" title="linux系统"></a>linux系统</h2><h3 id="1、linux启动过程"><a href="#1、linux启动过程" class="headerlink" title="1、linux启动过程"></a>1、linux启动过程</h3><pre><code class="hljs armasm">第一步：开机自检，加载<span class="hljs-keyword">BIOS</span>
+<span class="hljs-keyword"></span>
+<span class="hljs-keyword">第二步：读取ＭＢＲ</span>
+<span class="hljs-keyword"></span>
+<span class="hljs-keyword">第三步：Boot </span>Loader　grub引导菜单
+
+第四步：加载kernel内核
+
+第五步：init进程依据inittab文件夹来设定运行级别
+
+第六步：init进程执行rc.sysinit
+
+第七步：启动内核模块
+
+第八步：执行不同运行级别的脚本程序
+
+第九步：执行/etc/rc.d/rc.local
+
+第十步：执行/<span class="hljs-keyword">bin/login程序，启动mingetty,进入登录状态</span></code></pre>
+
+<h3 id="2、统计8888端口连接数"><a href="#2、统计8888端口连接数" class="headerlink" title="2、统计8888端口连接数"></a>2、统计8888端口连接数</h3><pre><code class="hljs bash">netstat -ant | grep 8888</code></pre>
+
+<h3 id="3、top命令根据关键字查看CPU、内存信息"><a href="#3、top命令根据关键字查看CPU、内存信息" class="headerlink" title="3、top命令根据关键字查看CPU、内存信息"></a>3、top命令根据关键字查看CPU、内存信息</h3><pre><code class="hljs reasonml">top -c -p <span class="hljs-constructor">$(<span class="hljs-params">pgrep</span> -<span class="hljs-params">d</span>',' -<span class="hljs-params">f</span> <span class="hljs-params">java</span>)</span></code></pre>
+
+<h3 id="4、分区工具-格式化工具"><a href="#4、分区工具-格式化工具" class="headerlink" title="4、分区工具 格式化工具"></a>4、分区工具 格式化工具</h3><pre><code class="hljs awk">fdisk <span class="hljs-regexp">/dev/</span>sdb  按“p”，输入分区号，输入分区的大小，“w”保存
+mkfs -t ext4 <span class="hljs-regexp">/dev/</span>sdb1</code></pre>
+
+<h3 id="5、查看日志中访问次数最多的前10个IP"><a href="#5、查看日志中访问次数最多的前10个IP" class="headerlink" title="5、查看日志中访问次数最多的前10个IP"></a>5、查看日志中访问次数最多的前10个IP</h3><pre><code class="hljs coq">cat access_log |<span class="hljs-type">cut</span> -d ' ' -f <span class="hljs-number">1</span> | <span class="hljs-type">sort</span> |<span class="hljs-type">uniq</span> -c | <span class="hljs-type">sort</span> -nr | <span class="hljs-type">awk</span> '&#123;print $<span class="hljs-number">0</span> &#125;' | <span class="hljs-type">head</span> -n <span class="hljs-number">10</span> | <span class="hljs-type">less</span></code></pre>
+
+<h3 id="6、当前WEB服务器中联接次数最多的ip地址"><a href="#6、当前WEB服务器中联接次数最多的ip地址" class="headerlink" title="6、当前WEB服务器中联接次数最多的ip地址"></a>6、当前WEB服务器中联接次数最多的ip地址</h3><pre><code class="hljs coq">netstat -ntu |<span class="hljs-type">awk</span> '&#123;print $<span class="hljs-number">5</span>&#125;' |<span class="hljs-type">sort</span> | <span class="hljs-type">uniq</span> -c| <span class="hljs-type">sort</span> -nr</code></pre>
+
+<h3 id="7、用iptables添加一个规则允许192-168-0-123访问本机3306端口"><a href="#7、用iptables添加一个规则允许192-168-0-123访问本机3306端口" class="headerlink" title="7、用iptables添加一个规则允许192.168.0.123访问本机3306端口"></a>7、用iptables添加一个规则允许192.168.0.123访问本机3306端口</h3><pre><code class="hljs angelscript">iptables -I INPUT -p tcp -s <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.123</span> -d <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span> --dport <span class="hljs-number">3306</span> -j ACCEPT</code></pre>
+
+<h3 id="8、将本地80端口的请求转发到8080端口，当前主机IP为192-168-16-1，其中本地网卡eth0"><a href="#8、将本地80端口的请求转发到8080端口，当前主机IP为192-168-16-1，其中本地网卡eth0" class="headerlink" title="8、将本地80端口的请求转发到8080端口，当前主机IP为192.168.16.1，其中本地网卡eth0"></a>8、将本地80端口的请求转发到8080端口，当前主机IP为192.168.16.1，其中本地网卡eth0</h3><pre><code class="hljs routeros">iptables -t<span class="hljs-built_in"> nat </span>-A PREROUTING -p tcp -i eth0 -d 192.168.16.1 --dport 80 -j REDIRECT --to-port 8080</code></pre>
+
+<h3 id="9、查看http的并发连接数与其TCP连接状态"><a href="#9、查看http的并发连接数与其TCP连接状态" class="headerlink" title="9、查看http的并发连接数与其TCP连接状态"></a>9、查看http的并发连接数与其TCP连接状态</h3><pre><code class="hljs vbnet">netstat -n | awk <span class="hljs-comment">'/^tcp/ &#123;++b[$NF]&#125; END &#123;for(a in b) print a, b[a]&#125;'</span></code></pre>
+
+<h3 id="10、统计出apache的access-log中访问量最多的5个IP"><a href="#10、统计出apache的access-log中访问量最多的5个IP" class="headerlink" title="10、统计出apache的access.log中访问量最多的5个IP:"></a>10、统计出apache的access.log中访问量最多的5个IP:</h3><pre><code class="hljs coq">cat access_log | <span class="hljs-type">awk</span>  '&#123;print $<span class="hljs-number">1</span>&#125;' | <span class="hljs-type">sort</span> | <span class="hljs-type">uniq</span> -c | <span class="hljs-type">sort</span> -n -r | <span class="hljs-type">head</span> <span class="hljs-number">-5</span></code></pre>
+
+<h3 id="11、通过apache访问日志access-log-统计IP和每个地址访问的次数，按访问量列出前10名。"><a href="#11、通过apache访问日志access-log-统计IP和每个地址访问的次数，按访问量列出前10名。" class="headerlink" title="11、通过apache访问日志access.log 统计IP和每个地址访问的次数，按访问量列出前10名。"></a>11、通过apache访问日志access.log 统计IP和每个地址访问的次数，按访问量列出前10名。</h3><pre><code class="hljs stata"><span class="hljs-keyword">cat</span> /<span class="hljs-keyword">var</span>/<span class="hljs-keyword">log</span>/httpd/access_log |awk ‘&#123;<span class="hljs-keyword">print</span> <span class="hljs-variable">$1&#125;</span>’|<span class="hljs-keyword">sort</span> -r |head -10 |uniq -c</code></pre>
+
+<h3 id="12、多进程与多线程，请问有什么区别？"><a href="#12、多进程与多线程，请问有什么区别？" class="headerlink" title="12、多进程与多线程，请问有什么区别？"></a>12、多进程与多线程，请问有什么区别？</h3><pre><code class="hljs angelscript">（<span class="hljs-number">1</span>）进程：子进程是父进程的复制品。 
+（<span class="hljs-number">2</span>）线程：一个进程可以容纳多个线程，相对进程而言，线程是一个更加接近与执行体的概念，它可以与同进程的其他线程共享资源，但拥有自己	 的栈空间，拥有独立的执行序列。 
+两者都可以提高程序的并发度，提高程序运行效率和响应时间。 
+同时，线程适合于在SMP机器上运行，而进程则可以跨机器迁移。 
+根本区别就一点：用多进程每个进程有自己的地址空间(address space)，线程则共享地址空间。 
+所有其它区别都是由此而来的： 
+（<span class="hljs-number">1</span>）速度：线程产生的速度快，线程间的通讯快、切换快等，因为他们在同一个地址空间内。 
+（<span class="hljs-number">2</span>）资源利用率：线程的资源利用率比较好也是因为他们在同一个地址空间内。 
+（<span class="hljs-number">3</span>）同步问题：线程使用公共变量/内存时需要使用同步机制还是因为他们在同一个地址空间内。</code></pre>
+
+<h3 id="13、linux下ext4和xfs文件系统的区别"><a href="#13、linux下ext4和xfs文件系统的区别" class="headerlink" title="13、linux下ext4和xfs文件系统的区别"></a>13、linux下ext4和xfs文件系统的区别</h3><pre><code class="hljs angelscript">EXT4是Linux系统下的日志文件系统，是EXT3文件系统的后继版本。
+
+（<span class="hljs-number">1</span>）Ext4的文件系统容量达到<span class="hljs-number">1</span>EB，而文件容量则达到<span class="hljs-number">16</span>TB
+
+（<span class="hljs-number">2</span>）理论上支持无限数量的子目录
+
+（<span class="hljs-number">3</span>）Ext4文件系统使用<span class="hljs-number">64</span>位空间记录块数量和i-节点数量
+
+（<span class="hljs-number">4</span>）Ext4的多块分配器支持一次调用分配多个数据块
+
+XFS
+
+（<span class="hljs-number">1</span>）根据所记录的日志在很短的时间内迅速恢复磁盘文件内容
+
+（<span class="hljs-number">2</span>）采用优化算法，日志记录对整体文件操作影响非常小
+
+（<span class="hljs-number">3</span>） 是一个全<span class="hljs-number">64</span>-bit的文件系统，它可以支持上百万T字节的存储空间
+
+（<span class="hljs-number">4</span>）能以接近裸设备I/O的性能存储数据</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <ul>
-<li><code>git add files</code>把当前文件放入暂存区域。</li>
-<li><code>git commit</code>给暂存区域生成快照并提交。</li>
-<li><code>git reset</code> — files用来撤销最后一次git add files，你也可以用git reset撤销所有暂存区域文件。</li>
-<li><code>git checkout</code> — files把文件从暂存区域复制到工作目录，用来丢弃本地修改。</li>
+<li>进程退出指令 hup term</li>
+<li>raid卷</li>
 </ul>
-<p>你可以用<code>git reset -p</code>，<code>git checkout -p</code>， or <code>git add -p</code>进入交互模式。</p>
-<p>也可以跳过暂存区域直接从仓库取出文件或者直接提交代码。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/2.png" srcset="/img/loading.gif" alt=""></p>
-<ul>
-<li><code>git commit -a</code>相当于运行git add把所有当前目录下的文件加入暂存区域再运行。git commit.</li>
-<li><code>git commit files</code>进行一次包含最后一次提交加上工作目录中文件快照的提交。并且文件被添加到暂存区域。</li>
-<li><code>git checkout HEAD -- files</code>回滚到复制最后一次提交。</li>
-</ul>
-<h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><p>后文中以下面的形式使用图片。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/3.png" srcset="/img/loading.gif" alt=""></p>
-<p>绿色的5位字符表示提交的 ID，分别指向父节点。分支用橘色显示，分别指向特定的提交。当前分支由附在其上的 HEAD 标识。这张图片里显示最后 5 次提交，ed489 是最新提交。master 分支指向此次提交，另一个 maint 分支指向祖父提交节点。</p>
-<h2 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h2><h3 id="Diff"><a href="#Diff" class="headerlink" title="Diff"></a>Diff</h3><p>有许多种方法查看两次提交之间的变动。下面是一些示例。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/4.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Commit"><a href="#Commit" class="headerlink" title="Commit"></a>Commit</h3><p>提交时，git 用暂存区域的文件创建一个新的提交，并把此时的节点设为父节点。然后把当前分支指向新的提交节点。下图中，当前分支是 master。在运行命令之前，master 指向 ed489，提交后，master 指向新的节点 f0cec 并以 ed489 作为父节点。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/5.png" srcset="/img/loading.gif" alt=""></p>
-<p>即便当前分支是某次提交的祖父节点，git会同样操作。下图中，在master分支的祖父节点maint分支进行一次提交，生成了1800b。这样，maint分支就不再是master分支的祖父节点。此时，合并 (或者 衍合) 是必须的。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/6.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果想更改一次提交，使用 git commit —amend。git 会使用与当前提交相同的父节点进行一次新提交，旧的提交会被取消。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/7.png" srcset="/img/loading.gif" alt=""></p>
-<p>另一个例子是分离 HEAD 提交，后文讲。</p>
-<h3 id="Checkout"><a href="#Checkout" class="headerlink" title="Checkout"></a>Checkout</h3><p>checkout 命令通常用来从仓库中取出文件，或者在分支中切换。</p>
-<p>checkout 命令让 git 把文件复制到工作目录和暂存区域。比如 git checkout HEAD~ foo.c把文件从foo.c提交节点HEAD~ (当前提交节点的父节点)复制到工作目录并且生成索引。注意当前分支没有变化。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/8.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果没有指定文件名，而是一个本地分支，那么将切换到那个分支去。同时把索引和工作目录切换到那个分支对应的状态。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/9.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果既没有指定文件名，也没有指定分支名，而是一个标签、远程分支、SHA-1值或者是像master~3类似的东西，就得到一个匿名分支，称作detached HEAD。这样可以很方便的在历史版本之间互相切换。但是，这样的提交是完全不同的，详细的在下面。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/10.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="用分离-HEAD-提交"><a href="#用分离-HEAD-提交" class="headerlink" title="用分离 HEAD 提交"></a>用分离 HEAD 提交</h3><p>HEAD是分离的时候, 提交可以正常进行, 但是没有更新已命名的分支. 。(可以看作是匿名分支。)</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/11.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果此时切换到别的分支，那么所做的工作会全部丢失。注意这个命令之后就不存在2eecb了。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/12.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果你想保存当前的状态，可以用这个命令创建一个新的分支：git checkout -b name。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/13.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Reset"><a href="#Reset" class="headerlink" title="Reset"></a>Reset</h3><p>reset 命令把当前分支指向另一个位置，并且有选择的变动工作目录和索引。也用来在从历史仓库中复制文件到索引，而不动工作目录。</p>
-<p>如果不给选项，那么当前分支指向到那个提交。如果用—hard选项，那么工作目录也更新，如果用—soft选项，那么都不变。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/14.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果没有给出提交点的版本号，那么默认用 HEAD。这样，分支指向不变，但是索引会回滚到最后一次提交，如果用—hard选项，工作目录也同样。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/15.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果给了文件名(或者-p选项), 那么工作效果和带文件名的checkout差不多，除了索引被更新。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/16.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h3><p>merge 命令把不同分支合并起来。合并前，索引必须和当前提交相同。如果另一个分支是当前提交的祖父节点，那么合并命令将什么也不做。另一种情况是如果当前提交是另一个分支的祖父节点，就导致fast-forward合并。指向只是简单的移动，并生成一个新的提交。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/17.png" srcset="/img/loading.gif" alt=""></p>
-<p>否则就是一次真正的合并。默认把当前提交(ed489 如下所示)和另一个提交(33104)以及他们的共同祖父节点(b325c)进行一次三方合并。结果是先保存当前目录和索引，然后和父节点33104一起做一次新提交。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/18.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Cherry-Pick"><a href="#Cherry-Pick" class="headerlink" title="Cherry Pick"></a>Cherry Pick</h3><p>cherry-pick命令”复制”一个提交节点并在当前复制做一次完全一样的新提交。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/19.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Rebase"><a href="#Rebase" class="headerlink" title="Rebase"></a>Rebase</h3><p>衍合是合并命令的另一种选择。合并把两个父分支合并进行一次提交，提交历史不是线性的。衍合在当前分支上重演另一个分支的历史，提交历史是线性的。本质上，这是线性化的自动的 cherry-pick</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/20.png" srcset="/img/loading.gif" alt=""></p>
-<p>上面的命令都在topic分支中进行，而不是master分支，在master分支上重演，并且把分支指向新的节点。注意旧提交没有被引用，将被回收。</p>
-<p>要限制回滚范围，使用—onto选项。下面的命令在master分支上重演当前分支从169a6以来的最近几个提交，即2c33a。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/21.png" srcset="/img/loading.gif" alt=""></p>
-<p>同样有 git rebase —interactive 让你更方便的完成一些复杂操作，比如丢弃、重排、修改、合并提交。没有图片体现着下，细节看这里:git-rebase(1)</p>
-<h2 id="技术说明"><a href="#技术说明" class="headerlink" title="技术说明"></a>技术说明</h2><p>文件内容并没有真正存储在索引(.git/index)或者提交对象中，而是以blob的形式分别存储在数据库中 (.git/objects)，并用 SHA-1 值来校验。索引文件用识别码列出相关的blob文件以及别的数据。对于提交来说，以树(tree)的形式存储，同样用对于的哈希值识别。树对应着工作目录中的文件夹，树中包含的 树或者 blob 对象对应着相应的子目录和文件。每次提交都存储下它的上一级树的识别码。</p>
-<p>如果用detached HEAD提交，那么最后一次提交会被the reflog for HEAD引用。但是过一段时间就失效，最终被回收，与git commit —amend或者git rebase很像。</p>
-<p>转载自：微信公众号crossincode</p>
-<p>原文地址：<a href="http://marklodato.github.io/visual-git-guide/index-zh-cn.html?no-svg" target="_blank" rel="noopener">http://marklodato.github.io/visual-git-guide/index-zh-cn.html?no-svg</a></p>
 
             </article>
             <hr>
@@ -283,7 +306,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                   </div>
                 
@@ -296,9 +319,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/03/interview-questions2-linux/">
+                      <a href="/2021/03/03/interview-questions1-company/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"> 运维面试题系列--Linux问题 </span>
+                        <span class="hidden-mobile"> 运维面试题系列--公司业务问题 </span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -306,8 +329,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2021/02/10/2021-02-10-redis-high-availability/">
-                        <span class="hidden-mobile"> Redis高可用总结：Redis主从复制、哨兵集群、脑裂... </span>
+                      <a href="/2021/02/11/2021-02-11-visual-git-guide/">
+                        <span class="hidden-mobile"> 图解 Git 工作原理 </span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -452,7 +475,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        " 图解 Git 工作原理 &nbsp;",
+        " 运维面试题系列--Linux问题 &nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

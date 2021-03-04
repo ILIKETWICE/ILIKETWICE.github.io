@@ -167,6 +167,41 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/01/01/2020-01-01-mesos-pull-images-error/"> mesos 以容器方式启动,拉取镜像失败问题 </a>
+
+      <a href="/2020/01/01/2020-01-01-mesos-pull-images-error/" class="index-excerpt">
+        
+        
+          
+        
+        <div>为了方便快速部署,将 mesos、marathon进行了容器化部署, 但是容器化完后发现在marathon 上创建应用一直创建不成功
+分析过程
+因为是容器化部署的mesos-slave和marathon,是不是因为没有找到证书和登录信息导致的,随后在mesos-salve容器手动的进行docker login 操作并将证书进行挂载到对应目录,手工执行命令docker -H unix:///var/</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-01-01
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Mesos/">Mesos</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2019/12/31/2019-12-31-tcp-timeout-and-retransmission/"> TCP 超时与重传 </a>
 
       <a href="/2019/12/31/2019-12-31-tcp-timeout-and-retransmission/" class="index-excerpt">
@@ -468,39 +503,6 @@ HTTPS 的底层原理如何实现？
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E8%BF%90%E7%BB%B4%E5%AE%9A%E5%BE%8B/">运维定律</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/20/2019-12-20-linux-find/"> Linux find命令教程：15个find命令用法 </a>
-
-      <a href="/2019/12/20/2019-12-20-linux-find/" class="index-excerpt">
-        
-        
-          
-        
-        <div>在系统上查找文件或目录时，Linux上的find命令无与伦比。它使用简单，而且有许多不同的选项，可让您微调文件搜索。继续阅读以查看如何使用此命令在系统上查找任何内容的示例。一旦您知道如何在Linux中使用find命令，每个文件都只需敲击几下。</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-20
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Linux/">Linux</a>
             
           </div>
         
