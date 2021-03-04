@@ -167,364 +167,6 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions1-company/"> 运维面试题系列--公司业务问题 </a>
-
-      <a href="/2021/03/03/interview-questions1-company/" class="index-excerpt">
-        
-        
-          
-        
-        <div>公司业务问题并发 3万qps 2万pv访问数 3千万uv用户数 30万
-</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions4-shell/"> 运维面试题系列--shell脚本问题 </a>
-
-      <a href="/2021/03/03/interview-questions4-shell/" class="index-excerpt">
-        
-        
-          
-        
-        <div>shell脚本
-日志统计访问时间超过50s
-
-awk '$2 &gt;= 10 &#123;print $2&#125;' yum.log | sort -nr | wc -l
-
-
-对日志进行分割备份
-先 mv重命名
-在执行命令 kill -USE1 
-
-
-shell $$参数
-
-</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions3-databases/"> 运维面试题系列--数据库问题 </a>
-
-      <a href="/2021/03/03/interview-questions3-databases/" class="index-excerpt">
-        
-        
-          
-        
-        <div>数据库
-数据库表太大怎么处理
-
-数据库根据学生表和分数表查学生的学号、姓名、课程，分数
-
-
-SELECT student.学号, student.姓名,score.课程, score.成绩 FROM student JOIN score ON student.学号&#x3D;score.学号;
-</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions2-linux/"> 运维面试题系列--Linux问题 </a>
-
-      <a href="/2021/03/03/interview-questions2-linux/" class="index-excerpt">
-        
-        
-          
-        
-        <div>linux系统
-统计8888端口连接数     
-netstat -ant | grep 8888
-
-进程退出指令 hup term
-
-top命令看关键字  top -c -p $(pgrep -d’,’ -f java)
-
-raid卷
-
-分区工具 格式化工具  fdisk /dev/sdb    mkfs -t ext4
-
-linux启动过程  
-第一步：开机自检，加载BIOS
-
-第二步：读取Ｍ</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions5-theory/"> 运维面试题系列--运维理论问题 </a>
-
-      <a href="/2021/03/03/interview-questions5-theory/" class="index-excerpt">
-        
-        
-          
-        
-        <div>理论问题
-redis持久化 aof rdb两种方式的区别，哪个好
-ip网段地址的计算  例如:192.168.10.0/16 有几个可用ip
-k8s service的调度算法
-k8s service的暴露方法 nodeport
-k8s service涉及到的组件
-kube-proxy的三种代理模式及原理
-StatefulSet 可以挂在多个pvc吗？
-k8s headless service
-k8</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions6-analysis/"> 运维面试题系列--思路分析类问题 </a>
-
-      <a href="/2021/03/03/interview-questions6-analysis/" class="index-excerpt">
-        
-        
-          
-        
-        <div>思路分析类型
-排查java进程cpu占用过高
-cpu负载情况的分析 1分钟5分钟
-linux系统负载怎么判断
-linux系统执行命令很卡
-linux服务器不通，怎么排查
-k8s pod之间无法通信
-kube-proxy挂掉的影响
-redis在内存大（比如内存32G）的情况下应该注意哪些问题
-如何处理访问量暴增    良性：扩容。CDN    恶性：网络攻击
-
-</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions7-java/"> 运维面试题系列--JAVA问题 </a>
-
-      <a href="/2021/03/03/interview-questions7-java/" class="index-excerpt">
-        
-        
-          
-        
-        <div>java类型
-jvm分层 gc回收种类
-java能否正确识别docker的资源限制
-
-</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions8-network/"> 运维面试题系列--网络问题 </a>
-
-      <a href="/2021/03/03/interview-questions8-network/" class="index-excerpt">
-        
-        
-          
-        
-        <div>网络问题dns的查询过程、查询方式
-</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions9-program/"> 运维面试题系列--编程题 </a>
-
-      <a href="/2021/03/03/interview-questions9-program/" class="index-excerpt">
-        
-        
-          
-        
-        <div>编程题</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2021/02/11/2021-02-11-visual-git-guide/"> 图解 Git 工作原理 </a>
 
       <a href="/2021/02/11/2021-02-11-visual-git-guide/" class="index-excerpt">
@@ -553,6 +195,375 @@ git checkout — files把文件从暂存区域复制到工作目录，用来丢�
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Git/">Git</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2021/02/10/2021-02-10-redis-high-availability/"> Redis高可用总结：Redis主从复制、哨兵集群、脑裂... </a>
+
+      <a href="/2021/02/10/2021-02-10-redis-high-availability/" class="index-excerpt">
+        
+        
+          
+        
+        <div>在实际的项目中，服务高可用非常重要，如，当Redis作为缓存服务使用时， 缓解数据库的压力，提高数据的访问速度，提高网站的性能 ，但如果使用Redis 是单机模式运行 ，只要一个服务器宕机就不可以提供服务，这样会可能造成服务效率低下，甚至出现其相对应的服务应用不可用。
+因此为了实现高可用，Redis 提供了哪些高可用方案？
+
+Redis主从复制
+Redis持久化
+哨兵集群
+…
+
+
+Redis基于一</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2021-02-10
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/10/01/2020-10-01-mysql-interview-questions/"> Mysql面试题50道 </a>
+
+      <a href="/2020/10/01/2020-10-01-mysql-interview-questions/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、MySQL 中有哪几种锁？
+（1）表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最 高，并发度最低。
+（2）行级锁：开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最 低，并发度也最高。
+（3）页面锁：开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表 锁和行锁之间，并发度一般。
+2、MySQL 中有哪些不同的表格？
+共有 5 种类型的表格：
+（1）My</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-10-01
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/09/29/2020-09-29-python-progressbar/"> 六种酷炫Python运行进度条 </a>
+
+      <a href="/2020/09/29/2020-09-29-python-progressbar/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1.普通进度条在代码迭代运行中可以自己进行统计计算，并使用格式化字符串输出代码运行进度
+import sys
+import time
+def progress_bar():
+    for i in range(1, 101):
+        print("\r", end="")
+        print("Download progress: &#123;&#125;%: ".format</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-09-29
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python/">Python</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/20/2020-07-20-dockerfile/"> Dockerfile就这么简单 </a>
+
+      <a href="/2020/07/20/2020-07-20-dockerfile/" class="index-excerpt">
+        
+        
+          
+        
+        <div>当我们在使用docker时，最重要的就是镜像，只要有了镜像，我们就可以随时随地的根据镜像来创建一个容器，从而做到让我们的服务可以在任何时间任何地点任何环境下运行起来。那么镜像是怎么制作的呢？总体来讲，制作镜像有两种方法：
+
+根据一个已有的镜像运行容器，然后根据这个容器来制作我们自己的镜像；
+使用DockerFile来制作一个镜像模板文件，使用这个文件来创建镜像；
+
+对于第一种方法，我们在上一篇文章</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-20
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Docker/">Docker</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/20/2020-07-20-linux-kernel-optimize/"> Linux内核调优 </a>
+
+      <a href="/2020/07/20/2020-07-20-linux-kernel-optimize/" class="index-excerpt">
+        
+        
+          
+        
+        <div>以nginx 10k并发连接为优化目标，附简单介绍，不一一解释。
+tcp容量规划net.ipv4.tcp_mem  = 262144  524288 786432
+net.core.wmem_max = 16777216
+net.core.wmem_default = 131072
+net.core.rmem_max = 16777216
+net.core.rmem_default = 13107</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-20
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/20/2020-07-20-nginx-logs/"> Nginx日志配置详解 </a>
+
+      <a href="/2020/07/20/2020-07-20-nginx-logs/" class="index-excerpt">
+        
+        
+          
+        
+        <div>前言
+Nginx日志对于统计、系统服务排错很有用。
+Nginx日志主要分为两种：access_log(访问日志)和error_log(错误日志)。通过访问日志我们可以得到用户的IP地址、浏览器的信息，请求的处理时间等信息。错误日志记录了访问出错的信息，可以帮助我们定位错误的原因。
+本文将详细描述一下如何配置Nginx日志。
+设置access_log访问日志主要记录客户端的请求。客户端向Nginx服</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-20
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Nginx/">Nginx</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/07/2020-07-07-24-jvm/"> 24个Jvm面试题总结 </a>
+
+      <a href="/2020/07/07/2020-07-07-24-jvm/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、JVN内存结构 
+方法区和对是所有线程共享的内存区域；而java栈、本地方法栈和程序员计数器是运行是线程私有的内存区域。
+
+Java堆（Heap）,是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。
+方法区（Method Area）,方法区（Method Area）与</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-07
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/07/01/2020-07-01-user-slow-server/"> 用户访问网站慢，排查思路 </a>
+
+      <a href="/2020/07/01/2020-07-01-user-slow-server/" class="index-excerpt">
+        
+        
+          
+        
+        <div>当出现网站慢的时候我们脑子中要映出几点原因：
+1.程序代码执行方面
+2.大量数据库操作
+3.域名DNS解析问题
+4.服务器环境
+5.网络的带宽
+6.用许多javascript特效
+7.访问的东西大
+8.系统资源不足
+9.防火墙的过多使用
+10.网络中某个端口形成了瓶颈导致网速变慢
+\1.打开访问慢的网站观察下情况，通过火狐的fixfox 插件 或者 IE的元素查看工具，你网站里面加载的信息会一览无</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-07-01
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/29/2020-06-29-linux-top/"> Linux top命令参数详解 </a>
+
+      <a href="/2020/06/29/2020-06-29-linux-top/" class="index-excerpt">
+        
+        
+          
+        
+        <div>一、top前5行统计信息第1行：top - 05:43:27 up 4:52, 2 users, load average: 0.58, 0.41, 0.30第1行是任务队列信息，其参数如下：
+
+
+
+内容
+含义
+
+
+
+05:43:27
+表示当前时间
+
+
+up 4:52
+系统运行时间 格式为时：分
+
+
+2 users
+当前登录用户数
+
+
+load average: 0.58, 0.41, 0.30
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-29
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
             
           </div>
         

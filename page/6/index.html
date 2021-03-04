@@ -167,347 +167,6 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/18/2019-12-18-prometheus2-server/"> Prometheus Server组件安装 </a>
-
-      <a href="/2019/12/18/2019-12-18-prometheus2-server/" class="index-excerpt">
-        
-        
-          
-        
-        <div>这里 Prometheus Server 使用一个带 RBAC 权限的账号采集集群中现有监控信息（其实是从 cadvisor 获取）和节点信息。本次部署是基于比较新的 v2.11.1 版本，网上的一些教程还停留在比较早的版本，所以有些东西改动还是比较大的。
-yaml文件地址：https://github.com/ILIKETWICE/prometheus-k8s
-具体配置清单文件如下：
-├── p</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-18
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Prometheus/">Prometheus</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/18/2019-12-18-prometheus3-kube-state-metrics/"> kube-state-metrics 组件安装 </a>
-
-      <a href="/2019/12/18/2019-12-18-prometheus3-kube-state-metrics/" class="index-excerpt">
-        
-        
-          
-        
-        <div>在这里 kube-state-metrics 是作为 prometheus 的一个 exporter 来使用，主要用来提供集群中的 deployment、daemonset、cronjob 等服务的监控数据。
-yaml文件地址：https://github.com/ILIKETWICE/prometheus-k8s
-具体配置清单文件如下：
-├── kube-state-metrics-deploy</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-18
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Prometheus/">Prometheus</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/18/2019-12-18-prometheus4-node-expoter/"> Node-Expoter 组件安装 </a>
-
-      <a href="/2019/12/18/2019-12-18-prometheus4-node-expoter/" class="index-excerpt">
-        
-        
-          
-        
-        <div>node-exporter 这里主要用来提供集群节点本身的信息的，包括 CPU、内存、硬盘、IO 等等信息。
-yaml文件地址：https://github.com/ILIKETWICE/prometheus-k8s
-具体配置清单文件如下：
-├── node-exporter-ds.yaml
-├── node-exporter-rbac.yaml
-└── node-exporter-svc.yam</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-18
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Prometheus/">Prometheus</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/18/2019-12-18-prometheus5-grafana/"> Grafana 可视化组件安装 </a>
-
-      <a href="/2019/12/18/2019-12-18-prometheus5-grafana/" class="index-excerpt">
-        
-        
-          
-        
-        <div>Grafana 是一个开源的 dashboard，支持用 prometheus 作为数据源，部署起来也比较简单，这里我用的是 ConfigMap 做配置，所以看起来比较复杂。
-yaml文件地址：https://github.com/ILIKETWICE/prometheus-k8s
-具体配置清单文件如下：
-├── grafana-cm.yaml
-├── grafana-dashboard.yaml</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-18
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Prometheus/">Prometheus</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/18/2019-12-18-prometheus6-alertmanager/"> AlertManager 组件安装 </a>
-
-      <a href="/2019/12/18/2019-12-18-prometheus6-alertmanager/" class="index-excerpt">
-        
-        
-          
-        
-        <div>在 Prometheus 监控中， AlertManager 主要是用来除了告警信息和发送告警的。
-yaml文件地址：https://github.com/ILIKETWICE/prometheus-k8s
-具体配置清单文件如下：
-├── alertmanager-cm.yaml
-├── alertmanager-deploy.yaml
-├── alertmanager-ingress.yaml
-</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-18
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Prometheus/">Prometheus</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/17/2019-12-17-prometheus-introduction/"> Prometheus架构原理及其组成 </a>
-
-      <a href="/2019/12/17/2019-12-17-prometheus-introduction/" class="index-excerpt">
-        
-        
-          
-        
-        <div>Prometheus 系统介绍首先，Prometheus 受启发于 Google 的 Brogmon 监控系统，相似的 Kubernetes 是从 Google 的 Brog 系统演变而来，从 2012 年开始由前 Google 工程师在 Soundcloud 以开源软件的形式进行研发，并且于 2015 年早期对外发布早期版本。2016 年 5 月继 Kubernetes 之后成为第二个正式加入 </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-17
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Prometheus/">Prometheus</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/16/2019-12-16-gitlab-k8s/"> GitLab 连接 K8S 集群 </a>
-
-      <a href="/2019/12/16/2019-12-16-gitlab-k8s/" class="index-excerpt">
-        
-        
-          
-        
-        <div>用 GitLab 连接 Kubernetes 需要明确以下几点内容：
-
-目标集群的 API 连接地址；
-集群的 CA 证书；
-基于RBAC 的特定 ServiceAccount 的 Token；
-需要部署 pod 到哪个 NameSpace；
-
-获取集群的 API 连接地址
-获取集群的 API 连接地址可以用如下命令查看：
-$ kubectl cluster-info
-Kubernetes mas</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-16
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Gitlab/">Gitlab</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/15/2019-12-15-aliyun-policy/"> 阿里云子账号权限策略 </a>
-
-      <a href="/2019/12/15/2019-12-15-aliyun-policy/" class="index-excerpt">
-        
-        
-          
-        
-        <div>1、OSS读写权限&#123;
-    "Version": "1",
-    "Statement": [
-        &#123;
-            "Effect": "Allow",
-            "Action": [
-                "oss:ListBuckets",
-                "oss:GetBucketStat",
-   </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-15
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/14/2019-12-14-execution/"> 执行力，才是拉开人与人差距的关键 </a>
-
-      <a href="/2019/12/14/2019-12-14-execution/" class="index-excerpt">
-        
-        
-          
-        
-        <div>01 如果你想变得更好 首先要学会执行我们常常慨叹，为什么都是吃五谷杂粮长大的，人与人之间的差距怎么就那么大呢？
-为什么毕业于同一个学校的人，几年后的差距也会变得那么大呢？
-这其中有一个很重要的因素——执行力。
-那些能够超越同龄人的人，往往都有这样一个优点，他们除了有远见外，还特别肯吃苦，他们的勤奋和执行力往往能甩出同龄人几条街。
-缺乏执行力，人就会焦虑、迷茫。
-执行力是改变人生最直接有效的方法，</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-14
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%89%A7%E8%A1%8C%E5%8A%9B/">执行力</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2019/12/13/2019-12-13-one-line-of-python-code/"> 一行 Python 代码能实现这么多丧心病狂的功能？</a>
 
       <a href="/2019/12/13/2019-12-13-one-line-of-python-code/" class="index-excerpt">
@@ -532,6 +191,342 @@ Kubernetes mas</div>
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Python/">Python</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/12/2019-12-12-nginx-chinese/">Nginx 配置参数中文说明 </a>
+
+      <a href="/2019/12/12/2019-12-12-nginx-chinese/" class="index-excerpt">
+        
+        
+          
+        
+        <div>Nginx 配置参数中文详细说明：#定义Nginx运行的用户和用户组
+user www www;
+#
+#nginx进程数,建议设置为等于CPU总核心数.
+worker_processes 8;
+#
+#全局错误日志定义类型,[ debug | info | notice | warn | error | crit ]
+error_log /var/log/nginx/error.log info;
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-12
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Nginx/">Nginx</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/11/2019-12-11-kubernetes9-network/">【Kubernetes系列】第9篇 网络原理解析</a>
+
+      <a href="/2019/12/11/2019-12-11-kubernetes9-network/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、Linux网络基础Network Namespace(网络命名空间)：
+Linux在网络栈中引入网络命名空间，将独立的网络协议栈隔离到不同的命令空间中，彼此间无法通信；docker利用这一特性，实现不容器间的网络隔离。
+Iptables/Netfilter：
+Netfilter负责在内核中执行各种挂接的规则(过滤、修改、丢弃等)，运行在内核模式中；Iptables模式是在用户模式下运行的进程，</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-11
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kubernetes/">Kubernetes</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/10/2019-12-10-kubernetes8-cicd-full/">【Kubernetes系列】第8篇 CI/CD 之全流程实践</a>
+
+      <a href="/2019/12/10/2019-12-10-kubernetes8-cicd-full/" class="index-excerpt">
+        
+        
+          
+        
+        <div>前言1）本实践中已经的示例代码及jenkins-agent镜像已经推送归档至github，–&gt;传送门（https://github.com/Kubernetes-Best-Pratice/）
+2）注意本实践中均为内网数据，你测试时一定要改为自己的环境的有效数据。
+3) 由于本实践涉及组件较多，若有操作不明确的话，你可以后台留言，我们一起完善。
+4) 具体操作时若有不清楚，或是错误可以留言，大</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-10
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kubernetes/">Kubernetes</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/09/2019-12-09-kubernetes7-cicd/">【Kubernetes系列】第7篇 CI/CD 之组件部署</a>
+
+      <a href="/2019/12/09/2019-12-09-kubernetes7-cicd/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、前言应对敏捷开发的需求，对CI(持续集成))/CD（持续交付）的提出了更高的标准，今天来讨论下，如何基于开源组件（gitlab/jenkins/harbor/kubernetes）使用CI/CD，赋能团队的开发、运维。
+2、核心组件
+3、基本流程step1：在GitLab创建对应的项目。
+step2：开发者将代码提交到GitLab。
+step3：Jenkins创建对应的任务（Job），集成该项</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-09
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kubernetes/">Kubernetes</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/08/2019-12-08-kubernetes6-nginx-introduction/">【Kubernetes系列】第6篇 Ingress controller - nginx组件介绍</a>
+
+      <a href="/2019/12/08/2019-12-08-kubernetes6-nginx-introduction/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、概述在上一篇文章中我们介绍了如何通过helm进行安装部署traefik组件（链接点这里），文中还提到常用的ingress controller除了traefik还有Nginx、HAProxy、Kong等，在本篇文章中我们就介绍如何安装部署Nginx-ingress，只有在经过积累不同组件的使用经验之后，我们才能更好的比较其优劣，形成最佳实践。
+2、安装部署2.1 通过helm查找nginx-i</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-08
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kubernetes/">Kubernetes</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/07/2019-12-07-kubernetes5-traefik-introduction/">【Kubernetes系列】第5篇 Ingress Controller - Traefik组件介绍</a>
+
+      <a href="/2019/12/07/2019-12-07-kubernetes5-traefik-introduction/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、概述为了能够让Ingress资源能够工作，在Kubernetes集群中必须至少有一个运行中的ingress controller组件。也就是说如果在kubernetes集群中没有一个ingress controller组件，只是定义了ingress资源，其实并不会实现http、https协议的请求转发、负载均衡等功能。常见的ingress controller组件如下：
+
+Nginx
+Trae</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-07
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kubernetes/">Kubernetes</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/06/2019-12-06-kubernetes4-helm-introduction/">【Kubernetes系列】第4篇 Kubernetes包管理工具-helm介绍</a>
+
+      <a href="/2019/12/06/2019-12-06-kubernetes4-helm-introduction/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、概述Helm是kubernetes包管理工具，可以方便快捷的安装、管理、卸载kubernetes应用，类似于Linux操作系统中yum或apt-get软件的作用。其主要的设计目的：
+
+创建新的chart包
+将charts包文件打包压缩
+同chart仓库进行集成，获取charts文件
+安装及卸载charts到kubernetes集群
+管理通过helm安装的charts应用
+
+2、概念介绍char</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-06
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kubernetes/">Kubernetes</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/05/2019-12-05-kubernetes3-cluster-install/">【Kubernetes系列】第3篇 Kubernetes集群安装部署</a>
+
+      <a href="/2019/12/05/2019-12-05-kubernetes3-cluster-install/" class="index-excerpt">
+        
+        
+          
+        
+        <div>本文介绍了如何通过Kubespray来进行部署高可用k8s集群，k8s版本为1.12.5。
+1、部署手册代码仓库：https://github.com/kubernetes-sigs/kubespray
+参考文档：https://kubespray.io/#/
+2、k8s master机器配置
+3、k8s 集群安装步骤step1: 设置主机间的免密登录
+由于kubespray是依赖于ansible</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-05
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kubernetes/">Kubernetes</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/04/2019-12-04-kubernetes2-introduction-to-basic-concepts/">【Kubernetes系列】第2篇 基础概念介绍</a>
+
+      <a href="/2019/12/04/2019-12-04-kubernetes2-introduction-to-basic-concepts/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、Pod - 实例Pod是一组紧密关联的容器集合，支持多个容器在一个Pod中共享网络和文件系统，可以通过进程间通信和文件共享这种简单高效的方式完成服务，是Kubernetes调度的基本单位。Pod的设计理念是 每个Pod都有一个唯一的IP
+Pod具有如下特征：
+
+包含多个共享IPC、Network和UTC namespace的容器，可直接通过localhost通信 
+所有Pod内容器都可以访问共</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-04
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kubernetes/">Kubernetes</a>
             
           </div>
         
