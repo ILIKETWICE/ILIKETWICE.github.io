@@ -167,6 +167,40 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/05/26/2020-05-26-nginx-config-location-proxypass/"> Nginx配置location中proxy_pass的&#39;/&#39;号的作用 </a>
+
+      <a href="/2020/05/26/2020-05-26-nginx-config-location-proxypass/" class="index-excerpt">
+        
+        
+          
+        
+        <div>真实案例，就因为在配置时，少写了一个字符“/”，就造成访问不通报错，因而接到投诉。那么是怎么引起的呢？原因就是：Nginx在配置proxy_pass代理转接时，少些“/”字符造成的。有同学就有疑问，加不加“/”,区别真的那么大吗？我们带着这个疑问，来探究下这个问题。
+location目录匹配详解nginx每个location都是一个匹配目录，nginx的策略是：访问请求来时，会对访问地址进行解析，</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-05-26
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Nginx/">Nginx</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/05/25/2020-05-25-mysql-examination-questions/"> MySQL常见面试题（后续的面试题会更新） </a>
 
       <a href="/2020/05/25/2020-05-25-mysql-examination-questions/" class="index-excerpt">
@@ -493,39 +527,6 @@ shell是如何运行程序的在说明清楚问题之前，我们必须了解she
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Network/">Network</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/09/2020-01-09-aliyun-terway/"> 阿里云terway源码分析 </a>
-
-      <a href="/2020/01/09/2020-01-09-aliyun-terway/" class="index-excerpt">
-        
-        
-          
-        
-        <div>背景随着公司业务的发展，底层容器环境也需要在各个区域部署，实现多云架构， 使用各个云厂商提供的CNI插件是k8s多云环境下网络架构的一种高效的解法。我们在阿里云的方案中，便用到了阿里云提供的CNI插件terway。terway所提供的VPC互通的网络方案，方便对接已有的基础设施，同时没有overlay网络封包解包的性能损耗，简单易用，出现网络问题方便诊断。本文对该插件做简单的代码分析，理解其原理，</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-09
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
             
           </div>
         

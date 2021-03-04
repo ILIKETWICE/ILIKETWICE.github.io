@@ -118,6 +118,25 @@
   
   
   <entry>
+    <title> 运维面试题系列--JAVA问题 </title>
+    <link href="/2021/03/03/interview-questions7-java/"/>
+    <url>/2021/03/03/interview-questions7-java/</url>
+    
+    <content type="html"><![CDATA[<h4 id="java类型"><a href="#java类型" class="headerlink" title="java类型"></a>java类型</h4><ul><li>jvm分层 gc回收种类</li><li>java能否正确识别docker的资源限制</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title> 图解 Git 工作原理 </title>
     <link href="/2021/02/11/2021-02-11-visual-git-guide/"/>
     <url>/2021/02/11/2021-02-11-visual-git-guide/</url>
