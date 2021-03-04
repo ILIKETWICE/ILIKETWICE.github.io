@@ -205,6 +205,81 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2021/03/03/interview-questions12-docker/"> 运维面试题系列--Docker </a>
+
+      <a href="/2021/03/03/interview-questions12-docker/" class="index-excerpt">
+        
+        
+          
+        
+        <div>Docker 面试问题1、docker网络模式bridge：这是Docker默认的网络驱动，此模式会为每一个容器分配Network Namespace和设置IP等，并将容器连接到一个虚拟网桥上。如果未指定网络驱动，这默认使用此驱动。
+host：此网络驱动直接使用宿主机的网络。
+none：此驱动不构造网络环境。采用了none 网络驱动，那么就只能使用loopback网络设备，容器只能使用127.0.</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2021/03/03/interview-questions13-k8s/"> 运维面试题系列--Kubernetes </a>
+
+      <a href="/2021/03/03/interview-questions13-k8s/" class="index-excerpt">
+        
+        
+          
+        
+        <div>Kubernetes面试问题理论部分1、kubernetes是什么？Kubernetes 是一个跨主机集群的开源的容器调度平台，它可以自动化应用容器的部署、扩展和操作, 提供以容器为中心的基础架构。
+
+2、k8s前身是谷歌的borg系统3、k8s可以干什么？- 快速部署应用
+- 快速扩展应用
+- 无缝对接新的应用功能
+- 节省资源，优化硬件资源的使用
+
+4、Kubernetes 具有如下特点:便携</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2021/02/11/2021-02-11-visual-git-guide/"> 图解 Git 工作原理 </a>
 
       <a href="/2021/02/11/2021-02-11-visual-git-guide/" class="index-excerpt">
@@ -466,87 +541,6 @@ Nginx日志主要分为两种：access_log(访问日志)和error_log(错误日�
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Nginx/">Nginx</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/07/2020-07-07-24-jvm/"> 24个Jvm面试题总结 </a>
-
-      <a href="/2020/07/07/2020-07-07-24-jvm/" class="index-excerpt">
-        
-        
-          
-        
-        <div>1、JVN内存结构 
-方法区和对是所有线程共享的内存区域；而java栈、本地方法栈和程序员计数器是运行是线程私有的内存区域。
-
-Java堆（Heap）,是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。
-方法区（Method Area）,方法区（Method Area）与</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-07
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/01/2020-07-01-user-slow-server/"> 用户访问网站慢，排查思路 </a>
-
-      <a href="/2020/07/01/2020-07-01-user-slow-server/" class="index-excerpt">
-        
-        
-          
-        
-        <div>当出现网站慢的时候我们脑子中要映出几点原因：
-1.程序代码执行方面
-2.大量数据库操作
-3.域名DNS解析问题
-4.服务器环境
-5.网络的带宽
-6.用许多javascript特效
-7.访问的东西大
-8.系统资源不足
-9.防火墙的过多使用
-10.网络中某个端口形成了瓶颈导致网速变慢
-\1.打开访问慢的网站观察下情况，通过火狐的fixfox 插件 或者 IE的元素查看工具，你网站里面加载的信息会一览无</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-01
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
             
           </div>
         
