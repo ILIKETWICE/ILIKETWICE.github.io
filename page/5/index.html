@@ -167,113 +167,6 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/02/2020-01-02-aliyun-vpn/"> 阿里云搭建shadowsocks-vpn </a>
-
-      <a href="/2020/01/02/2020-01-02-aliyun-vpn/" class="index-excerpt">
-        
-        
-          
-        
-        <div>脚本可能已不可用，未测试 2020-5-29
-阿里云服务器购买国外节点，建议香港、日本、新加坡
-系统选择linux，脚本支持centos、debian、ubuntu
-1、下载脚本文件，并执行
-$ wget --no-check-certificate -O shadowsocks-all.sh
-https://github.com/ILIKETWICE/shadowsocks-install/bl</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-02
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/01/2020-01-01-mesos-pull-images-error/"> mesos 以容器方式启动,拉取镜像失败问题 </a>
-
-      <a href="/2020/01/01/2020-01-01-mesos-pull-images-error/" class="index-excerpt">
-        
-        
-          
-        
-        <div>为了方便快速部署,将 mesos、marathon进行了容器化部署, 但是容器化完后发现在marathon 上创建应用一直创建不成功
-分析过程
-因为是容器化部署的mesos-slave和marathon,是不是因为没有找到证书和登录信息导致的,随后在mesos-salve容器手动的进行docker login 操作并将证书进行挂载到对应目录,手工执行命令docker -H unix:///var/</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-01
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Mesos/">Mesos</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/31/2019-12-31-tcp-timeout-and-retransmission/"> TCP 超时与重传 </a>
-
-      <a href="/2019/12/31/2019-12-31-tcp-timeout-and-retransmission/" class="index-excerpt">
-        
-        
-          
-        
-        <div>我们都知道 TCP 协议具有重传机制，也就是说，如果发送方认为发生了丢包现象，就重发这些数据包。很显然，我们需要一个方法来「猜测」是否发生了丢包。最简单的想法就是，接收方每收到一个包，就向发送方返回一个 ACK，表示自己已经收到了这段数据，反过来，如果发送方一段时间内没有收到 ACK，就知道很可能是数据包丢失了，紧接着就重发该数据包，直到收到 ACK 为止。
-你可能注意到我用的是「猜测」，因为即使</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-31
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Nginx/">Nginx</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2019/12/30/2019-12-30-tcp-handshake/"> TCP 协议，握手挥手不是你想的那么简单 </a>
 
       <a href="/2019/12/30/2019-12-30-tcp-handshake/" class="index-excerpt">
@@ -498,6 +391,107 @@ HTTPS 的底层原理如何实现？
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>&nbsp;2019-12-22
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Nginx/">Nginx</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/21/2019-12-21-operation-law/"> 运维工程师必知必会的一些定律 </a>
+
+      <a href="/2019/12/21/2019-12-21-operation-law/" class="index-excerpt">
+        
+        
+          
+        
+        <div>墨菲定律墨菲定律，指的是小概率事情，只要某件事情发生概率不为0，如果样本数足够多，那么这个事情最终会发生。
+海恩法则海恩法则，每一起严重事故的背后，必然有29次轻微事故和300起未遂先兆以及1000起事故隐患。法则强调两点：一是事故的发生是量的积累的结果；二是再好的技术，再完美的规章，在实际操作层面，也无法取代人自身的素质和责任心。
+结合上面的墨菲定律，是不是所有的事故隐患都需要立即处理，都需要当</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-21
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BF%90%E7%BB%B4%E5%AE%9A%E5%BE%8B/">运维定律</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/20/2019-12-20-linux-find/"> Linux find命令教程：15个find命令用法 </a>
+
+      <a href="/2019/12/20/2019-12-20-linux-find/" class="index-excerpt">
+        
+        
+          
+        
+        <div>在系统上查找文件或目录时，Linux上的find命令无与伦比。它使用简单，而且有许多不同的选项，可让您微调文件搜索。继续阅读以查看如何使用此命令在系统上查找任何内容的示例。一旦您知道如何在Linux中使用find命令，每个文件都只需敲击几下。</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-20
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/12/19/2019-12-19-nginx-usage/"> Nginx的这些妙用，你肯定有不知道的 </a>
+
+      <a href="/2019/12/19/2019-12-19-nginx-usage/" class="index-excerpt">
+        
+        
+          
+        
+        <div>Nginx 因为它的稳定性、丰富的模块库、灵活的配置和较低的资源消耗而闻名 。目前应该是几乎所有项目建设必备。今天通过这篇攻略让你快速通关 Nginx。</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-12-19
           </div>
         
         
