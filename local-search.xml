@@ -99,6 +99,25 @@
   
   
   <entry>
+    <title> 运维面试题系列--思路分析类问题 </title>
+    <link href="/2021/03/03/interview-questions6-analysis/"/>
+    <url>/2021/03/03/interview-questions6-analysis/</url>
+    
+    <content type="html"><![CDATA[<h4 id="思路分析类型"><a href="#思路分析类型" class="headerlink" title="思路分析类型"></a>思路分析类型</h4><ul><li>排查java进程cpu占用过高</li><li>cpu负载情况的分析 1分钟5分钟</li><li>linux系统负载怎么判断</li><li>linux系统执行命令很卡</li><li>linux服务器不通，怎么排查</li><li>k8s pod之间无法通信</li><li>kube-proxy挂掉的影响</li><li>redis在内存大（比如内存32G）的情况下应该注意哪些问题</li><li>如何处理访问量暴增    良性：扩容。CDN    恶性：网络攻击</li><li>数据库表太大如何处理</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title> 图解 Git 工作原理 </title>
     <link href="/2021/02/11/2021-02-11-visual-git-guide/"/>
     <url>/2021/02/11/2021-02-11-visual-git-guide/</url>
