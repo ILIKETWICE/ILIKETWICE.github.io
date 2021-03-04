@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="望翔">
   <meta name="keywords" content="">
-  <title> 图解 Git 工作原理  - 权掌天下 Blog</title>
+  <title> 运维面试题系列--shell脚本问题  - 权掌天下 Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -151,8 +151,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2021-02-11 08:37">
-      2021年2月11日 早上
+    <time datetime="2021-03-03 00:00">
+      2021年3月3日 凌晨
     </time>
   </div>
 
@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      651 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      7
        分钟
     </span>
   
@@ -204,75 +204,72 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月20日 下午
+                  本文最后更新于：2021年3月4日 下午
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/1.png" srcset="/img/loading.gif" alt=""></p>
-<p>上面的四条命令在工作目录、暂存目录(也叫做索引)和仓库之间复制文件。</p>
-<ul>
-<li><code>git add files</code>把当前文件放入暂存区域。</li>
-<li><code>git commit</code>给暂存区域生成快照并提交。</li>
-<li><code>git reset</code> — files用来撤销最后一次git add files，你也可以用git reset撤销所有暂存区域文件。</li>
-<li><code>git checkout</code> — files把文件从暂存区域复制到工作目录，用来丢弃本地修改。</li>
-</ul>
-<p>你可以用<code>git reset -p</code>，<code>git checkout -p</code>， or <code>git add -p</code>进入交互模式。</p>
-<p>也可以跳过暂存区域直接从仓库取出文件或者直接提交代码。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/2.png" srcset="/img/loading.gif" alt=""></p>
-<ul>
-<li><code>git commit -a</code>相当于运行git add把所有当前目录下的文件加入暂存区域再运行。git commit.</li>
-<li><code>git commit files</code>进行一次包含最后一次提交加上工作目录中文件快照的提交。并且文件被添加到暂存区域。</li>
-<li><code>git checkout HEAD -- files</code>回滚到复制最后一次提交。</li>
-</ul>
-<h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><p>后文中以下面的形式使用图片。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/3.png" srcset="/img/loading.gif" alt=""></p>
-<p>绿色的5位字符表示提交的 ID，分别指向父节点。分支用橘色显示，分别指向特定的提交。当前分支由附在其上的 HEAD 标识。这张图片里显示最后 5 次提交，ed489 是最新提交。master 分支指向此次提交，另一个 maint 分支指向祖父提交节点。</p>
-<h2 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h2><h3 id="Diff"><a href="#Diff" class="headerlink" title="Diff"></a>Diff</h3><p>有许多种方法查看两次提交之间的变动。下面是一些示例。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/4.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Commit"><a href="#Commit" class="headerlink" title="Commit"></a>Commit</h3><p>提交时，git 用暂存区域的文件创建一个新的提交，并把此时的节点设为父节点。然后把当前分支指向新的提交节点。下图中，当前分支是 master。在运行命令之前，master 指向 ed489，提交后，master 指向新的节点 f0cec 并以 ed489 作为父节点。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/5.png" srcset="/img/loading.gif" alt=""></p>
-<p>即便当前分支是某次提交的祖父节点，git会同样操作。下图中，在master分支的祖父节点maint分支进行一次提交，生成了1800b。这样，maint分支就不再是master分支的祖父节点。此时，合并 (或者 衍合) 是必须的。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/6.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果想更改一次提交，使用 git commit —amend。git 会使用与当前提交相同的父节点进行一次新提交，旧的提交会被取消。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/7.png" srcset="/img/loading.gif" alt=""></p>
-<p>另一个例子是分离 HEAD 提交，后文讲。</p>
-<h3 id="Checkout"><a href="#Checkout" class="headerlink" title="Checkout"></a>Checkout</h3><p>checkout 命令通常用来从仓库中取出文件，或者在分支中切换。</p>
-<p>checkout 命令让 git 把文件复制到工作目录和暂存区域。比如 git checkout HEAD~ foo.c把文件从foo.c提交节点HEAD~ (当前提交节点的父节点)复制到工作目录并且生成索引。注意当前分支没有变化。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/8.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果没有指定文件名，而是一个本地分支，那么将切换到那个分支去。同时把索引和工作目录切换到那个分支对应的状态。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/9.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果既没有指定文件名，也没有指定分支名，而是一个标签、远程分支、SHA-1值或者是像master~3类似的东西，就得到一个匿名分支，称作detached HEAD。这样可以很方便的在历史版本之间互相切换。但是，这样的提交是完全不同的，详细的在下面。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/10.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="用分离-HEAD-提交"><a href="#用分离-HEAD-提交" class="headerlink" title="用分离 HEAD 提交"></a>用分离 HEAD 提交</h3><p>HEAD是分离的时候, 提交可以正常进行, 但是没有更新已命名的分支. 。(可以看作是匿名分支。)</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/11.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果此时切换到别的分支，那么所做的工作会全部丢失。注意这个命令之后就不存在2eecb了。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/12.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果你想保存当前的状态，可以用这个命令创建一个新的分支：git checkout -b name。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/13.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Reset"><a href="#Reset" class="headerlink" title="Reset"></a>Reset</h3><p>reset 命令把当前分支指向另一个位置，并且有选择的变动工作目录和索引。也用来在从历史仓库中复制文件到索引，而不动工作目录。</p>
-<p>如果不给选项，那么当前分支指向到那个提交。如果用—hard选项，那么工作目录也更新，如果用—soft选项，那么都不变。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/14.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果没有给出提交点的版本号，那么默认用 HEAD。这样，分支指向不变，但是索引会回滚到最后一次提交，如果用—hard选项，工作目录也同样。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/15.png" srcset="/img/loading.gif" alt=""></p>
-<p>如果给了文件名(或者-p选项), 那么工作效果和带文件名的checkout差不多，除了索引被更新。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/16.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h3><p>merge 命令把不同分支合并起来。合并前，索引必须和当前提交相同。如果另一个分支是当前提交的祖父节点，那么合并命令将什么也不做。另一种情况是如果当前提交是另一个分支的祖父节点，就导致fast-forward合并。指向只是简单的移动，并生成一个新的提交。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/17.png" srcset="/img/loading.gif" alt=""></p>
-<p>否则就是一次真正的合并。默认把当前提交(ed489 如下所示)和另一个提交(33104)以及他们的共同祖父节点(b325c)进行一次三方合并。结果是先保存当前目录和索引，然后和父节点33104一起做一次新提交。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/18.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Cherry-Pick"><a href="#Cherry-Pick" class="headerlink" title="Cherry Pick"></a>Cherry Pick</h3><p>cherry-pick命令”复制”一个提交节点并在当前复制做一次完全一样的新提交。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/19.png" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Rebase"><a href="#Rebase" class="headerlink" title="Rebase"></a>Rebase</h3><p>衍合是合并命令的另一种选择。合并把两个父分支合并进行一次提交，提交历史不是线性的。衍合在当前分支上重演另一个分支的历史，提交历史是线性的。本质上，这是线性化的自动的 cherry-pick</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/20.png" srcset="/img/loading.gif" alt=""></p>
-<p>上面的命令都在topic分支中进行，而不是master分支，在master分支上重演，并且把分支指向新的节点。注意旧提交没有被引用，将被回收。</p>
-<p>要限制回滚范围，使用—onto选项。下面的命令在master分支上重演当前分支从169a6以来的最近几个提交，即2c33a。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-02-11/21.png" srcset="/img/loading.gif" alt=""></p>
-<p>同样有 git rebase —interactive 让你更方便的完成一些复杂操作，比如丢弃、重排、修改、合并提交。没有图片体现着下，细节看这里:git-rebase(1)</p>
-<h2 id="技术说明"><a href="#技术说明" class="headerlink" title="技术说明"></a>技术说明</h2><p>文件内容并没有真正存储在索引(.git/index)或者提交对象中，而是以blob的形式分别存储在数据库中 (.git/objects)，并用 SHA-1 值来校验。索引文件用识别码列出相关的blob文件以及别的数据。对于提交来说，以树(tree)的形式存储，同样用对于的哈希值识别。树对应着工作目录中的文件夹，树中包含的 树或者 blob 对象对应着相应的子目录和文件。每次提交都存储下它的上一级树的识别码。</p>
-<p>如果用detached HEAD提交，那么最后一次提交会被the reflog for HEAD引用。但是过一段时间就失效，最终被回收，与git commit —amend或者git rebase很像。</p>
-<p>转载自：微信公众号crossincode</p>
-<p>原文地址：<a href="http://marklodato.github.io/visual-git-guide/index-zh-cn.html?no-svg" target="_blank" rel="noopener">http://marklodato.github.io/visual-git-guide/index-zh-cn.html?no-svg</a></p>
+              <h1 id="shell脚本"><a href="#shell脚本" class="headerlink" title="shell脚本"></a>shell脚本</h1><h2 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h2><h3 id="1、在当前脚本中调用另一个脚本"><a href="#1、在当前脚本中调用另一个脚本" class="headerlink" title="1、在当前脚本中调用另一个脚本"></a>1、在当前脚本中调用另一个脚本</h3><pre><code class="hljs vim"><span class="hljs-number">1</span>、exec（exec /home/script.<span class="hljs-keyword">sh</span>）：
+使用exec来调用脚本，被执行的脚本会继承当前<span class="hljs-keyword">shell</span>的环境变量。但事实上exec产生了新的进程，他会把主<span class="hljs-keyword">shell</span>的进程资源占用并替换脚本内容，继承了原主<span class="hljs-keyword">shell</span>的PID号，即原主<span class="hljs-keyword">shell</span>剩下的内容不会执行。
+
+<span class="hljs-number">2</span>、<span class="hljs-keyword">source</span>（<span class="hljs-keyword">source</span> /home/script.<span class="hljs-keyword">sh</span>）
+使用<span class="hljs-keyword">source</span>或者“.”来调用外部脚本，不会产生新的进程，继承当前<span class="hljs-keyword">shell</span>环境变量，而且被调用的脚本运行结束后，它拥有的环境变量和声明变量会被当前<span class="hljs-keyword">shell</span>保留，类似将调用脚本的内容复制过来直接执行。执行完毕后原主<span class="hljs-keyword">shell</span>继续运行。
+ 
+<span class="hljs-number">3</span>、fork（/home/script.<span class="hljs-keyword">sh</span>）
+直接运行脚本，会以当前<span class="hljs-keyword">shell</span>为父进程，产生新的进程，并且继承主脚本的环境变量和声明变量。执行完毕后，主脚本不会保留其环境变量和声明变量。</code></pre>
+
+<h3 id="2、shell中的特殊变量"><a href="#2、shell中的特殊变量" class="headerlink" title="2、shell中的特殊变量"></a>2、shell中的特殊变量</h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$0</td>
+<td>当前脚本的文件名</td>
+</tr>
+<tr>
+<td>$n</td>
+<td>传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是$1，第二个参数是$2。</td>
+</tr>
+<tr>
+<td>$#</td>
+<td>传递给脚本或函数的参数个数。</td>
+</tr>
+<tr>
+<td>$*</td>
+<td>传递给脚本或函数的所有参数。</td>
+</tr>
+<tr>
+<td>$@</td>
+<td>传递给脚本或函数的所有参数。被双引号(“ “)包含时，与 $* 稍有不同，下面将会讲到。</td>
+</tr>
+<tr>
+<td>$?</td>
+<td>上个命令的退出状态，或函数的返回值。</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<h4 id="和-的区别"><a href="#和-的区别" class="headerlink" title="$* 和 $@ 的区别"></a>$* 和 $@ 的区别</h4><p>$* 和 $@ 都表示传递给函数或脚本的所有参数，不被双引号(“ “)包含时，都以”$1” “$2” … “$n” 的形式输出所有参数。</p>
+<p>但是当它们被双引号(“ “)包含时，”$*” 会将所有的参数作为一个整体，以”$1 $2 … $n”的形式输出所有参数；”$@” 会将各个参数分开，以”$1” “$2” … “$n” 的形式输出所有参数。</p>
+</blockquote>
+<h2 id="实战部分"><a href="#实战部分" class="headerlink" title="实战部分"></a>实战部分</h2><h3 id="1、统计日志文件中访问时间超过50s"><a href="#1、统计日志文件中访问时间超过50s" class="headerlink" title="1、统计日志文件中访问时间超过50s"></a>1、统计日志文件中访问时间超过50s</h3><pre><code class="hljs bash">awk <span class="hljs-string">'$2 &gt;= 10 &#123;print $2&#125;'</span> yum.log | sort -nr | wc -l</code></pre>
+
+<h3 id="2、编写个shell脚本将当前目录下大于10K的文件转移到-tmp目录下"><a href="#2、编写个shell脚本将当前目录下大于10K的文件转移到-tmp目录下" class="headerlink" title="2、编写个shell脚本将当前目录下大于10K的文件转移到/tmp目录下"></a>2、<strong>编写个shell脚本将当前目录下大于10K的文件转移到/tmp目录下</strong></h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">!/bin/bash</span>
+for FileName in `ls l | awk '$5&gt;10240 &#123;print $9&#125;'`;do mv $FileName /tmp;done</code></pre>
+
+<h3 id="3、使用shell，建立classl用户组，再批量建立stu-1–stu30的用户，并指定用户组为classl"><a href="#3、使用shell，建立classl用户组，再批量建立stu-1–stu30的用户，并指定用户组为classl" class="headerlink" title="3、使用shell，建立classl用户组，再批量建立stu 1–stu30的用户，并指定用户组为classl"></a>3、使用shell，建立classl用户组，再批量建立stu 1–stu30的用户，并指定用户组为classl</h3><pre><code class="hljs SHELL"><span class="hljs-meta">#</span><span class="bash">!/bin/bash</span>
+groupadd class1
+for((i=1;i&lt;=30;i=i+1))
+do
+useradd stu$i -G class1  
+done</code></pre>
+
 
             </article>
             <hr>
@@ -283,7 +280,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                   </div>
                 
@@ -296,9 +293,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/03/interview-questions4-shell/">
+                      <a href="/2021/03/03/interview-questions3-mysql/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"> 运维面试题系列--shell脚本问题 </span>
+                        <span class="hidden-mobile"> 运维面试题系列--Mysql问题 </span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -306,8 +303,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2021/02/10/2021-02-10-redis-high-availability/">
-                        <span class="hidden-mobile"> Redis高可用总结：Redis主从复制、哨兵集群、脑裂... </span>
+                      <a href="/2021/02/11/2021-02-11-visual-git-guide/">
+                        <span class="hidden-mobile"> 图解 Git 工作原理 </span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -452,7 +449,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        " 图解 Git 工作原理 &nbsp;",
+        " 运维面试题系列--shell脚本问题 &nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
