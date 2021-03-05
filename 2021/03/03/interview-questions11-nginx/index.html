@@ -204,14 +204,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月4日 下午
+                  本文最后更新于：2021年3月5日 上午
                 
               </p>
             
             <article class="markdown-body">
               <h1 id="Nginx-LVS-Apache"><a href="#Nginx-LVS-Apache" class="headerlink" title="Nginx LVS Apache"></a>Nginx LVS Apache</h1><h2 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h2><h3 id="1、LVS的模式："><a href="#1、LVS的模式：" class="headerlink" title="1、LVS的模式："></a>1、LVS的模式：</h3><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">DR</span><span class="hljs-params">(直接路由模式)</span></span> TUN(隧道) NAT（网络地址转换）</code></pre>
 
-<h3 id="2、LVS的调度算法："><a href="#2、LVS的调度算法：" class="headerlink" title="2、LVS的调度算法："></a>2、LVS的调度算法：</h3><pre><code class="hljs plain">轮询。加权轮询，最小连接数，加权最小连接数，基于局部的最少连接，带复制的基于局部性的最少连接，目标地址散列调度，最短的期望的延迟，最少队列调度</code></pre>
+<h3 id="2、LVS的调度算法："><a href="#2、LVS的调度算法：" class="headerlink" title="2、LVS的调度算法："></a>2、LVS的调度算法：</h3><pre><code class="hljs plain">轮询，加权轮询，最小连接数，加权最小连接数，基于局部的最少连接，带复制的基于局部性的最少连接，目标地址散列调度，最短的期望的延迟，最少队列调度</code></pre>
 
 <h3 id="3、三大主流软件负载均衡器对比-LVS-VS-Nginx-VS-Haproxy）"><a href="#3、三大主流软件负载均衡器对比-LVS-VS-Nginx-VS-Haproxy）" class="headerlink" title="3、三大主流软件负载均衡器对比(LVS VS Nginx VS Haproxy）"></a>3、三大主流软件负载均衡器对比(LVS VS Nginx VS Haproxy）</h3><pre><code class="hljs angelscript">LVS：
   <span class="hljs-number">1</span>、抗负载能力强。抗负载能力强、性能高，能达到F5硬件的<span class="hljs-number">60</span>%；对内存和cpu资源消耗比较低
@@ -238,10 +238,10 @@ HAProxy的特点是：
   <span class="hljs-number">1</span>、支持两种代理模式：TCP（四层）和HTTP（七层），支持虚拟主机；
   <span class="hljs-number">2</span>、能够补充Nginx的一些缺点比如Session的保持，Cookie的引导等工作
   <span class="hljs-number">3</span>、支持url检测后端的服务器出问题的检测会有很好的帮助。
-  <span class="hljs-number">4</span>、更多的负载均衡策略比如：动态加权轮循(Dynamic Round Robin)，加权源地址哈希(Weighted Source Hash)，加权URL哈希和加权      参数哈希(Weighted Parameter Hash)已经实现
+  <span class="hljs-number">4</span>、更多的负载均衡策略比如：动态加权轮循(Dynamic Round Robin)，加权源地址哈希(Weighted Source Hash)，加权URL哈希和加权参数哈希(Weighted Parameter Hash)已经实现
   <span class="hljs-number">5</span>、单纯从效率上来讲HAProxy更会比Nginx有更出色的负载均衡速度。
   <span class="hljs-number">6</span>、HAProxy可以对Mysql进行负载均衡，对后端的DB节点进行检测和负载均衡。
-  <span class="hljs-number">9</span>、支持负载均衡算法：Round-robin（轮循）、Weight-round-robin（带权轮循）、source（原地址保持）、RI（请求URL）、rdp-        cookie（根据cookie）
+  <span class="hljs-number">9</span>、支持负载均衡算法：Round-robin（轮循）、Weight-round-robin（带权轮循）、source（原地址保持）、RI（请求URL）、rdp-cookie（根据cookie）
   <span class="hljs-number">10</span>、不能做Web服务器即Cache。</code></pre>
 
 <h3 id="4、rewrite语法："><a href="#4、rewrite语法：" class="headerlink" title="4、rewrite语法："></a>4、rewrite语法：</h3><p>指令语法：rewrite 正则表达式 被替换内容[flag];</p>
@@ -316,16 +316,16 @@ HAProxy的特点是：
 </tbody></table>
 <h3 id="5、location的规则"><a href="#5、location的规则" class="headerlink" title="5、location的规则"></a>5、location的规则</h3><pre><code class="hljs excel">语法规则： location [=|~|~*|^~] /uri/ &#123; … &#125;
 = 		 开头表示精确匹配
-^~  	 开头表示uri以某个常规字符串开头，理解为匹配 url路径即可。nginx不对url做编码，因此请求为/static/<span class="hljs-number">20%</span>/aa，可以被规则          ^~ /static/ /aa匹配到（注意是空格）。以xx开头
+^~  	 开头表示uri以某个常规字符串开头，理解为匹配 url路径即可。nginx不对url做编码，因此请求为/static/<span class="hljs-number">20%</span>/aa，可以被规则 ^~ /static/ /aa匹配到（注意是空格）。以xx开头
 ~ 		 开头表示区分大小写的正则匹配                  以xx结尾
 ~*  	 开头表示不区分大小写的正则匹配                以xx结尾
 !~和!~*	分别为区分大小写不匹配及不区分大小写不匹配 的正则
 / 		 通用匹配，任何请求都会匹配到。</code></pre>
 
 <p>匹配顺序<br>首先精确匹配 =-》其次以xx开头匹配^~-》然后是按文件中顺序的正则匹配-》最后是交给 / 通用匹配。<br>当有匹配成功时候，停止匹配，按当前匹配规则处理请求。</p>
-<h3 id="6、nginx-master-worker机制的好处"><a href="#6、nginx-master-worker机制的好处" class="headerlink" title="6、nginx master-worker机制的好处"></a>6、nginx master-worker机制的好处</h3><pre><code class="hljs crmsh">可以使用 nginx-s reload 热部署。
+<h3 id="6、nginx-master-worker机制的好处"><a href="#6、nginx-master-worker机制的好处" class="headerlink" title="6、nginx master-worker机制的好处"></a>6、nginx master-worker机制的好处</h3><pre><code class="hljs bash">可以使用 nginx<span class="hljs-_">-s</span> reload 热部署。
 
-每个Worker 是独立的进程，不需要加锁，省掉了锁带来的开销。采用独立的进程，可以让互相之间不会影响，一个进程退出后，其他进程还在工作，服务不会中断，<span class="hljs-keyword">Master</span> <span class="hljs-title">进程则很快启动新的 Worker</span> 进程。</code></pre>
+每个Worker 是独立的进程，不需要加锁，省掉了锁带来的开销。采用独立的进程，可以让互相之间不会影响，一个进程退出后，其他进程还在工作，服务不会中断，Master进程则很快启动新的Worker进程。</code></pre>
 
 <h3 id="7、alias与root的区别"><a href="#7、alias与root的区别" class="headerlink" title="7、alias与root的区别"></a>7、alias与root的区别</h3><pre><code class="hljs livecodeserver">root    实际访问文件路径会拼接<span class="hljs-built_in">URL</span>中的路径
 <span class="hljs-built_in">alias</span>   实际访问文件路径不会拼接<span class="hljs-built_in">URL</span>中的路径，会把location后面配置的路径丢弃掉，把当前匹配到的目录指向到指定的目录</code></pre>
