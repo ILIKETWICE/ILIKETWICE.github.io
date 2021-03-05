@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      971 字
+      972 字
     </span>
   
 
@@ -204,16 +204,16 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月4日 下午
+                  本文最后更新于：2021年3月5日 上午
                 
               </p>
             
             <article class="markdown-body">
               <h2 id="linux系统"><a href="#linux系统" class="headerlink" title="linux系统"></a>linux系统</h2><h3 id="1、linux启动过程"><a href="#1、linux启动过程" class="headerlink" title="1、linux启动过程"></a>1、linux启动过程</h3><pre><code class="hljs armasm">第一步：开机自检，加载<span class="hljs-keyword">BIOS</span>
 <span class="hljs-keyword"></span>
-<span class="hljs-keyword">第二步：读取ＭＢＲ</span>
+<span class="hljs-keyword">第二部：读取MBR</span>
 <span class="hljs-keyword"></span>
-<span class="hljs-keyword">第三步：Boot </span>Loader　grub引导菜单
+<span class="hljs-keyword">第三部：Boot </span>Loader　grub引导菜单
 
 第四步：加载kernel内核
 
@@ -238,7 +238,7 @@ mkfs -t ext4 <span class="hljs-regexp">/dev/</span>sdb1</code></pre>
 
 <h3 id="5、查看日志中访问次数最多的前10个IP"><a href="#5、查看日志中访问次数最多的前10个IP" class="headerlink" title="5、查看日志中访问次数最多的前10个IP"></a>5、查看日志中访问次数最多的前10个IP</h3><pre><code class="hljs coq">cat access_log |<span class="hljs-type">cut</span> -d ' ' -f <span class="hljs-number">1</span> | <span class="hljs-type">sort</span> |<span class="hljs-type">uniq</span> -c | <span class="hljs-type">sort</span> -nr | <span class="hljs-type">awk</span> '&#123;print $<span class="hljs-number">0</span> &#125;' | <span class="hljs-type">head</span> -n <span class="hljs-number">10</span> | <span class="hljs-type">less</span></code></pre>
 
-<h3 id="6、当前WEB服务器中联接次数最多的ip地址"><a href="#6、当前WEB服务器中联接次数最多的ip地址" class="headerlink" title="6、当前WEB服务器中联接次数最多的ip地址"></a>6、当前WEB服务器中联接次数最多的ip地址</h3><pre><code class="hljs coq">netstat -ntu |<span class="hljs-type">awk</span> '&#123;print $<span class="hljs-number">5</span>&#125;' |<span class="hljs-type">sort</span> | <span class="hljs-type">uniq</span> -c| <span class="hljs-type">sort</span> -nr</code></pre>
+<h3 id="6、当前WEB服务器中连接次数最多的ip地址"><a href="#6、当前WEB服务器中连接次数最多的ip地址" class="headerlink" title="6、当前WEB服务器中连接次数最多的ip地址"></a>6、当前WEB服务器中连接次数最多的ip地址</h3><pre><code class="hljs coq">netstat -ntu |<span class="hljs-type">awk</span> '&#123;print $<span class="hljs-number">5</span>&#125;' |<span class="hljs-type">sort</span> | <span class="hljs-type">uniq</span> -c| <span class="hljs-type">sort</span> -nr</code></pre>
 
 <h3 id="7、用iptables添加一个规则允许192-168-0-123访问本机3306端口"><a href="#7、用iptables添加一个规则允许192-168-0-123访问本机3306端口" class="headerlink" title="7、用iptables添加一个规则允许192.168.0.123访问本机3306端口"></a>7、用iptables添加一个规则允许192.168.0.123访问本机3306端口</h3><pre><code class="hljs angelscript">iptables -I INPUT -p tcp -s <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.123</span> -d <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span> --dport <span class="hljs-number">3306</span> -j ACCEPT</code></pre>
 
@@ -248,13 +248,15 @@ mkfs -t ext4 <span class="hljs-regexp">/dev/</span>sdb1</code></pre>
 
 <h3 id="10、统计出apache的access-log中访问量最多的5个IP"><a href="#10、统计出apache的access-log中访问量最多的5个IP" class="headerlink" title="10、统计出apache的access.log中访问量最多的5个IP:"></a>10、统计出apache的access.log中访问量最多的5个IP:</h3><pre><code class="hljs coq">cat access_log | <span class="hljs-type">awk</span>  '&#123;print $<span class="hljs-number">1</span>&#125;' | <span class="hljs-type">sort</span> | <span class="hljs-type">uniq</span> -c | <span class="hljs-type">sort</span> -n -r | <span class="hljs-type">head</span> <span class="hljs-number">-5</span></code></pre>
 
-<h3 id="11、通过apache访问日志access-log-统计IP和每个地址访问的次数，按访问量列出前10名。"><a href="#11、通过apache访问日志access-log-统计IP和每个地址访问的次数，按访问量列出前10名。" class="headerlink" title="11、通过apache访问日志access.log 统计IP和每个地址访问的次数，按访问量列出前10名。"></a>11、通过apache访问日志access.log 统计IP和每个地址访问的次数，按访问量列出前10名。</h3><pre><code class="hljs stata"><span class="hljs-keyword">cat</span> /<span class="hljs-keyword">var</span>/<span class="hljs-keyword">log</span>/httpd/access_log |awk ‘&#123;<span class="hljs-keyword">print</span> <span class="hljs-variable">$1&#125;</span>’|<span class="hljs-keyword">sort</span> -r |head -10 |uniq -c</code></pre>
+<h3 id="11、通过apache访问日志access-log-统计IP和每个地址访问的次数，按访问量列出前10名。"><a href="#11、通过apache访问日志access-log-统计IP和每个地址访问的次数，按访问量列出前10名。" class="headerlink" title="11、通过apache访问日志access.log 统计IP和每个地址访问的次数，按访问量列出前10名。"></a>11、通过apache访问日志access.log 统计IP和每个地址访问的次数，按访问量列出前10名。</h3><pre><code class="hljs stata"><span class="hljs-keyword">cat</span> /<span class="hljs-keyword">var</span>/<span class="hljs-keyword">log</span>/httpd/access_log |awk '&#123;<span class="hljs-keyword">print</span> <span class="hljs-variable">$1&#125;</span>'|<span class="hljs-keyword">sort</span> -r |head -10 |uniq -c</code></pre>
 
 <h3 id="12、多进程与多线程，请问有什么区别？"><a href="#12、多进程与多线程，请问有什么区别？" class="headerlink" title="12、多进程与多线程，请问有什么区别？"></a>12、多进程与多线程，请问有什么区别？</h3><pre><code class="hljs angelscript">（<span class="hljs-number">1</span>）进程：子进程是父进程的复制品。 
-（<span class="hljs-number">2</span>）线程：一个进程可以容纳多个线程，相对进程而言，线程是一个更加接近与执行体的概念，它可以与同进程的其他线程共享资源，但拥有自己	 的栈空间，拥有独立的执行序列。 
+（<span class="hljs-number">2</span>）线程：一个进程可以容纳多个线程，相对进程而言，线程是一个更加接近与执行体的概念，它可以与同进程的其他线程共享资源，但拥有自己的栈空间，拥有独立的执行序列。 
+
 两者都可以提高程序的并发度，提高程序运行效率和响应时间。 
 同时，线程适合于在SMP机器上运行，而进程则可以跨机器迁移。 
-根本区别就一点：用多进程每个进程有自己的地址空间(address space)，线程则共享地址空间。 
+根本区别就一点：用多进程每个进程有自己的地址空间(address space)，线程则共享地址空间。
+
 所有其它区别都是由此而来的： 
 （<span class="hljs-number">1</span>）速度：线程产生的速度快，线程间的通讯快、切换快等，因为他们在同一个地址空间内。 
 （<span class="hljs-number">2</span>）资源利用率：线程的资源利用率比较好也是因为他们在同一个地址空间内。 
@@ -279,18 +281,6 @@ XFS
 （<span class="hljs-number">3</span>） 是一个全<span class="hljs-number">64</span>-bit的文件系统，它可以支持上百万T字节的存储空间
 
 （<span class="hljs-number">4</span>）能以接近裸设备I/O的性能存储数据</code></pre>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <ul>
 <li>进程退出指令 hup term</li>
