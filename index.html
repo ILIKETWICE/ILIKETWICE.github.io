@@ -352,19 +352,11 @@ MASTER服务器收到slave IO</div>
         
           
         
-        <div>思路分析类型
-排查java进程cpu占用过高
-cpu负载情况的分析 1分钟5分钟
-linux系统负载怎么判断
-linux系统执行命令很卡
-linux服务器不通，怎么排查
-k8s pod之间无法通信
-kube-proxy挂掉的影响
-redis在内存大（比如内存32G）的情况下应该注意哪些问题
-如何处理访问量暴增    良性：扩容。CDN    恶性：网络攻击
-数据库表太大如何处理
-
-</div>
+        <div>思路分析类型1、排查java进程cpu占用过高（内存占用高同理）1、使用top命令查看占用CPU过高的进程，获取到其PID；
+2、jstack pid &gt; java.txt  导出CPU占用高进程的线程栈；
+3、top -H -p PID 查看对应进程的哪个线程占用CPU过高；
+4、在java.txt文件中根据线程id找到对应的线程栈（需要将线程id转换为16进制）；
+5、分析负载高的线程栈</div>
       </a>
 
       <div class="index-btm post-metas">
