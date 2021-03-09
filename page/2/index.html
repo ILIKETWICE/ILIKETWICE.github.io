@@ -167,6 +167,44 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2021/03/03/interview-questions10-redis/"> 运维面试题系列--Redis问题 </a>
+
+      <a href="/2021/03/03/interview-questions10-redis/" class="index-excerpt">
+        
+        
+          
+        
+        <div>Redis 面试问题1、redis主从同步原理
+slave服务器向master发送psync命令（此时发送的是psync ? -1），告诉master我需要同步数据了；
+master接收到psync命令后会进行BGSAVE命令生成RDB文件快照；
+生成完后，会将RDB文件发送给slave；
+slave接收到文件会载入RDB快照，并且将数据库状态变更为master在执行BGSAVE时的状态一致；
+m</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2021/02/11/2021-02-11-visual-git-guide/"> 图解 Git 工作原理 </a>
 
       <a href="/2021/02/11/2021-02-11-visual-git-guide/" class="index-excerpt">
@@ -509,61 +547,6 @@ Java堆（Heap）,是Java虚拟机所管理的内存中最大的一块。Java堆
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/29/2020-06-29-linux-top/"> Linux top命令参数详解 </a>
-
-      <a href="/2020/06/29/2020-06-29-linux-top/" class="index-excerpt">
-        
-        
-          
-        
-        <div>一、top前5行统计信息第1行：top - 05:43:27 up 4:52, 2 users, load average: 0.58, 0.41, 0.30第1行是任务队列信息，其参数如下：
-
-
-
-内容
-含义
-
-
-
-05:43:27
-表示当前时间
-
-
-up 4:52
-系统运行时间 格式为时：分
-
-
-2 users
-当前登录用户数
-
-
-load average: 0.58, 0.41, 0.30
-</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-29
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Linux/">Linux</a>
             
           </div>
         

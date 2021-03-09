@@ -167,6 +167,49 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/01/15/2020-01-15-why-exec-program/"> 为什么执行自己的程序要在前面加./ </a>
+
+      <a href="/2020/01/15/2020-01-15-why-exec-program/" class="index-excerpt">
+        
+        
+          
+        
+        <div>在Linux中，我们执行内置命令时，直接输入命令名称即可，如：
+$ mv a b #将a重命名为b
+
+而在执行自己写好的程序时，却要带上./，例如：
+$ hello
+hello: command not found
+$ ./hello
+hello world
+
+这是为什么呢？它们有什么区别呢？
+shell是如何运行程序的在说明清楚问题之前，我们必须了解shell是如何运行程序的。首先我们必须要清楚</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-01-15
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/01/14/2020-01-14-distributed-and-cluster-difference/"> 分布式和集群的区别 </a>
 
       <a href="/2020/01/14/2020-01-14-distributed-and-cluster-difference/" class="index-excerpt">
@@ -491,40 +534,6 @@ https://github.com/ILIKETWICE/shadowsocks-install/bl</div>
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Mesos/">Mesos</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/31/2019-12-31-tcp-timeout-and-retransmission/"> TCP 超时与重传 </a>
-
-      <a href="/2019/12/31/2019-12-31-tcp-timeout-and-retransmission/" class="index-excerpt">
-        
-        
-          
-        
-        <div>我们都知道 TCP 协议具有重传机制，也就是说，如果发送方认为发生了丢包现象，就重发这些数据包。很显然，我们需要一个方法来「猜测」是否发生了丢包。最简单的想法就是，接收方每收到一个包，就向发送方返回一个 ACK，表示自己已经收到了这段数据，反过来，如果发送方一段时间内没有收到 ACK，就知道很可能是数据包丢失了，紧接着就重发该数据包，直到收到 ACK 为止。
-你可能注意到我用的是「猜测」，因为即使</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-31
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Nginx/">Nginx</a>
             
           </div>
         
