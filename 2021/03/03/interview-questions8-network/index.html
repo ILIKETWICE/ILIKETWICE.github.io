@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      166 字
+      403 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      4
        分钟
     </span>
   
@@ -204,18 +204,25 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月4日 下午
+                  本文最后更新于：2021年3月9日 下午
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="网络问题"><a href="#网络问题" class="headerlink" title="网络问题"></a>网络问题</h2><h3 id="1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程"><a href="#1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程" class="headerlink" title="1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程"></a>1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程</h3><pre><code class="hljs armasm"><span class="hljs-symbol">a.</span>用户输入网址到浏览器 
-<span class="hljs-keyword">b.浏览器发出DNS请求报文 </span>
-<span class="hljs-symbol">c.</span>计算机首先查询本机HOSTS文件，看是否存在，存在直接返回结果，不存在，继续转发请求报文 
-<span class="hljs-symbol">d.</span>计算机按照本地DNS的顺序，向合法dns服务器查询<span class="hljs-built_in">IP</span>结果， 
-<span class="hljs-symbol">e.</span>合法dns返回dns结果给本地dns，管理该域的本地dns服务器缓存本结果，直到缓存时间过期，才再次查询此结果。</code></pre>
-
-<h3 id="2、dns的查询方式"><a href="#2、dns的查询方式" class="headerlink" title="2、dns的查询方式"></a>2、dns的查询方式</h3>
+              <h2 id="网络问题"><a href="#网络问题" class="headerlink" title="网络问题"></a>网络问题</h2><h3 id="1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程"><a href="#1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程" class="headerlink" title="1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程"></a>1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程</h3><ul>
+<li>用户输入网址到浏览器 </li>
+<li>浏览器发出DNS请求报文 </li>
+<li>计算机首先查询本机HOSTS文件，看是否存在，存在直接返回结果，不存在，继续转发请求报文 </li>
+<li>计算机按照本地DNS的顺序，向合法dns服务器查询IP结果，</li>
+<li>合法dns返回dns结果给本地dns，管理该域的本地dns服务器缓存本结果，直到缓存时间过期，才再次查询此结果</li>
+</ul>
+<h3 id="2、dns的查询方式"><a href="#2、dns的查询方式" class="headerlink" title="2、dns的查询方式"></a>2、dns的查询方式</h3><p><strong>递归查询</strong>：客户机向dns服务器发送请求，DNS服务器会使用一个准确的查询结果回复给客户机，如果DNS服务器本地没有储存查询的DNS信息，那么它会查询其他的DNS服务器，并将查询结果提交给客户机</p>
+<p><strong>迭代查询</strong>：客户机向dns服务器发送请求，如果该服务器本地没有储存查询的DNS信息，那么它会告诉客户机另一台DNS服务器的地址，客户机在向这台DNS服务器查询DNS信息，依次循环直到返回结果</p>
+<h3 id="3、私有地址"><a href="#3、私有地址" class="headerlink" title="3、私有地址"></a>3、私有地址</h3><p>A类地址：10.0.0.0–10.255.255.255</p>
+<p>B类地址：172.16.0.0–172.31.255.255 </p>
+<p>C类地址：192.168.0.0–192.168.255.255</p>
+<p>IP地址总范围：1.0.0.1——255.255.255.254</p>
+<h3 id="4、ip地址的计算，例如-192-168-10-0-24-有几个可用ip，子网掩码换成23呢？"><a href="#4、ip地址的计算，例如-192-168-10-0-24-有几个可用ip，子网掩码换成23呢？" class="headerlink" title="4、ip地址的计算，例如:192.168.10.0/24 有几个可用ip，子网掩码换成23呢？"></a>4、ip地址的计算，例如:192.168.10.0/24 有几个可用ip，子网掩码换成23呢？</h3>
             </article>
             <hr>
             <div>
