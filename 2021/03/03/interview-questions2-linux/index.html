@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      972 字
+      1.5k 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      17
        分钟
     </span>
   
@@ -204,7 +204,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月5日 上午
+                  本文最后更新于：2021年3月10日 下午
                 
               </p>
             
@@ -282,9 +282,43 @@ XFS
 
 （<span class="hljs-number">4</span>）能以接近裸设备I/O的性能存储数据</code></pre>
 
+<h3 id="14、linux-top命令信息"><a href="#14、linux-top命令信息" class="headerlink" title="14、linux top命令信息"></a>14、linux top命令信息</h3><p>请看之前文章：<a href="https://like-ycy.github.io/2020/06/29/2020-06-29-linux-top/">Linux top命令参数详解</a></p>
+<h3 id="15、端口time-wait过多，怎么解决"><a href="#15、端口time-wait过多，怎么解决" class="headerlink" title="15、端口time_wait过多，怎么解决"></a>15、端口time_wait过多，怎么解决</h3><p><strong>内核参数优化：</strong></p>
+<pre><code class="hljs stylus">net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-class">.tcp_syncookies</span> = <span class="hljs-number">1</span> 表示开启SYN Cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为<span class="hljs-number">0</span>，表示关闭； 
+net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-class">.tcp_tw_reuse</span> = <span class="hljs-number">1</span> 表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为<span class="hljs-number">0</span>，表示关
+net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-class">.tcp_tw_recycle</span> = <span class="hljs-number">1</span> 表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为<span class="hljs-number">0</span>，表示关闭。 
+net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-class">.tcp_fin_timeout</span> 修改系默认的 TIMEOUT 时间</code></pre>
+
+<h3 id="16、linux-软，硬链接区别"><a href="#16、linux-软，硬链接区别" class="headerlink" title="16、linux 软，硬链接区别"></a>16、linux 软，硬链接区别</h3><ul>
+<li>硬链接：在Linux系统中，多个文件名指向同一索引节点(Inode)是正常且允许的。一般这种链接就称为硬链接。硬链接的作用之一是允许一个文件拥有多个有效路径名，这样用户就可以建立硬链接到重要的文件，以防止“误删”源数据。</li>
+<li>软链接： 软链接就是一个普通文件，只是数据块内容有点特殊，文件用户数据块中存放的内容是另一文件的路径名的指向，通过这个方式可以快速定位到软连接所指向的源文件实体。软链接可对文件或目录创建。</li>
+</ul>
+<p>软连接和硬链接的特点：</p>
+<p><strong>软链接：</strong></p>
 <ul>
-<li>进程退出指令 hup term</li>
-<li>raid卷</li>
+<li>1.软链接是存放另一个文件的路径的形式存在。</li>
+<li>2.软链接可以 跨文件系统 ，硬链接不可以。</li>
+<li>3.软链接可以对一个不存在的文件名进行链接，硬链接必须要有源文件。</li>
+<li>4.软链接可以对目录进行链接。</li>
+</ul>
+<p><strong>硬链接：</strong></p>
+<ul>
+<li><ol>
+<li>硬链接，以文件副本的形式存在。但不占用实际空间。</li>
+</ol>
+</li>
+<li><ol>
+<li>不允许给目录创建硬链接。</li>
+</ol>
+</li>
+<li><ol>
+<li>硬链接只有在同一个文件系统中才能创建。</li>
+</ol>
+</li>
+<li><ol>
+<li>删除其中一个硬链接文件并不影响其他有相同 inode 号的文件。</li>
+</ol>
+</li>
 </ul>
 
             </article>
