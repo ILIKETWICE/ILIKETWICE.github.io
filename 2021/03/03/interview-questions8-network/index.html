@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      403 字
+      532 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      6
        分钟
     </span>
   
@@ -204,7 +204,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月9日 下午
+                  本文最后更新于：2021年3月11日 下午
                 
               </p>
             
@@ -222,7 +222,51 @@
 <p>B类地址：172.16.0.0–172.31.255.255 </p>
 <p>C类地址：192.168.0.0–192.168.255.255</p>
 <p>IP地址总范围：1.0.0.1——255.255.255.254</p>
-<h3 id="4、ip地址的计算，例如-192-168-10-0-24-有几个可用ip，子网掩码换成23呢？"><a href="#4、ip地址的计算，例如-192-168-10-0-24-有几个可用ip，子网掩码换成23呢？" class="headerlink" title="4、ip地址的计算，例如:192.168.10.0/24 有几个可用ip，子网掩码换成23呢？"></a>4、ip地址的计算，例如:192.168.10.0/24 有几个可用ip，子网掩码换成23呢？</h3>
+<h3 id="4、ip地址的计算，例如-192-168-10-0-24-有几个可用ip，子网掩码换成23呢？"><a href="#4、ip地址的计算，例如-192-168-10-0-24-有几个可用ip，子网掩码换成23呢？" class="headerlink" title="4、ip地址的计算，例如:192.168.10.0/24 有几个可用ip，子网掩码换成23呢？"></a>4、ip地址的计算，例如:192.168.10.0/24 有几个可用ip，子网掩码换成23呢？</h3><h3 id="5、四层、七层负载均衡的区别"><a href="#5、四层、七层负载均衡的区别" class="headerlink" title="5、四层、七层负载均衡的区别"></a>5、四层、七层负载均衡的区别</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>四层负载均衡</th>
+<th>七层负载均衡</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基于</td>
+<td>基于ip+prot</td>
+<td>基于URL或主机ip</td>
+</tr>
+<tr>
+<td>类似于</td>
+<td>路由器</td>
+<td>代理服务器</td>
+</tr>
+<tr>
+<td>握手次数</td>
+<td>1次</td>
+<td>2次</td>
+</tr>
+<tr>
+<td>复杂度</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>高；无需解析内容</td>
+<td>中；需要算法识别URL，cookie和HTTP head等信息</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>低，无法识别DDos等攻击</td>
+<td>高，可以防御SYN cookie</td>
+</tr>
+<tr>
+<td>额外功能</td>
+<td>无</td>
+<td>回话保持，图片压缩，防盗链</td>
+</tr>
+</tbody></table>
+<h3 id="6、tcpdump抓包的内容都有哪些"><a href="#6、tcpdump抓包的内容都有哪些" class="headerlink" title="6、tcpdump抓包的内容都有哪些"></a>6、tcpdump抓包的内容都有哪些</h3>
             </article>
             <hr>
             <div>
