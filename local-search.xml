@@ -213,6 +213,25 @@
   
   
   <entry>
+    <title> 运维面试题系列--Prometheus </title>
+    <link href="/2021/03/03/interview-questions18-prometheus/"/>
+    <url>/2021/03/03/interview-questions18-prometheus/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Prometheus"><a href="#Prometheus" class="headerlink" title="Prometheus"></a>Prometheus</h1><h3 id="1、prometheus和zabbix的对比"><a href="#1、prometheus和zabbix的对比" class="headerlink" title="1、prometheus和zabbix的对比"></a>1、prometheus和zabbix的对比</h3><p><strong>如果公司需要对容器进行监控：不要犹豫，选择prometheus</strong></p><ul><li>zabbix<ul><li>更适合物理机器的监控</li><li>对容器的支持较差</li></ul></li><li>prometheus<ul><li>更适合容器服务，就这一条足够</li></ul></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title> 图解 Git 工作原理 </title>
     <link href="/2021/02/11/2021-02-11-visual-git-guide/"/>
     <url>/2021/02/11/2021-02-11-visual-git-guide/</url>
