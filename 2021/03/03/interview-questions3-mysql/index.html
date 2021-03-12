@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      936 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      10
        分钟
     </span>
   
@@ -204,7 +204,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月4日 下午
+                  本文最后更新于：2021年3月12日 上午
                 
               </p>
             
@@ -262,20 +262,6 @@ MyISAM：插入数据快，空间和内存使用比较低。如果表主要是�
 <li>数据库根据学生表和分数表查学生的学号、姓名、课程，分数</li>
 </ul>
 <pre><code class="hljs mysql">SELECT student.学号, student.姓名,score.课程, score.成绩 FROM student JOIN score ON student.学号&#x3D;score.学号;</code></pre>
-
-
-
-
-
-<h2 id="思路分析问题"><a href="#思路分析问题" class="headerlink" title="思路分析问题"></a>思路分析问题</h2><h3 id="1、mysql表太大"><a href="#1、mysql表太大" class="headerlink" title="1、mysql表太大"></a>1、mysql表太大</h3><h3 id="2、mysql主从同步延迟"><a href="#2、mysql主从同步延迟" class="headerlink" title="2、mysql主从同步延迟"></a>2、mysql主从同步延迟</h3><pre><code class="hljs angelscript">最简单的减少slave同步延时的方案就是在架构上做优化，尽量让主库的DDL快速执行。还有就是主库是写，对数据安全性较高，比如 sync_binlog=<span class="hljs-number">1</span>，innodb_flush_log_at_trx_commit = <span class="hljs-number">1</span> 之类的设置，而slave则不需要这么高的数据安全，完全可以讲sync_binlog设置为<span class="hljs-number">0</span>或者关闭binlog，innodb_flushlog也 可以设置为<span class="hljs-number">0</span>来提高sql的执行效率。另外就是使用比主库更好的硬件设备作为slave。</code></pre>
-
-<h3 id="3、锁冲突与死锁问题"><a href="#3、锁冲突与死锁问题" class="headerlink" title="3、锁冲突与死锁问题"></a>3、锁冲突与死锁问题</h3><pre><code class="hljs asciidoc"><span class="hljs-bullet">- </span>尽量使用较低的隔离级别； 精心设计索引，并尽量使用索引访问数据，使加锁更精确，从而减少锁冲突的机会；
-<span class="hljs-bullet">- </span>选择合理的事务大小，小事务发生锁冲突的几率也更小；
-<span class="hljs-bullet">- </span>给记录集显式加锁时，最好一次性请求足够级别的锁。比如要修改数据的话，最好直接申请排他锁，而不是先申请共享锁，修改时再请求排他锁，这样容易产生死锁；
-<span class="hljs-bullet">- </span>不同的程序访问一组表时，应尽量约定以相同的顺序访问各表，对一个表而言，尽可能以固定的顺序存取表中的行。这样可以大大减少死锁的机会；
-<span class="hljs-bullet">- </span>尽量用相等条件访问数据，这样可以避免间隙锁对并发插入的影响； 不要申请超过实际需要的锁级别；除非必须，查询时不要显示加锁；
-<span class="hljs-bullet">- </span>对于一些特定的事务，可以使用表锁来提高处理速度或减少死锁的可能。</code></pre>
-
 
             </article>
             <hr>
