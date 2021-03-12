@@ -204,31 +204,21 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月10日 下午
+                  本文最后更新于：2021年3月12日 上午
                 
               </p>
             
             <article class="markdown-body">
-              <h2 id="linux系统"><a href="#linux系统" class="headerlink" title="linux系统"></a>linux系统</h2><h3 id="1、linux启动过程"><a href="#1、linux启动过程" class="headerlink" title="1、linux启动过程"></a>1、linux启动过程</h3><pre><code class="hljs armasm">第一步：开机自检，加载<span class="hljs-keyword">BIOS</span>
-<span class="hljs-keyword"></span>
-<span class="hljs-keyword">第二部：读取MBR</span>
-<span class="hljs-keyword"></span>
-<span class="hljs-keyword">第三部：Boot </span>Loader　grub引导菜单
-
-第四步：加载kernel内核
-
-第五步：init进程依据inittab文件夹来设定运行级别
-
-第六步：init进程执行rc.sysinit
-
-第七步：启动内核模块
-
-第八步：执行不同运行级别的脚本程序
-
-第九步：执行/etc/rc.d/rc.local
-
-第十步：执行/<span class="hljs-keyword">bin/login程序，启动mingetty,进入登录状态</span></code></pre>
-
+              <h2 id="linux系统"><a href="#linux系统" class="headerlink" title="linux系统"></a>linux系统</h2><h3 id="1、linux启动过程"><a href="#1、linux启动过程" class="headerlink" title="1、linux启动过程"></a>1、linux启动过程</h3><p>​    第一步：开机自检，加载BIOS</p>
+<p>​    第二部：读取MBR</p>
+<p>​    第三部：Boot Loader　grub引导菜单</p>
+<p>​    第四步：加载kernel内核</p>
+<p>​    第五步：init进程依据inittab文件夹来设定运行级别</p>
+<p>​    第六步：init进程执行rc.sysinit</p>
+<p>​    第七步：启动内核模块</p>
+<p>​    第八步：执行不同运行级别的脚本程序</p>
+<p>​    第九步：执行/etc/rc.d/rc.local</p>
+<p>​    第十步：执行/bin/login程序，启动mingetty,进入登录状态</p>
 <h3 id="2、统计8888端口连接数"><a href="#2、统计8888端口连接数" class="headerlink" title="2、统计8888端口连接数"></a>2、统计8888端口连接数</h3><pre><code class="hljs bash">netstat -ant | grep 8888</code></pre>
 
 <h3 id="3、top命令根据关键字查看CPU、内存信息"><a href="#3、top命令根据关键字查看CPU、内存信息" class="headerlink" title="3、top命令根据关键字查看CPU、内存信息"></a>3、top命令根据关键字查看CPU、内存信息</h3><pre><code class="hljs reasonml">top -c -p <span class="hljs-constructor">$(<span class="hljs-params">pgrep</span> -<span class="hljs-params">d</span>',' -<span class="hljs-params">f</span> <span class="hljs-params">java</span>)</span></code></pre>
@@ -250,38 +240,19 @@ mkfs -t ext4 <span class="hljs-regexp">/dev/</span>sdb1</code></pre>
 
 <h3 id="11、通过apache访问日志access-log-统计IP和每个地址访问的次数，按访问量列出前10名。"><a href="#11、通过apache访问日志access-log-统计IP和每个地址访问的次数，按访问量列出前10名。" class="headerlink" title="11、通过apache访问日志access.log 统计IP和每个地址访问的次数，按访问量列出前10名。"></a>11、通过apache访问日志access.log 统计IP和每个地址访问的次数，按访问量列出前10名。</h3><pre><code class="hljs stata"><span class="hljs-keyword">cat</span> /<span class="hljs-keyword">var</span>/<span class="hljs-keyword">log</span>/httpd/access_log |awk '&#123;<span class="hljs-keyword">print</span> <span class="hljs-variable">$1&#125;</span>'|<span class="hljs-keyword">sort</span> -r |head -10 |uniq -c</code></pre>
 
-<h3 id="12、多进程与多线程，请问有什么区别？"><a href="#12、多进程与多线程，请问有什么区别？" class="headerlink" title="12、多进程与多线程，请问有什么区别？"></a>12、多进程与多线程，请问有什么区别？</h3><pre><code class="hljs angelscript">（<span class="hljs-number">1</span>）进程：子进程是父进程的复制品。 
-（<span class="hljs-number">2</span>）线程：一个进程可以容纳多个线程，相对进程而言，线程是一个更加接近与执行体的概念，它可以与同进程的其他线程共享资源，但拥有自己的栈空间，拥有独立的执行序列。 
-
-两者都可以提高程序的并发度，提高程序运行效率和响应时间。 
-同时，线程适合于在SMP机器上运行，而进程则可以跨机器迁移。 
-根本区别就一点：用多进程每个进程有自己的地址空间(address space)，线程则共享地址空间。
-
-所有其它区别都是由此而来的： 
-（<span class="hljs-number">1</span>）速度：线程产生的速度快，线程间的通讯快、切换快等，因为他们在同一个地址空间内。 
-（<span class="hljs-number">2</span>）资源利用率：线程的资源利用率比较好也是因为他们在同一个地址空间内。 
-（<span class="hljs-number">3</span>）同步问题：线程使用公共变量/内存时需要使用同步机制还是因为他们在同一个地址空间内。</code></pre>
-
-<h3 id="13、linux下ext4和xfs文件系统的区别"><a href="#13、linux下ext4和xfs文件系统的区别" class="headerlink" title="13、linux下ext4和xfs文件系统的区别"></a>13、linux下ext4和xfs文件系统的区别</h3><pre><code class="hljs angelscript">EXT4是Linux系统下的日志文件系统，是EXT3文件系统的后继版本。
-
-（<span class="hljs-number">1</span>）Ext4的文件系统容量达到<span class="hljs-number">1</span>EB，而文件容量则达到<span class="hljs-number">16</span>TB
-
-（<span class="hljs-number">2</span>）理论上支持无限数量的子目录
-
-（<span class="hljs-number">3</span>）Ext4文件系统使用<span class="hljs-number">64</span>位空间记录块数量和i-节点数量
-
-（<span class="hljs-number">4</span>）Ext4的多块分配器支持一次调用分配多个数据块
-
-XFS
-
-（<span class="hljs-number">1</span>）根据所记录的日志在很短的时间内迅速恢复磁盘文件内容
-
-（<span class="hljs-number">2</span>）采用优化算法，日志记录对整体文件操作影响非常小
-
-（<span class="hljs-number">3</span>） 是一个全<span class="hljs-number">64</span>-bit的文件系统，它可以支持上百万T字节的存储空间
-
-（<span class="hljs-number">4</span>）能以接近裸设备I/O的性能存储数据</code></pre>
-
+<h3 id="12、多进程与多线程，请问有什么区别？"><a href="#12、多进程与多线程，请问有什么区别？" class="headerlink" title="12、多进程与多线程，请问有什么区别？"></a>12、多进程与多线程，请问有什么区别？</h3><p>（1）进程：子进程是父进程的复制品。<br>（2）线程：一个进程可以容纳多个线程，相对进程而言，线程是一个更加接近与执行体的概念，它可以与同进程的其他线程共享资源，但拥有自己的栈空间，拥有独立的执行序列。 </p>
+<p>两者都可以提高程序的并发度，提高程序运行效率和响应时间。<br>同时，线程适合于在SMP机器上运行，而进程则可以跨机器迁移。<br>根本区别就一点：用多进程每个进程有自己的地址空间(address space)，线程则共享地址空间。</p>
+<p>所有其它区别都是由此而来的：<br>（1）速度：线程产生的速度快，线程间的通讯快、切换快等，因为他们在同一个地址空间内。<br>（2）资源利用率：线程的资源利用率比较好也是因为他们在同一个地址空间内。<br>（3）同步问题：线程使用公共变量/内存时需要使用同步机制还是因为他们在同一个地址空间内。</p>
+<h3 id="13、linux下ext4和xfs文件系统的区别"><a href="#13、linux下ext4和xfs文件系统的区别" class="headerlink" title="13、linux下ext4和xfs文件系统的区别"></a>13、linux下ext4和xfs文件系统的区别</h3><p>EXT4是Linux系统下的日志文件系统，是EXT3文件系统的后继版本。</p>
+<p>（1）Ext4的文件系统容量达到1EB，而文件容量则达到16TB</p>
+<p>（2）理论上支持无限数量的子目录</p>
+<p>（3）Ext4文件系统使用64位空间记录块数量和i-节点数量</p>
+<p>（4）Ext4的多块分配器支持一次调用分配多个数据块</p>
+<p>XFS</p>
+<p>（1）根据所记录的日志在很短的时间内迅速恢复磁盘文件内容</p>
+<p>（2）采用优化算法，日志记录对整体文件操作影响非常小</p>
+<p>（3） 是一个全64-bit的文件系统，它可以支持上百万T字节的存储空间</p>
+<p>（4）能以接近裸设备I/O的性能存储数据</p>
 <h3 id="14、linux-top命令信息"><a href="#14、linux-top命令信息" class="headerlink" title="14、linux top命令信息"></a>14、linux top命令信息</h3><p>请看之前文章：<a href="https://like-ycy.github.io/2020/06/29/2020-06-29-linux-top/">Linux top命令参数详解</a></p>
 <h3 id="15、端口time-wait过多，怎么解决"><a href="#15、端口time-wait过多，怎么解决" class="headerlink" title="15、端口time_wait过多，怎么解决"></a>15、端口time_wait过多，怎么解决</h3><p><strong>内核参数优化：</strong></p>
 <pre><code class="hljs stylus">net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-class">.tcp_syncookies</span> = <span class="hljs-number">1</span> 表示开启SYN Cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为<span class="hljs-number">0</span>，表示关闭； 
