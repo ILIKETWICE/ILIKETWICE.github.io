@@ -8,7 +8,7 @@
     <link href="/2021/03/03/interview-questions1-company/"/>
     <url>/2021/03/03/interview-questions1-company/</url>
     
-    <content type="html"><![CDATA[<h2 id="公司业务问题"><a href="#公司业务问题" class="headerlink" title="公司业务问题"></a>公司业务问题</h2><table><thead><tr><th>并发（系统同时处理的request/事务数）</th><th>3万</th></tr></thead><tbody><tr><td>QPS（每秒查询率）</td><td>2万</td></tr><tr><td>PV（点击量）</td><td>3千万</td></tr><tr><td>UV（用户量）</td><td>30万</td></tr></tbody></table><h4 id="理论问题-（临时记录）"><a href="#理论问题-（临时记录）" class="headerlink" title="理论问题 （临时记录）"></a>理论问题 （临时记录）</h4><ul><li>k8s service的调度算法</li><li>k8s service涉及到的组件</li><li>StatefulSet 可以挂在多个pvc吗？</li><li>docker容器启动过程，docker run</li><li>redis集群分片原理</li><li>mysql增量备份原理</li><li>prometheus相比zabbix的优势</li><li>linux top命令信息</li><li>linux 进程退出指令 hup term</li><li>linux raid卷</li><li>四层和七层的区别</li><li>tcpdump抓包的内容都有哪些</li><li>linux load负载与cpu关系</li><li>lvs几种模式，作用</li><li>tcp 三次握手、四次挥手</li><li>zabbix监控java日志error次数 或者 脚本监控java日志error次数</li><li>ansible具体命令</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="公司业务问题"><a href="#公司业务问题" class="headerlink" title="公司业务问题"></a>公司业务问题</h2><table><thead><tr><th>并发（系统同时处理的request/事务数）</th><th>3万</th></tr></thead><tbody><tr><td>QPS（每秒查询率）</td><td>2万</td></tr><tr><td>PV（点击量）</td><td>3千万</td></tr><tr><td>UV（用户量）</td><td>30万</td></tr></tbody></table><h4 id="理论问题-（临时记录）"><a href="#理论问题-（临时记录）" class="headerlink" title="理论问题 （临时记录）"></a>理论问题 （临时记录）</h4><ul><li>k8s service的调度算法</li><li>StatefulSet 可以挂在多个pvc吗？</li><li>redis集群分片原理</li><li>mysql增量备份原理</li></ul>]]></content>
     
     
     
