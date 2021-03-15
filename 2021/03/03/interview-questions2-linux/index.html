@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.8k 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      20
        分钟
     </span>
   
@@ -204,7 +204,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月12日 上午
+                  本文最后更新于：2021年3月15日 下午
                 
               </p>
             
@@ -291,6 +291,55 @@ net<span class="hljs-selector-class">.ipv4</span><span class="hljs-selector-clas
 </ol>
 </li>
 </ul>
+<h3 id="17、linux-kill进程退出指令"><a href="#17、linux-kill进程退出指令" class="headerlink" title="17、linux kill进程退出指令"></a>17、linux kill进程退出指令</h3><table>
+<thead>
+<tr>
+<th>信号编号</th>
+<th>信号名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>EXIT</td>
+<td>程序退出时收到该信息。</td>
+</tr>
+<tr>
+<td>1</td>
+<td>HUP</td>
+<td>挂掉电话线或终端连接的挂起信号，这个信号也会造成某些进程在没有终止的情况下重新初始化。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>INT</td>
+<td>表示结束进程，但并不是强制性的，常用的 “Ctrl+C” 组合键发出就是一个 kill -2 的信号。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>QUIT</td>
+<td>退出。</td>
+</tr>
+<tr>
+<td>9</td>
+<td>KILL</td>
+<td>杀死进程，即强制结束进程。</td>
+</tr>
+<tr>
+<td>11</td>
+<td>SEGV</td>
+<td>段错误。</td>
+</tr>
+<tr>
+<td>15</td>
+<td>TERM</td>
+<td>正常结束进程，是 kill 命令的默认信号。</td>
+</tr>
+</tbody></table>
+<h3 id="18、Linux中CPU使用率-和-load的关系"><a href="#18、Linux中CPU使用率-和-load的关系" class="headerlink" title="18、Linux中CPU使用率 和 load的关系"></a>18、Linux中CPU使用率 和 load的关系</h3><ul>
+<li>CPU使用率<br>一段时间之中，CPU用于执行任务占用的时间与总的时间的比率</li>
+<li>load<br>Load average是指上一分钟同时处于就绪状态的平均进程数。在CPU中可以理解为CPU可以并行处理的任务数量，就是CPU个数X核数。如果CPU Load等于CPU个数乘以核数，那么就说CPU正好满负载，再多一点，可能就要出问题了</li>
+</ul>
+<p>对于CPU密集型任务 通常是 cpu使用率和load都很高<br>对于IO密集型任务 通常是cpu使用率不高 但load很高</p>
 
             </article>
             <hr>
