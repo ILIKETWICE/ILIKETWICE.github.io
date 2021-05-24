@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      59 字
+      248 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      2
        分钟
     </span>
   
@@ -204,7 +204,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月11日 下午
+                  本文最后更新于：2021年5月24日 下午
                 
               </p>
             
@@ -220,6 +220,19 @@
 <li>更适合容器服务，就这一条足够</li>
 </ul>
 </li>
+</ul>
+<h3 id="2、prometheus四种指标数据类型"><a href="#2、prometheus四种指标数据类型" class="headerlink" title="2、prometheus四种指标数据类型"></a>2、prometheus四种指标数据类型</h3><p><strong>Counter(计数器类型)</strong></p>
+<p>只增不减（除非系统发生了重置），Counter一般用于累计值。</p>
+<p><strong>Gauge(仪表盘类型)</strong></p>
+<p>可增可减的指标类型，可以用于反应当前应用的状态。（cpu、内存）</p>
+<p><strong>Histogram(直方图类型)</strong></p>
+<p>主要用于表示一段时间范围内对数据进行采样（通常是请求持续时间或响应大小），并能够对其指定区间以及总数进行统计，通常它采集的数据展示为直方图。</p>
+<p><strong>Summary(摘要类型)</strong></p>
+<p>Summary类型和Histogram类型相似，</p>
+<p>存在如下区别：</p>
+<ul>
+<li>都包含 &lt; basename&gt;_sum和&lt; basename&gt;_count;</li>
+<li>Histogram需要通过&lt; basename&gt;_bucket计算quantile，而Summary直接存储了quantile的值。</li>
 </ul>
 
             </article>
