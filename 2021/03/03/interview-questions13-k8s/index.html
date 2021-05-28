@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.1k 字
+      2.7k 字
     </span>
   
 
@@ -172,7 +172,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      30
        分钟
     </span>
   
@@ -204,7 +204,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月10日 下午
+                  本文最后更新于：2021年5月28日 中午
                 
               </p>
             
@@ -295,6 +295,39 @@
 <h3 id="18、k8s-service和ingress的区别"><a href="#18、k8s-service和ingress的区别" class="headerlink" title="18、k8s service和ingress的区别"></a>18、k8s service和ingress的区别</h3><p>Service 虽然解决了服务发现和负载均衡的问题，但它在使用上还是有一些限制，比如</p>
 <p>－ 只支持 4 层负载均衡，没有 7 层功能 － 对外访问的时候，NodePort 类型需要在外部搭建额外的负载均衡，而 LoadBalancer 要求 kubernetes 必须跑在支持的 cloud provider 上面</p>
 <p>Ingress 就是为了解决这些限制而引入的新资源，主要用来将服务暴露到 cluster 外面，并且可以自定义服务的访问策略</p>
+<h3 id="19、k8s-service的调度算法"><a href="#19、k8s-service的调度算法" class="headerlink" title="19、k8s service的调度算法"></a>19、k8s service的调度算法</h3><p><strong>预选策略</strong></p>
+<ul>
+<li>基础的检查项（GeneralPredicates）</li>
+<li>volume相关</li>
+<li>node相关<ul>
+<li>是否准备好调度</li>
+<li>是否能容忍污点</li>
+</ul>
+</li>
+<li>pod相关<ul>
+<li>亲和性与反亲和性</li>
+</ul>
+</li>
+</ul>
+<p><strong>优选策略</strong></p>
+<p>选择cpu剩余量和memory剩余量的和最多的宿主机</p>
+<h3 id="20、ingress-转发过程"><a href="#20、ingress-转发过程" class="headerlink" title="20、ingress 转发过程"></a>20、ingress 转发过程</h3><p>为了使得Ingress资源正常工作，集群中必须要有个Ingress Controller来解析Ingress的转发规则。Ingress Controller收到请求，匹配Ingress转发规则转发到后端Service，而Service转发到Pod，最终由Pod处理请求。Kubernetes中Service、Ingress与Ingress Controller有着以下关系：</p>
+<ul>
+<li>Service是后端真实服务的抽象，一个Service可以代表多个相同的后端服务。</li>
+<li>Ingress是反向代理规则，用来规定HTTP/HTTPS请求应该被转发到哪个Service上。例如根据请求中不同的Host和URL路径，让请求落到不同的 Service上。</li>
+<li>Ingress Controller是一个反向代理程序，负责解析Ingress的反向代理规则。如果Ingress有增删改的变动，Ingress Controller会及时更新自己相应的转发规则，当Ingress Controller收到请求后就会根据这些规则将请求转发到对应的Service。</li>
+</ul>
+<p>Ingress Controller通过API Server获取Ingress资源的变化，动态地生成Load Balancer（例如Nginx）所需的配置文件（例如nginx.conf），然后重新加载Load Balancer（例如执行<code>nginx -s load</code>重新加载Nginx。）来生成新的路由转发规则。</p>
+<h3 id="21、k8s-secret三种类型"><a href="#21、k8s-secret三种类型" class="headerlink" title="21、k8s secret三种类型"></a>21、k8s secret三种类型</h3><ul>
+<li>Service Account：用来访问Kubernetes API，由Kubernetes自动创建，并且会自动挂载到Pod的<code>/run/secrets/kubernetes.io/serviceaccount</code>目录中；</li>
+<li>Opaque：base64编码格式的Secret，用来存储密码、密钥等；</li>
+<li><code>kubernetes.io/dockerconfigjson</code>：用来存储私有docker registry的认证信息。</li>
+</ul>
+<h3 id="22、flannel三种网络模式的对比"><a href="#22、flannel三种网络模式的对比" class="headerlink" title="22、flannel三种网络模式的对比"></a>22、flannel三种网络模式的对比</h3><p>udp模式：使用设备flannel.0进行封包解包，不是内核原生支持，上下文切换较大，性能非常差<br>vxlan模式：使用flannel.1进行封包解包，内核原生支持，性能较强<br>host-gw模式：无需flannel.1这样的中间设备，直接宿主机当作子网的下一跳地址，性能最强<br>host-gw的性能损失大约在10%左右，而其他所有基于VXLAN“隧道”机制 的网络方案，性能损失在20%~30%左右</p>
+<h3 id="23、PV、PVC-是什么，区别"><a href="#23、PV、PVC-是什么，区别" class="headerlink" title="23、PV、PVC 是什么，区别"></a>23、PV、PVC 是什么，区别</h3><ul>
+<li>pv：Persistent Volume对具体的存储进行配置和分配，而Pods等则可以使用Persistent Volume抽象出来的存储资源，不需要知道集群的存储细节。</li>
+<li>pvc：Persistent Volume Claim提出需要的存储标准，然后从现有存储资源中匹配或者动态建立新的资源，最后将两者进行绑定。</li>
+</ul>
 
             </article>
             <hr>
