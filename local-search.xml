@@ -46,7 +46,7 @@
     <link href="/2021/03/03/interview-questions1-company/"/>
     <url>/2021/03/03/interview-questions1-company/</url>
     
-    <content type="html"><![CDATA[<h2 id="公司业务问题"><a href="#公司业务问题" class="headerlink" title="公司业务问题"></a>公司业务问题</h2><table><thead><tr><th>并发（系统同时处理的request/事务数）</th><th>3万</th></tr></thead><tbody><tr><td>QPS（每秒查询率）</td><td>2万</td></tr><tr><td>PV（点击量）</td><td>3千万</td></tr><tr><td>UV（用户量）</td><td>30万</td></tr></tbody></table><h4 id="理论问题-（临时记录）"><a href="#理论问题-（临时记录）" class="headerlink" title="理论问题 （临时记录）"></a>理论问题 （临时记录）</h4><ul><li>k8s service的调度算法</li><li>StatefulSet 可以挂在多个pvc吗？</li><li>redis集群分片原理</li><li>mysql增量备份原理</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="公司业务问题"><a href="#公司业务问题" class="headerlink" title="公司业务问题"></a>公司业务问题</h2><table><thead><tr><th>并发（系统同时处理的request/事务数）</th><th>3万</th></tr></thead><tbody><tr><td>QPS（每秒查询率）</td><td>2万</td></tr><tr><td>PV（点击量）</td><td>3千万</td></tr><tr><td>UV（用户量）</td><td>30万</td></tr></tbody></table>]]></content>
     
     
     
