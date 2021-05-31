@@ -1,35 +1,36 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="望翔">
+  <meta name="author" content="权掌天下">
   <meta name="keywords" content="">
+  
   <title>权掌天下 Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -37,6 +38,12 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"like-ycy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -45,7 +52,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>权掌天下</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>海底捞越</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -119,8 +126,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -128,13 +141,13 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/background/header-background.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="永远相信美好的事情即将发生！！！">
               
             </span>
 
@@ -153,7 +166,7 @@
 
   <main>
     
-      <div class="container nopadding-md">
+      <div class="container nopadding-x-md">
         <div class="py-5" id="board"
           style=margin-top:0>
           
@@ -166,21 +179,31 @@
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/17/2019-12-17-prometheus-introduction/"> Prometheus架构原理及其组成 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/17/2019-12-17-prometheus-introduction/" target="_self">
+           Prometheus架构原理及其组成 
+        </a>
+      </h1>
 
-      <a href="/2019/12/17/2019-12-17-prometheus-introduction/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/17/2019-12-17-prometheus-introduction/" target="_self">
           
-        
-        <div>Prometheus 系统介绍首先，Prometheus 受启发于 Google 的 Brogmon 监控系统，相似的 Kubernetes 是从 Google 的 Brog 系统演变而来，从 2012 年开始由前 Google 工程师在 Soundcloud 以开源软件的形式进行研发，并且于 2015 年早期对外发布早期版本。2016 年 5 月继 Kubernetes 之后成为第二个正式加入 </div>
-      </a>
+          
+            
+          
+          Prometheus 系统介绍首先，Prometheus 受启发于 Google 的 Brogmon 监控系统，相似的 Kubernetes 是从 Google 的 Brog 系统演变而来，从 2012 年开始由前 Google 工程师在 Soundcloud 以开源软件的形式进行研发，并且于 2015 年早期对外发布早期版本。2016 年 5 月继 Kubernetes 之后成为第二个正式加入 
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-17
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-17 00:00" pubdate>
+              2019-12-17
+            </time>
           </div>
         
         
@@ -193,21 +216,27 @@
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/16/2019-12-16-gitlab-k8s/"> GitLab 连接 K8S 集群 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/16/2019-12-16-gitlab-k8s/" target="_self">
+           GitLab 连接 K8S 集群 
+        </a>
+      </h1>
 
-      <a href="/2019/12/16/2019-12-16-gitlab-k8s/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/16/2019-12-16-gitlab-k8s/" target="_self">
           
-        
-        <div>用 GitLab 连接 Kubernetes 需要明确以下几点内容：
+          
+            
+          
+          用 GitLab 连接 Kubernetes 需要明确以下几点内容：
 
 目标集群的 API 连接地址；
 集群的 CA 证书；
@@ -216,14 +245,17 @@
 
 获取集群的 API 连接地址
 获取集群的 API 连接地址可以用如下命令查看：
-$ kubectl cluster-info
-Kubernetes mas</div>
-      </a>
+1234$ kubectl cluster-infoKubernetes 
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-16
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-16 00:00" pubdate>
+              2019-12-16
+            </time>
           </div>
         
         
@@ -236,35 +268,37 @@ Kubernetes mas</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/15/2019-12-15-aliyun-policy/"> 阿里云子账号权限策略 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/15/2019-12-15-aliyun-policy/" target="_self">
+           阿里云子账号权限策略 
+        </a>
+      </h1>
 
-      <a href="/2019/12/15/2019-12-15-aliyun-policy/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/15/2019-12-15-aliyun-policy/" target="_self">
           
-        
-        <div>1、OSS读写权限&#123;
-    "Version": "1",
-    "Statement": [
-        &#123;
-            "Effect": "Allow",
-            "Action": [
-                "oss:ListBuckets",
-                "oss:GetBucketStat",
-   </div>
-      </a>
+          
+            
+          
+          1、OSS读写权限12345678910111213141516171819202122232425262728293031323334&#123;    "Version": "1",    "Statement": [        &#123;            "Effect": "Allow",            "Action": [                "oss:L
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-15
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-15 00:00" pubdate>
+              2019-12-15
+            </time>
           </div>
         
         
@@ -277,32 +311,42 @@ Kubernetes mas</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/14/2019-12-14-execution/"> 执行力，才是拉开人与人差距的关键 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/14/2019-12-14-execution/" target="_self">
+           执行力，才是拉开人与人差距的关键 
+        </a>
+      </h1>
 
-      <a href="/2019/12/14/2019-12-14-execution/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/14/2019-12-14-execution/" target="_self">
           
-        
-        <div>01 如果你想变得更好 首先要学会执行我们常常慨叹，为什么都是吃五谷杂粮长大的，人与人之间的差距怎么就那么大呢？
+          
+            
+          
+          01 如果你想变得更好 首先要学会执行我们常常慨叹，为什么都是吃五谷杂粮长大的，人与人之间的差距怎么就那么大呢？
 为什么毕业于同一个学校的人，几年后的差距也会变得那么大呢？
 这其中有一个很重要的因素——执行力。
 那些能够超越同龄人的人，往往都有这样一个优点，他们除了有远见外，还特别肯吃苦，他们的勤奋和执行力往往能甩出同龄人几条街。
 缺乏执行力，人就会焦虑、迷茫。
-执行力是改变人生最直接有效的方法，</div>
-      </a>
+执行力是改变人生最直接有效的方法，
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-14
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-14 00:00" pubdate>
+              2019-12-14
+            </time>
           </div>
         
         
@@ -315,29 +359,39 @@ Kubernetes mas</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/13/2019-12-13-one-line-of-python-code/"> 一行 Python 代码能实现这么多丧心病狂的功能？</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/13/2019-12-13-one-line-of-python-code/" target="_self">
+           一行 Python 代码能实现这么多丧心病狂的功能？
+        </a>
+      </h1>
 
-      <a href="/2019/12/13/2019-12-13-one-line-of-python-code/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/13/2019-12-13-one-line-of-python-code/" target="_self">
           
-        
-        <div>一行代码打印乘法口诀print('\n'.join([' '.join(["%2s x%2s = %2s"%(j,i,i*j) for j in range(1,i+1)]) for i in range(1,10)]))
+          
+            
+          
+          一行代码打印乘法口诀1print('\n'.join([' '.join(["%2s x%2s = %2s"%(j,i,i*j) for j in range(1,i+1)]) for i in range(1,10)]))
 
-一行代码打印迷宫print(''.join(__import__('random').choice('\u2571\u2572') for i in range(50*24)</div>
-      </a>
+一行代码打印迷宫1print(''.join(__import__('random').choice('\u2571\u2572') for i in range(50*2
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-13
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-13 00:00" pubdate>
+              2019-12-13
+            </time>
           </div>
         
         
@@ -350,35 +404,37 @@ Kubernetes mas</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/12/2019-12-12-nginx-chinese/">Nginx 配置参数中文说明 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/12/2019-12-12-nginx-chinese/" target="_self">
+          Nginx 配置参数中文说明 
+        </a>
+      </h1>
 
-      <a href="/2019/12/12/2019-12-12-nginx-chinese/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/12/2019-12-12-nginx-chinese/" target="_self">
           
-        
-        <div>Nginx 配置参数中文详细说明：#定义Nginx运行的用户和用户组
-user www www;
-#
-#nginx进程数,建议设置为等于CPU总核心数.
-worker_processes 8;
-#
-#全局错误日志定义类型,[ debug | info | notice | warn | error | crit ]
-error_log /var/log/nginx/error.log info;
-</div>
-      </a>
+          
+            
+          
+          Nginx 配置参数中文详细说明：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-12
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-12 00:00" pubdate>
+              2019-12-12
+            </time>
           </div>
         
         
@@ -391,30 +447,40 @@ error_log /var/log/nginx/error.log info;
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/11/2019-12-11-kubernetes9-network/">【Kubernetes系列】第9篇 网络原理解析</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/11/2019-12-11-kubernetes9-network/" target="_self">
+          【Kubernetes系列】第9篇 网络原理解析
+        </a>
+      </h1>
 
-      <a href="/2019/12/11/2019-12-11-kubernetes9-network/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/11/2019-12-11-kubernetes9-network/" target="_self">
           
-        
-        <div>1、Linux网络基础Network Namespace(网络命名空间)：
+          
+            
+          
+          1、Linux网络基础Network Namespace(网络命名空间)：
 Linux在网络栈中引入网络命名空间，将独立的网络协议栈隔离到不同的命令空间中，彼此间无法通信；docker利用这一特性，实现不容器间的网络隔离。
 Iptables/Netfilter：
-Netfilter负责在内核中执行各种挂接的规则(过滤、修改、丢弃等)，运行在内核模式中；Iptables模式是在用户模式下运行的进程，</div>
-      </a>
+Netfilter负责在内核中执行各种挂接的规则(过滤、修改、丢弃等)，运行在内核模式中；Iptables模式是在用户模式下运行的进程，
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-11
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-11 00:00" pubdate>
+              2019-12-11
+            </time>
           </div>
         
         
@@ -427,30 +493,40 @@ Netfilter负责在内核中执行各种挂接的规则(过滤、修改、丢弃�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/10/2019-12-10-kubernetes8-cicd-full/">【Kubernetes系列】第8篇 CI/CD 之全流程实践</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/10/2019-12-10-kubernetes8-cicd-full/" target="_self">
+          【Kubernetes系列】第8篇 CI/CD 之全流程实践
+        </a>
+      </h1>
 
-      <a href="/2019/12/10/2019-12-10-kubernetes8-cicd-full/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/10/2019-12-10-kubernetes8-cicd-full/" target="_self">
           
-        
-        <div>前言1）本实践中已经的示例代码及jenkins-agent镜像已经推送归档至github，–&gt;传送门（https://github.com/Kubernetes-Best-Pratice/）
+          
+            
+          
+          前言1）本实践中已经的示例代码及jenkins-agent镜像已经推送归档至github，–&gt;传送门（https://github.com/Kubernetes-Best-Pratice/）
 2）注意本实践中均为内网数据，你测试时一定要改为自己的环境的有效数据。
 3) 由于本实践涉及组件较多，若有操作不明确的话，你可以后台留言，我们一起完善。
-4) 具体操作时若有不清楚，或是错误可以留言，大</div>
-      </a>
+4) 具体操作时若有不清楚，或是错误可以留言，大
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-10
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-10 00:00" pubdate>
+              2019-12-10
+            </time>
           </div>
         
         
@@ -463,31 +539,41 @@ Netfilter负责在内核中执行各种挂接的规则(过滤、修改、丢弃�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/09/2019-12-09-kubernetes7-cicd/">【Kubernetes系列】第7篇 CI/CD 之组件部署</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/09/2019-12-09-kubernetes7-cicd/" target="_self">
+          【Kubernetes系列】第7篇 CI/CD 之组件部署
+        </a>
+      </h1>
 
-      <a href="/2019/12/09/2019-12-09-kubernetes7-cicd/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/09/2019-12-09-kubernetes7-cicd/" target="_self">
           
-        
-        <div>1、前言应对敏捷开发的需求，对CI(持续集成))/CD（持续交付）的提出了更高的标准，今天来讨论下，如何基于开源组件（gitlab/jenkins/harbor/kubernetes）使用CI/CD，赋能团队的开发、运维。
+          
+            
+          
+          1、前言应对敏捷开发的需求，对CI(持续集成))/CD（持续交付）的提出了更高的标准，今天来讨论下，如何基于开源组件（gitlab/jenkins/harbor/kubernetes）使用CI/CD，赋能团队的开发、运维。
 2、核心组件
 3、基本流程step1：在GitLab创建对应的项目。
 step2：开发者将代码提交到GitLab。
-step3：Jenkins创建对应的任务（Job），集成该项</div>
-      </a>
+step3：Jenkins创建对应的任务（Job），集成该项
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-09
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-09 00:00" pubdate>
+              2019-12-09
+            </time>
           </div>
         
         
@@ -500,28 +586,38 @@ step3：Jenkins创建对应的任务（Job），集成该项</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/08/2019-12-08-kubernetes6-nginx-introduction/">【Kubernetes系列】第6篇 Ingress controller - nginx组件介绍</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/08/2019-12-08-kubernetes6-nginx-introduction/" target="_self">
+          【Kubernetes系列】第6篇 Ingress controller - nginx组件介绍
+        </a>
+      </h1>
 
-      <a href="/2019/12/08/2019-12-08-kubernetes6-nginx-introduction/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/08/2019-12-08-kubernetes6-nginx-introduction/" target="_self">
           
-        
-        <div>1、概述在上一篇文章中我们介绍了如何通过helm进行安装部署traefik组件（链接点这里），文中还提到常用的ingress controller除了traefik还有Nginx、HAProxy、Kong等，在本篇文章中我们就介绍如何安装部署Nginx-ingress，只有在经过积累不同组件的使用经验之后，我们才能更好的比较其优劣，形成最佳实践。
-2、安装部署2.1 通过helm查找nginx-i</div>
-      </a>
+          
+            
+          
+          1、概述在上一篇文章中我们介绍了如何通过helm进行安装部署traefik组件（链接点这里），文中还提到常用的ingress controller除了traefik还有Nginx、HAProxy、Kong等，在本篇文章中我们就介绍如何安装部署Nginx-ingress，只有在经过积累不同组件的使用经验之后，我们才能更好的比较其优劣，形成最佳实践。
+2、安装部署2.1 通过helm查找nginx-i
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-08
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-08 00:00" pubdate>
+              2019-12-08
+            </time>
           </div>
         
         
@@ -534,22 +630,16 @@ step3：Jenkins创建对应的任务（Job），集成该项</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/6/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/6/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/8/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -559,16 +649,15 @@ step3：Jenkins创建对应的任务（Job），集成该项</div>
         </div>
       </div>
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -589,45 +678,76 @@ step3：Jenkins创建对应的任务（Job），集成该项</div>
     </div>
   </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
     
 
     
+  </main>
 
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
+
+
+  
+
+  
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  
 
 
 
@@ -637,36 +757,28 @@ step3：Jenkins创建对应的任务（Job），集成该项</div>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "永远相信美好的事情即将发生！！！&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
 
 
 
   <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
@@ -677,67 +789,14 @@ step3：Jenkins创建对应的任务（Job），集成该项</div>
 
 
 
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
 
 
 
 
 
 
-
-
-
-
-
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

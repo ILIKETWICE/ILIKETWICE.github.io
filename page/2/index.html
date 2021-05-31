@@ -1,35 +1,36 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="望翔">
+  <meta name="author" content="权掌天下">
   <meta name="keywords" content="">
+  
   <title>权掌天下 Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -37,6 +38,12 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"like-ycy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -45,7 +52,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>权掌天下</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>海底捞越</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -119,8 +126,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -128,13 +141,13 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/background/header-background.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="永远相信美好的事情即将发生！！！">
               
             </span>
 
@@ -153,7 +166,7 @@
 
   <main>
     
-      <div class="container nopadding-md">
+      <div class="container nopadding-x-md">
         <div class="py-5" id="board"
           style=margin-top:0>
           
@@ -166,23 +179,35 @@
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions12-docker/"> 运维面试题系列--Docker </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/03/interview-questions7-java/" target="_self">
+           运维面试题系列--JAVA问题 
+        </a>
+      </h1>
 
-      <a href="/2021/03/03/interview-questions12-docker/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2021/03/03/interview-questions7-java/" target="_self">
           
-        
-        <div>Docker 面试问题Docker与LXC（Linux Container）有何不同？LXC利用Linux上相关技术实现容器，Docker则在如下的几个方面进行了改进：
+          
+            
+          
+          java类型
+jvm分层 gc回收种类
+java能否正确识别docker的资源限制
 
-移植性：通过抽象容器配置，容器可以实现一个平台移植到另一个平台；  镜像系统：基于AUFS的镜像系统为容器的分发带来了很多的便利，同时共同的镜像层只需要存储一份，实现高效率的存储；  版本管理：类似于GIT的版本管理理念，用户可</div>
-      </a>
+
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-03 00:00" pubdate>
+              2021-03-03
+            </time>
           </div>
         
         
@@ -195,35 +220,44 @@
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions13-k8s/"> 运维面试题系列--Kubernetes </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/03/interview-questions8-network/" target="_self">
+           运维面试题系列--网络问题 
+        </a>
+      </h1>
 
-      <a href="/2021/03/03/interview-questions13-k8s/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2021/03/03/interview-questions8-network/" target="_self">
           
-        
-        <div>Kubernetes面试问题理论部分1、kubernetes是什么？Kubernetes 是一个跨主机集群的开源的容器调度平台，它可以自动化应用容器的部署、扩展和操作, 提供以容器为中心的基础架构。
-2、k8s前身是谷歌的borg系统3、k8s可以干什么？
-快速部署应用
-快速扩展应用
-无缝对接新的应用功能
-节省资源，优化硬件资源的使用
+          
+            
+          
+          网络问题1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程
+用户输入网址到浏览器 
+浏览器发出DNS请求报文 
+计算机首先查询本机HOSTS文件，看是否存在，存在直接返回结果，不存在，继续转发请求报文 
+计算机按照本地DNS的顺序，向合法dns服务器查询IP结果，
+合法dns返回dns结果给本地dns，管理该域的本地dns服务器缓存本结果，直到缓存时间过期，才再次查询此结果
 
-4、Kubernetes 具有如下特点:
-便携性: 无论公有</div>
-      </a>
+
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-03 00:00" pubdate>
+              2021-03-03
+            </time>
           </div>
         
         
@@ -236,32 +270,41 @@
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions10-redis/"> 运维面试题系列--Redis问题 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/03/interview-questions6-analysis/" target="_self">
+           运维面试题系列--思路分析类问题 
+        </a>
+      </h1>
 
-      <a href="/2021/03/03/interview-questions10-redis/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2021/03/03/interview-questions6-analysis/" target="_self">
           
-        
-        <div>Redis 面试问题1、redis主从同步原理
-slave服务器向master发送psync命令（此时发送的是psync ? -1），告诉master我需要同步数据了；
-master接收到psync命令后会进行BGSAVE命令生成RDB文件快照；
-生成完后，会将RDB文件发送给slave；
-slave接收到文件会载入RDB快照，并且将数据库状态变更为master在执行BGSAVE时的状态一致；
-m</div>
-      </a>
+          
+            
+          
+          思路分析类型1、排查java进程cpu占用过高（内存占用高同理）1、使用top命令查看占用CPU过高的进程，获取到其PID；
+2、jstack pid &gt; java.txt  导出CPU占用高进程的线程栈；
+3、top -H -p PID 查看对应进程的哪个线程占用CPU过高；
+4、在java.txt文件中根据线程id找到对应的线程栈（需要将线程id转换为16进制）；
+5、分析负载高的线程栈
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-03 00:00" pubdate>
+              2021-03-03
+            </time>
           </div>
         
         
@@ -274,41 +317,40 @@ m</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/03/03/interview-questions18-prometheus/"> 运维面试题系列--Prometheus </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/03/interview-questions4-shell/" target="_self">
+           运维面试题系列--shell脚本问题 
+        </a>
+      </h1>
 
-      <a href="/2021/03/03/interview-questions18-prometheus/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2021/03/03/interview-questions4-shell/" target="_self">
           
-        
-        <div>Prometheus1、prometheus和zabbix的对比如果公司需要对容器进行监控：不要犹豫，选择prometheus
+          
+            
+          
+          shell脚本理论部分1、在当前脚本中调用另一个脚本
+exec（exec /home/script.sh）：使用exec来调用脚本，被执行的脚本会继承当前shell的环境变量。但事实上exec产生了新的进程，他会把主shell的进程资源占用并替换脚本内容，继承了原主shell的PID号，即原主shell剩下的内容不会执行。
 
-zabbix
-更适合物理机器的监控
-对容器的支持较差
-
-
-prometheus
-更适合容器服务，就这一条足够
-
-
-
-2、prometheus四种指标数据类型Counter(计数器类型)
-只增不减（除非系统发生了重置），Counter一般用于累计值。
-Gauge(仪表盘类</div>
-      </a>
+source（source /home/script.sh）使用sour
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-03-03
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-03 00:00" pubdate>
+              2021-03-03
+            </time>
           </div>
         
         
@@ -321,33 +363,43 @@ Gauge(仪表盘类</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/02/11/2021-02-11-visual-git-guide/"> 图解 Git 工作原理 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/11/2021-02-11-visual-git-guide/" target="_self">
+           图解 Git 工作原理 
+        </a>
+      </h1>
 
-      <a href="/2021/02/11/2021-02-11-visual-git-guide/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2021/02/11/2021-02-11-visual-git-guide/" target="_self">
           
-        
-        <div>基本用法
+          
+            
+          
+          基本用法
 上面的四条命令在工作目录、暂存目录(也叫做索引)和仓库之间复制文件。
 
 git add files把当前文件放入暂存区域。
 git commit给暂存区域生成快照并提交。
 git reset — files用来撤销最后一次git add files，你也可以用git reset撤销所有暂存区域文件。
-git checkout — files把文件从暂存区域复制到工作目录，用来丢弃本地修改</div>
-      </a>
+git checkout — files把文件从暂存区域复制到工作目录，用来丢弃本地修改
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-02-11
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-11 08:37" pubdate>
+              2021-02-11
+            </time>
           </div>
         
         
@@ -360,21 +412,27 @@ git checkout — files把文件从暂存区域复制到工作目录，用来丢�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2021/02/10/2021-02-10-redis-high-availability/"> Redis高可用总结：Redis主从复制、哨兵集群、脑裂... </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/10/2021-02-10-redis-high-availability/" target="_self">
+           Redis高可用总结：Redis主从复制、哨兵集群、脑裂... 
+        </a>
+      </h1>
 
-      <a href="/2021/02/10/2021-02-10-redis-high-availability/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2021/02/10/2021-02-10-redis-high-availability/" target="_self">
           
-        
-        <div>在实际的项目中，服务高可用非常重要，如，当Redis作为缓存服务使用时， 缓解数据库的压力，提高数据的访问速度，提高网站的性能 ，但如果使用Redis 是单机模式运行 ，只要一个服务器宕机就不可以提供服务，这样会可能造成服务效率低下，甚至出现其相对应的服务应用不可用。
+          
+            
+          
+          在实际的项目中，服务高可用非常重要，如，当Redis作为缓存服务使用时， 缓解数据库的压力，提高数据的访问速度，提高网站的性能 ，但如果使用Redis 是单机模式运行 ，只要一个服务器宕机就不可以提供服务，这样会可能造成服务效率低下，甚至出现其相对应的服务应用不可用。
 因此为了实现高可用，Redis 提供了哪些高可用方案？
 
 Redis主从复制
@@ -383,13 +441,17 @@ Redis持久化
 …
 
 
-Redis基于一</div>
-      </a>
+Redis基于一
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2021-02-10
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-10 19:37" pubdate>
+              2021-02-10
+            </time>
           </div>
         
         
@@ -402,33 +464,43 @@ Redis基于一</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/10/01/2020-10-01-mysql-interview-questions/"> Mysql面试题50道 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/01/2020-10-01-mysql-interview-questions/" target="_self">
+           Mysql面试题50道 
+        </a>
+      </h1>
 
-      <a href="/2020/10/01/2020-10-01-mysql-interview-questions/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/10/01/2020-10-01-mysql-interview-questions/" target="_self">
           
-        
-        <div>1、MySQL 中有哪几种锁？
+          
+            
+          
+          1、MySQL 中有哪几种锁？
 （1）表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最 高，并发度最低。
 （2）行级锁：开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最 低，并发度也最高。
 （3）页面锁：开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表 锁和行锁之间，并发度一般。
 2、MySQL 中有哪些不同的表格？
 共有 5 种类型的表格：
-（1）My</div>
-      </a>
+（1）My
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-10-01
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-01 10:25" pubdate>
+              2020-10-01
+            </time>
           </div>
         
         
@@ -441,33 +513,38 @@ Redis基于一</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/09/29/2020-09-29-python-progressbar/"> 六种酷炫Python运行进度条 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/29/2020-09-29-python-progressbar/" target="_self">
+           六种酷炫Python运行进度条 
+        </a>
+      </h1>
 
-      <a href="/2020/09/29/2020-09-29-python-progressbar/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/09/29/2020-09-29-python-progressbar/" target="_self">
           
-        
-        <div>1.普通进度条在代码迭代运行中可以自己进行统计计算，并使用格式化字符串输出代码运行进度
-import sys
-import time
-def progress_bar():
-    for i in range(1, 101):
-        print("\r", end="")
-        print("Download progress: &#123;&#125;%: ".format</div>
-      </a>
+          
+            
+          
+          1.普通进度条在代码迭代运行中可以自己进行统计计算，并使用格式化字符串输出代码运行进度
+123456789import sysimport timedef progress_bar():    for i in range(1, 101):        print("\r", end="")        print("Download progress: &#123;&#125;%: ".fo
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-09-29
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-29 16:37" pubdate>
+              2020-09-29
+            </time>
           </div>
         
         
@@ -480,32 +557,42 @@ def progress_bar():
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/20/2020-07-20-dockerfile/"> Dockerfile就这么简单 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/07/20/2020-07-20-dockerfile/" target="_self">
+           Dockerfile就这么简单 
+        </a>
+      </h1>
 
-      <a href="/2020/07/20/2020-07-20-dockerfile/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/07/20/2020-07-20-dockerfile/" target="_self">
           
-        
-        <div>当我们在使用docker时，最重要的就是镜像，只要有了镜像，我们就可以随时随地的根据镜像来创建一个容器，从而做到让我们的服务可以在任何时间任何地点任何环境下运行起来。那么镜像是怎么制作的呢？总体来讲，制作镜像有两种方法：
+          
+            
+          
+          当我们在使用docker时，最重要的就是镜像，只要有了镜像，我们就可以随时随地的根据镜像来创建一个容器，从而做到让我们的服务可以在任何时间任何地点任何环境下运行起来。那么镜像是怎么制作的呢？总体来讲，制作镜像有两种方法：
 
 根据一个已有的镜像运行容器，然后根据这个容器来制作我们自己的镜像；
 使用DockerFile来制作一个镜像模板文件，使用这个文件来创建镜像；
 
-对于第一种方法，我们在上一篇文章</div>
-      </a>
+对于第一种方法，我们在上一篇文章
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-20
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-20 17:43" pubdate>
+              2020-07-20
+            </time>
           </div>
         
         
@@ -518,32 +605,38 @@ def progress_bar():
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/20/2020-07-20-linux-kernel-optimize/"> Linux内核调优 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/07/20/2020-07-20-linux-kernel-optimize/" target="_self">
+           Linux内核调优 
+        </a>
+      </h1>
 
-      <a href="/2020/07/20/2020-07-20-linux-kernel-optimize/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/07/20/2020-07-20-linux-kernel-optimize/" target="_self">
           
-        
-        <div>以nginx 10k并发连接为优化目标，附简单介绍，不一一解释。
-tcp容量规划net.ipv4.tcp_mem  = 262144  524288 786432
-net.core.wmem_max = 16777216
-net.core.wmem_default = 131072
-net.core.rmem_max = 16777216
-net.core.rmem_default = 13107</div>
-      </a>
+          
+            
+          
+          以nginx 10k并发连接为优化目标，附简单介绍，不一一解释。
+tcp容量规划1234567net.ipv4.tcp_mem  = 262144  524288 786432net.core.wmem_max = 16777216net.core.wmem_default = 131072net.core.rmem_max = 16777216net.core.rmem_default = 13
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-20
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-20 17:08" pubdate>
+              2020-07-20
+            </time>
           </div>
         
         
@@ -556,22 +649,16 @@ net.core.rmem_default = 13107</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -581,16 +668,15 @@ net.core.rmem_default = 13107</div>
         </div>
       </div>
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -611,45 +697,76 @@ net.core.rmem_default = 13107</div>
     </div>
   </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
     
 
     
+  </main>
 
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
+
+
+  
+
+  
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  
 
 
 
@@ -659,36 +776,28 @@ net.core.rmem_default = 13107</div>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "永远相信美好的事情即将发生！！！&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
 
 
 
   <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
@@ -699,67 +808,14 @@ net.core.rmem_default = 13107</div>
 
 
 
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
 
 
 
 
 
 
-
-
-
-
-
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

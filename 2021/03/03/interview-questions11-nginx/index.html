@@ -1,44 +1,52 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="望翔">
+  <meta name="author" content="权掌天下">
   <meta name="keywords" content="">
+  
   <title> 运维面试题系列--Nginx、LVS  - 权掌天下 Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -46,6 +54,12 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"like-ycy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -54,7 +68,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>权掌天下</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>海底捞越</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -128,8 +142,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -137,25 +157,33 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('https://gitee.com/like-ycy/images/raw/master/blog/header.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title=" 运维面试题系列--Nginx、LVS ">
               
             </span>
 
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2021-03-03 00:00">
-      2021年3月3日 凌晨
-    </time>
-  </div>
-
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      权掌天下
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-03 00:00" pubdate>
+        2021年3月3日 凌晨
+      </time>
+    </span>
+  
+</div>
 
 <div class="mt-1">
   
@@ -179,6 +207,14 @@
 
   
   
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
 </div>
 
             
@@ -194,13 +230,15 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <div class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"> 运维面试题系列--Nginx、LVS </h1>
             
               <p class="note note-info">
                 
@@ -208,7 +246,7 @@
                 
               </p>
             
-            <article class="markdown-body">
+            <div class="markdown-body">
               <h1 id="Nginx-LVS-Apache"><a href="#Nginx-LVS-Apache" class="headerlink" title="Nginx LVS Apache"></a>Nginx LVS Apache</h1><h2 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h2><h3 id="1、LVS的模式："><a href="#1、LVS的模式：" class="headerlink" title="1、LVS的模式："></a>1、LVS的模式：</h3><ul>
 <li><p><strong>NAT模式</strong></p>
 <ul>
@@ -299,7 +337,7 @@
 <p>HAProxy的特点是：<br>  1、支持两种代理模式：TCP（四层）和HTTP（七层），支持虚拟主机；<br>  2、能够补充Nginx的一些缺点比如Session的保持，Cookie的引导等工作<br>  3、支持url检测后端的服务器出问题的检测会有很好的帮助。<br>  4、更多的负载均衡策略比如：动态加权轮循(Dynamic Round Robin)，加权源地址哈希(Weighted Source Hash)，加权URL哈希和加权参数哈希(Weighted Parameter Hash)已经实现<br>  5、单纯从效率上来讲HAProxy更会比Nginx有更出色的负载均衡速度。<br>  6、HAProxy可以对Mysql进行负载均衡，对后端的DB节点进行检测和负载均衡。<br>  9、支持负载均衡算法：Round-robin（轮循）、Weight-round-robin（带权轮循）、source（原地址保持）、RI（请求URL）、rdp-cookie（根据cookie）<br>  10、不能做Web服务器即Cache。</p>
 <h3 id="4、rewrite语法："><a href="#4、rewrite语法：" class="headerlink" title="4、rewrite语法："></a>4、rewrite语法：</h3><p>指令语法：rewrite 正则表达式 被替换内容[flag];</p>
 <p>简单的小例子：</p>
-<pre><code class="hljs nginx"><span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^/(.*)</span> http://www.baidu.com/ <span class="hljs-literal">permanent</span>; <span class="hljs-comment"># 匹配成功后跳转到百度，执行永久301跳转</span></code></pre>
+<figure class="highlight nginx"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^/(.*)</span> http://www.baidu.com/ <span class="hljs-literal">permanent</span>; <span class="hljs-comment"># 匹配成功后跳转到百度，执行永久301跳转</span><br></code></pre></div></td></tr></table></figure>
 
 <p><strong>常用正则表达式：</strong></p>
 <table>
@@ -367,21 +405,12 @@
 <td>返回301永久重定向</td>
 </tr>
 </tbody></table>
-<h3 id="5、location的规则"><a href="#5、location的规则" class="headerlink" title="5、location的规则"></a>5、location的规则</h3><pre><code class="hljs excel">语法规则： location [=|~|~*|^~] /uri/ &#123; … &#125;
-= 		 开头表示精确匹配
-^~  	 开头表示uri以某个常规字符串开头，理解为匹配 url路径即可。nginx不对url做编码，因此请求为/static/<span class="hljs-number">20%</span>/aa，可以被规则 ^~ /static/ /aa匹配到（注意是空格）。以xx开头
-~ 		 开头表示区分大小写的正则匹配                  以xx结尾
-~*  	 开头表示不区分大小写的正则匹配                以xx结尾
-!~和!~*	分别为区分大小写不匹配及不区分大小写不匹配 的正则
-/ 		 通用匹配，任何请求都会匹配到。</code></pre>
+<h3 id="5、location的规则"><a href="#5、location的规则" class="headerlink" title="5、location的规则"></a>5、location的规则</h3><figure class="highlight excel"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs excel">语法规则： location [=|~|~*|^~] /uri/ &#123; … &#125;<br>= 		 开头表示精确匹配<br>^~  	 开头表示uri以某个常规字符串开头，理解为匹配 url路径即可。nginx不对url做编码，因此请求为/static/<span class="hljs-number">20%</span>/aa，可以被规则 ^~ /static/ /aa匹配到（注意是空格）。以xx开头<br>~ 		 开头表示区分大小写的正则匹配                  以xx结尾<br>~*  	 开头表示不区分大小写的正则匹配                以xx结尾<br>!~和!~*	分别为区分大小写不匹配及不区分大小写不匹配 的正则<br>/ 		 通用匹配，任何请求都会匹配到。<br></code></pre></div></td></tr></table></figure>
 
 <p>匹配顺序<br>首先精确匹配 =-》其次以xx开头匹配^~-》然后是按文件中顺序的正则匹配-》最后是交给 / 通用匹配。<br>当有匹配成功时候，停止匹配，按当前匹配规则处理请求。</p>
-<h3 id="6、nginx-master-worker机制的好处"><a href="#6、nginx-master-worker机制的好处" class="headerlink" title="6、nginx master-worker机制的好处"></a>6、nginx master-worker机制的好处</h3><pre><code class="hljs bash">可以使用 nginx<span class="hljs-_">-s</span> reload 热部署。
+<h3 id="6、nginx-master-worker机制的好处"><a href="#6、nginx-master-worker机制的好处" class="headerlink" title="6、nginx master-worker机制的好处"></a>6、nginx master-worker机制的好处</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">可以使用 nginx<span class="hljs-_">-s</span> reload 热部署。<br><br>每个Worker 是独立的进程，不需要加锁，省掉了锁带来的开销。采用独立的进程，可以让互相之间不会影响，一个进程退出后，其他进程还在工作，服务不会中断，Master进程则很快启动新的Worker进程。<br></code></pre></div></td></tr></table></figure>
 
-每个Worker 是独立的进程，不需要加锁，省掉了锁带来的开销。采用独立的进程，可以让互相之间不会影响，一个进程退出后，其他进程还在工作，服务不会中断，Master进程则很快启动新的Worker进程。</code></pre>
-
-<h3 id="7、alias与root的区别"><a href="#7、alias与root的区别" class="headerlink" title="7、alias与root的区别"></a>7、alias与root的区别</h3><pre><code class="hljs livecodeserver">root    实际访问文件路径会拼接<span class="hljs-built_in">URL</span>中的路径
-<span class="hljs-built_in">alias</span>   实际访问文件路径不会拼接<span class="hljs-built_in">URL</span>中的路径，会把location后面配置的路径丢弃掉，把当前匹配到的目录指向到指定的目录</code></pre>
+<h3 id="7、alias与root的区别"><a href="#7、alias与root的区别" class="headerlink" title="7、alias与root的区别"></a>7、alias与root的区别</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs livecodeserver">root    实际访问文件路径会拼接<span class="hljs-built_in">URL</span>中的路径<br><span class="hljs-built_in">alias</span>   实际访问文件路径不会拼接<span class="hljs-built_in">URL</span>中的路径，会把location后面配置的路径丢弃掉，把当前匹配到的目录指向到指定的目录<br></code></pre></div></td></tr></table></figure>
 
 <blockquote>
 <p>注意：</p>
@@ -391,68 +420,13 @@
 <li>alias只能位于location块中。（root可以不放在location中）</li>
 </ol>
 </blockquote>
-<h3 id="8、nginx日志切割脚本"><a href="#8、nginx日志切割脚本" class="headerlink" title="8、nginx日志切割脚本"></a>8、nginx日志切割脚本</h3><pre><code class="hljs routeros"><span class="hljs-comment"># /bin/bash</span>
- 
-<span class="hljs-comment"># 日志保存位置</span>
-<span class="hljs-attribute">base_path</span>=<span class="hljs-string">'/opt/nginx/logs'</span>
-<span class="hljs-comment"># 获取当前年信息和月信息</span>
-<span class="hljs-attribute">log_path</span>=$(date -d yesterday +<span class="hljs-string">"%Y%m"</span>)
-<span class="hljs-comment"># 获取昨天的日信息</span>
-<span class="hljs-attribute">day</span>=$(date -d yesterday +<span class="hljs-string">"%d"</span>)
-<span class="hljs-comment"># 按年月创建文件夹</span>
-mkdir -p <span class="hljs-variable">$base_path</span>/<span class="hljs-variable">$log_path</span>
-<span class="hljs-comment"># 备份昨天的日志到当月的文件夹</span>
-mv <span class="hljs-variable">$base_path</span>/access.log <span class="hljs-variable">$base_path</span>/<span class="hljs-variable">$log_path</span>/access_<span class="hljs-variable">$day</span>.log
-<span class="hljs-comment"># 输出备份日志文件名</span>
-<span class="hljs-comment"># echo $base_path/$log_path/access_$day.log</span>
-<span class="hljs-comment"># 通过Nginx信号量控制重读日志</span>
-kill -USR1 `cat /opt/nginx/logs/nginx.pid`
-<span class="hljs-comment">#删除7天前的日志</span>
-cd <span class="hljs-variable">$base_path</span>/<span class="hljs-variable">$log_path</span>/
-<span class="hljs-builtin-name">find</span> . -mtime +7 -name <span class="hljs-string">"*20[1-9][3-9]*"</span> | xargs rm -f</code></pre>
+<h3 id="8、nginx日志切割脚本"><a href="#8、nginx日志切割脚本" class="headerlink" title="8、nginx日志切割脚本"></a>8、nginx日志切割脚本</h3><figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros"><span class="hljs-comment"># /bin/bash</span><br> <br><span class="hljs-comment"># 日志保存位置</span><br><span class="hljs-attribute">base_path</span>=<span class="hljs-string">'/opt/nginx/logs'</span><br><span class="hljs-comment"># 获取当前年信息和月信息</span><br><span class="hljs-attribute">log_path</span>=$(date -d yesterday +<span class="hljs-string">"%Y%m"</span>)<br><span class="hljs-comment"># 获取昨天的日信息</span><br><span class="hljs-attribute">day</span>=$(date -d yesterday +<span class="hljs-string">"%d"</span>)<br><span class="hljs-comment"># 按年月创建文件夹</span><br>mkdir -p <span class="hljs-variable">$base_path</span>/<span class="hljs-variable">$log_path</span><br><span class="hljs-comment"># 备份昨天的日志到当月的文件夹</span><br>mv <span class="hljs-variable">$base_path</span>/access.log <span class="hljs-variable">$base_path</span>/<span class="hljs-variable">$log_path</span>/access_<span class="hljs-variable">$day</span>.log<br><span class="hljs-comment"># 输出备份日志文件名</span><br><span class="hljs-comment"># echo $base_path/$log_path/access_$day.log</span><br><span class="hljs-comment"># 通过Nginx信号量控制重读日志</span><br>kill -USR1 `cat /opt/nginx/logs/nginx.pid`<br><span class="hljs-comment">#删除7天前的日志</span><br>cd <span class="hljs-variable">$base_path</span>/<span class="hljs-variable">$log_path</span>/<br><span class="hljs-builtin-name">find</span> . -mtime +7 -name <span class="hljs-string">"*20[1-9][3-9]*"</span> | xargs rm -f<br></code></pre></div></td></tr></table></figure>
 
-<h3 id="9、nginx优化"><a href="#9、nginx优化" class="headerlink" title="9、nginx优化"></a>9、nginx优化</h3><pre><code class="hljs angelscript"><span class="hljs-number">1.</span> worker_processes <span class="hljs-number">8</span>;
-nginx 进程数，建议按照cpu 数目来指定，一般为它的倍数 (如,<span class="hljs-number">2</span>个四核的cpu计为<span class="hljs-number">8</span>)。
-<span class="hljs-number">2.</span> worker_cpu_affinity <span class="hljs-number">00000001</span> <span class="hljs-number">00000010</span> <span class="hljs-number">00000100</span> <span class="hljs-number">00001000</span> <span class="hljs-number">00010000</span> <span class="hljs-number">00100000</span> <span class="hljs-number">01000000</span> <span class="hljs-number">10000000</span>;
-为每个进程分配cpu，上例中将<span class="hljs-number">8</span> 个进程分配到<span class="hljs-number">8</span> 个cpu，当然可以写多个，或者将一
-个进程分配到多个cpu。
-<span class="hljs-number">3.</span> worker_rlimit_nofile <span class="hljs-number">65535</span>;
-这个指令是指当一个nginx 进程打开的最多文件描述符数目，理论值应该是最多打开文
-件数（ulimit -n）与nginx 进程数相除，但是nginx 分配请求并不是那么均匀，所以最好与ulimit -n 的值保持一致。
-<span class="hljs-number">4.</span> use epoll;
-使用epoll 的I/O 模型
-<span class="hljs-number">5.</span> worker_connections <span class="hljs-number">65535</span>;
-每个进程允许的最多连接数， 理论上每台nginx 服务器的最大连接数为worker_processes*worker_connections。
-<span class="hljs-number">6.</span> keepalive_timeout <span class="hljs-number">60</span>;
-keepalive 超时时间。
-<span class="hljs-number">7.</span> client_header_buffer_size <span class="hljs-number">4</span>k;
-客户端请求头部的缓冲区大小，这个可以根据你的系统分页大小来设置，一般一个请求头的大小不会超过<span class="hljs-number">1</span>k，不过由于一般系统分页都要大于<span class="hljs-number">1</span>k，所以这里设置为分页大小。
-<span class="hljs-number">8.</span> open_file_cache max=<span class="hljs-number">65535</span> inactive=<span class="hljs-number">60</span>s;
-这个将为打开文件指定缓存，默认是没有启用的，max 指定缓存数量，建议和打开文件数一致，inactive 是指经过多长时间文件没被请求后删除缓存。
-<span class="hljs-number">9.</span> open_file_cache_valid <span class="hljs-number">80</span>s;
-这个是指多长时间检查一次缓存的有效信息。
-<span class="hljs-number">10.</span> open_file_cache_min_uses <span class="hljs-number">1</span>;
-open_file_cache 指令中的inactive 参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的，如上例，如果有一个文件在inactive 时间内一次没被使用，它将被移除。
-<span class="hljs-number">11.</span> fastcgi_connect_timeout <span class="hljs-number">300</span>;
-指定连接到后端FastCGI 的超时时间。
-<span class="hljs-number">12.</span> fastcgi_send_timeout <span class="hljs-number">300</span>;
-向FastCGI 传送请求的超时时间，这个值是指已经完成两次握手后向FastCGI 传送请求的超时时间。
-<span class="hljs-number">13.</span> fastcgi_read_timeout <span class="hljs-number">300</span>;
-接收FastCGI 应答的超时时间，这个值是指已经完成两次握手后接收FastCGI 应答的超时时间。
-<span class="hljs-number">14.</span> fastcgi_buffer_size <span class="hljs-number">4</span>k;
-指定读取FastCGI 应答第一部分需要用多大的缓冲区，一般第一部分应答不会超过<span class="hljs-number">1</span>k，由于页面大小为<span class="hljs-number">4</span>k，所以这里设置为<span class="hljs-number">4</span>k。
-<span class="hljs-number">15.</span> fastcgi_buffers <span class="hljs-number">8</span> <span class="hljs-number">4</span>k;
-指定本地需要用多少和多大的缓冲区来缓冲FastCGI 的应答。
-<span class="hljs-number">16.</span> fastcgi_busy_buffers_size <span class="hljs-number">8</span>k;
-这个指令我也不知道是做什么用，只知道默认值是fastcgi_buffers 的两倍。
-<span class="hljs-number">17.</span> fastcgi_temp_file_write_size <span class="hljs-number">8</span>k;
-在写入fastcgi_temp_path 时将用多大的数据块，默认值是fastcgi_buffers 的两倍。
-<span class="hljs-number">18.</span> fastcgi_cache TEST
-开启FastCGI 缓存并且为其制定一个名称。个人感觉开启缓存非常有用，可以有效降低CPU 负载，并且防止<span class="hljs-number">502</span> 错误。</code></pre>
+<h3 id="9、nginx优化"><a href="#9、nginx优化" class="headerlink" title="9、nginx优化"></a>9、nginx优化</h3><figure class="highlight angelscript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs angelscript"><span class="hljs-number">1.</span> worker_processes <span class="hljs-number">8</span>;<br>nginx 进程数，建议按照cpu 数目来指定，一般为它的倍数 (如,<span class="hljs-number">2</span>个四核的cpu计为<span class="hljs-number">8</span>)。<br><span class="hljs-number">2.</span> worker_cpu_affinity <span class="hljs-number">00000001</span> <span class="hljs-number">00000010</span> <span class="hljs-number">00000100</span> <span class="hljs-number">00001000</span> <span class="hljs-number">00010000</span> <span class="hljs-number">00100000</span> <span class="hljs-number">01000000</span> <span class="hljs-number">10000000</span>;<br>为每个进程分配cpu，上例中将<span class="hljs-number">8</span> 个进程分配到<span class="hljs-number">8</span> 个cpu，当然可以写多个，或者将一<br>个进程分配到多个cpu。<br><span class="hljs-number">3.</span> worker_rlimit_nofile <span class="hljs-number">65535</span>;<br>这个指令是指当一个nginx 进程打开的最多文件描述符数目，理论值应该是最多打开文<br>件数（ulimit -n）与nginx 进程数相除，但是nginx 分配请求并不是那么均匀，所以最好与ulimit -n 的值保持一致。<br><span class="hljs-number">4.</span> use epoll;<br>使用epoll 的I/O 模型<br><span class="hljs-number">5.</span> worker_connections <span class="hljs-number">65535</span>;<br>每个进程允许的最多连接数， 理论上每台nginx 服务器的最大连接数为worker_processes*worker_connections。<br><span class="hljs-number">6.</span> keepalive_timeout <span class="hljs-number">60</span>;<br>keepalive 超时时间。<br><span class="hljs-number">7.</span> client_header_buffer_size <span class="hljs-number">4</span>k;<br>客户端请求头部的缓冲区大小，这个可以根据你的系统分页大小来设置，一般一个请求头的大小不会超过<span class="hljs-number">1</span>k，不过由于一般系统分页都要大于<span class="hljs-number">1</span>k，所以这里设置为分页大小。<br><span class="hljs-number">8.</span> open_file_cache max=<span class="hljs-number">65535</span> inactive=<span class="hljs-number">60</span>s;<br>这个将为打开文件指定缓存，默认是没有启用的，max 指定缓存数量，建议和打开文件数一致，inactive 是指经过多长时间文件没被请求后删除缓存。<br><span class="hljs-number">9.</span> open_file_cache_valid <span class="hljs-number">80</span>s;<br>这个是指多长时间检查一次缓存的有效信息。<br><span class="hljs-number">10.</span> open_file_cache_min_uses <span class="hljs-number">1</span>;<br>open_file_cache 指令中的inactive 参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的，如上例，如果有一个文件在inactive 时间内一次没被使用，它将被移除。<br><span class="hljs-number">11.</span> fastcgi_connect_timeout <span class="hljs-number">300</span>;<br>指定连接到后端FastCGI 的超时时间。<br><span class="hljs-number">12.</span> fastcgi_send_timeout <span class="hljs-number">300</span>;<br>向FastCGI 传送请求的超时时间，这个值是指已经完成两次握手后向FastCGI 传送请求的超时时间。<br><span class="hljs-number">13.</span> fastcgi_read_timeout <span class="hljs-number">300</span>;<br>接收FastCGI 应答的超时时间，这个值是指已经完成两次握手后接收FastCGI 应答的超时时间。<br><span class="hljs-number">14.</span> fastcgi_buffer_size <span class="hljs-number">4</span>k;<br>指定读取FastCGI 应答第一部分需要用多大的缓冲区，一般第一部分应答不会超过<span class="hljs-number">1</span>k，由于页面大小为<span class="hljs-number">4</span>k，所以这里设置为<span class="hljs-number">4</span>k。<br><span class="hljs-number">15.</span> fastcgi_buffers <span class="hljs-number">8</span> <span class="hljs-number">4</span>k;<br>指定本地需要用多少和多大的缓冲区来缓冲FastCGI 的应答。<br><span class="hljs-number">16.</span> fastcgi_busy_buffers_size <span class="hljs-number">8</span>k;<br>这个指令我也不知道是做什么用，只知道默认值是fastcgi_buffers 的两倍。<br><span class="hljs-number">17.</span> fastcgi_temp_file_write_size <span class="hljs-number">8</span>k;<br>在写入fastcgi_temp_path 时将用多大的数据块，默认值是fastcgi_buffers 的两倍。<br><span class="hljs-number">18.</span> fastcgi_cache TEST<br>开启FastCGI 缓存并且为其制定一个名称。个人感觉开启缓存非常有用，可以有效降低CPU 负载，并且防止<span class="hljs-number">502</span> 错误。<br></code></pre></div></td></tr></table></figure>
 
 <h3 id="10、nginx-reload的流程"><a href="#10、nginx-reload的流程" class="headerlink" title="10、nginx reload的流程"></a>10、nginx reload的流程</h3><p><strong>详情请跳转至</strong>：<a href="https://like-ycy.github.io/2019/12/26/2019-12-26-nginx-reload/">nginx -s reload的流程</a></p>
 
-            </article>
+            </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
@@ -467,21 +441,25 @@ open_file_cache 指令中的inactive 参数时间内文件的最少使用次数�
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
-                <div class="post-prevnext row">
-                  <div class="post-prev col-6">
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/03/interview-questions8-network/">
+                      <a href="/2021/03/03/interview-questions13-k8s/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"> 运维面试题系列--网络问题 </span>
+                        <span class="hidden-mobile"> 运维面试题系列--Kubernetes </span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
-                  </div>
-                  <div class="post-next col-6">
+                  </article>
+                  <article class="post-next col-6">
                     
                     
                       <a href="/2021/03/03/interview-questions12-docker/">
@@ -490,13 +468,13 @@ open_file_cache 指令中的inactive 参数时间内文件的最少使用次数�
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
-                  </div>
+                  </article>
                 </div>
               
             </div>
 
             
-          </div>
+          </article>
         </div>
       </div>
     </div>
@@ -504,7 +482,7 @@ open_file_cache 指令中的inactive 参数时间内文件的最少使用次数�
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -514,24 +492,17 @@ open_file_cache 指令中的inactive 参数时间内文件的最少使用次数�
 
 <!-- Custom -->
 
-  <div class="col-lg-7 mx-auto nopadding-md">
-    <div class="container custom post-content mx-auto">
-      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
-    </div>
-  </div>
-
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -552,140 +523,113 @@ open_file_cache 指令中的inactive 参数时间内文件的最少使用次数�
     </div>
   </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
     
 
     
+  </main>
 
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
+
+
+  
+
+  
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: 'article.markdown-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        " 运维面试题系列--Nginx、LVS &nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
 
 
 
   <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
@@ -694,55 +638,6 @@ open_file_cache 指令中的inactive 参数时间内文件的最少使用次数�
 
 
 
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
 
 
 
@@ -751,10 +646,8 @@ open_file_cache 指令中的inactive 参数时间内文件的最少使用次数�
 
 
 
-
-
-
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

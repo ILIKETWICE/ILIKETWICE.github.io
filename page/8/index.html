@@ -1,35 +1,36 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="望翔">
+  <meta name="author" content="权掌天下">
   <meta name="keywords" content="">
+  
   <title>权掌天下 Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -37,6 +38,12 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"like-ycy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -45,7 +52,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>权掌天下</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>海底捞越</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -119,8 +126,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -128,13 +141,13 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/background/header-background.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="永远相信美好的事情即将发生！！！">
               
             </span>
 
@@ -153,7 +166,7 @@
 
   <main>
     
-      <div class="container nopadding-md">
+      <div class="container nopadding-x-md">
         <div class="py-5" id="board"
           style=margin-top:0>
           
@@ -166,24 +179,34 @@
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/07/2019-12-07-kubernetes5-traefik-introduction/">【Kubernetes系列】第5篇 Ingress Controller - Traefik组件介绍</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/07/2019-12-07-kubernetes5-traefik-introduction/" target="_self">
+          【Kubernetes系列】第5篇 Ingress Controller - Traefik组件介绍
+        </a>
+      </h1>
 
-      <a href="/2019/12/07/2019-12-07-kubernetes5-traefik-introduction/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/07/2019-12-07-kubernetes5-traefik-introduction/" target="_self">
           
-        
-        <div>1、概述为了能够让Ingress资源能够工作，在Kubernetes集群中必须至少有一个运行中的ingress controller组件。也就是说如果在kubernetes集群中没有一个ingress controller组件，只是定义了ingress资源，其实并不会实现http、https协议的请求转发、负载均衡等功能。常见的ingress controller组件如下：
+          
+            
+          
+          1、概述为了能够让Ingress资源能够工作，在Kubernetes集群中必须至少有一个运行中的ingress controller组件。也就是说如果在kubernetes集群中没有一个ingress controller组件，只是定义了ingress资源，其实并不会实现http、https协议的请求转发、负载均衡等功能。常见的ingress controller组件如下：
 
 Nginx
-Trae</div>
-      </a>
+Trae
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-07
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-07 00:00" pubdate>
+              2019-12-07
+            </time>
           </div>
         
         
@@ -196,21 +219,27 @@ Trae</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/06/2019-12-06-kubernetes4-helm-introduction/">【Kubernetes系列】第4篇 Kubernetes包管理工具-helm介绍</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/06/2019-12-06-kubernetes4-helm-introduction/" target="_self">
+          【Kubernetes系列】第4篇 Kubernetes包管理工具-helm介绍
+        </a>
+      </h1>
 
-      <a href="/2019/12/06/2019-12-06-kubernetes4-helm-introduction/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/06/2019-12-06-kubernetes4-helm-introduction/" target="_self">
           
-        
-        <div>1、概述Helm是kubernetes包管理工具，可以方便快捷的安装、管理、卸载kubernetes应用，类似于Linux操作系统中yum或apt-get软件的作用。其主要的设计目的：
+          
+            
+          
+          1、概述Helm是kubernetes包管理工具，可以方便快捷的安装、管理、卸载kubernetes应用，类似于Linux操作系统中yum或apt-get软件的作用。其主要的设计目的：
 
 创建新的chart包
 将charts包文件打包压缩
@@ -218,13 +247,17 @@ Trae</div>
 安装及卸载charts到kubernetes集群
 管理通过helm安装的charts应用
 
-2、概念介绍char</div>
-      </a>
+2、概念介绍char
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-06
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-06 00:00" pubdate>
+              2019-12-06
+            </time>
           </div>
         
         
@@ -237,32 +270,42 @@ Trae</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/05/2019-12-05-kubernetes3-cluster-install/">【Kubernetes系列】第3篇 Kubernetes集群安装部署</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/05/2019-12-05-kubernetes3-cluster-install/" target="_self">
+          【Kubernetes系列】第3篇 Kubernetes集群安装部署
+        </a>
+      </h1>
 
-      <a href="/2019/12/05/2019-12-05-kubernetes3-cluster-install/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/05/2019-12-05-kubernetes3-cluster-install/" target="_self">
           
-        
-        <div>本文介绍了如何通过Kubespray来进行部署高可用k8s集群，k8s版本为1.12.5。
+          
+            
+          
+          本文介绍了如何通过Kubespray来进行部署高可用k8s集群，k8s版本为1.12.5。
 1、部署手册代码仓库：https://github.com/kubernetes-sigs/kubespray
 参考文档：https://kubespray.io/#/
 2、k8s master机器配置
 3、k8s 集群安装步骤step1: 设置主机间的免密登录
-由于kubespray是依赖于ansible</div>
-      </a>
+由于kubespray是依赖于ansible
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-05
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-05 00:00" pubdate>
+              2019-12-05
+            </time>
           </div>
         
         
@@ -275,31 +318,41 @@ Trae</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/04/2019-12-04-kubernetes2-introduction-to-basic-concepts/">【Kubernetes系列】第2篇 基础概念介绍</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/12/04/2019-12-04-kubernetes2-introduction-to-basic-concepts/" target="_self">
+          【Kubernetes系列】第2篇 基础概念介绍
+        </a>
+      </h1>
 
-      <a href="/2019/12/04/2019-12-04-kubernetes2-introduction-to-basic-concepts/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/04/2019-12-04-kubernetes2-introduction-to-basic-concepts/" target="_self">
           
-        
-        <div>1、Pod - 实例Pod是一组紧密关联的容器集合，支持多个容器在一个Pod中共享网络和文件系统，可以通过进程间通信和文件共享这种简单高效的方式完成服务，是Kubernetes调度的基本单位。Pod的设计理念是 每个Pod都有一个唯一的IP
+          
+            
+          
+          1、Pod - 实例Pod是一组紧密关联的容器集合，支持多个容器在一个Pod中共享网络和文件系统，可以通过进程间通信和文件共享这种简单高效的方式完成服务，是Kubernetes调度的基本单位。Pod的设计理念是 每个Pod都有一个唯一的IP
 Pod具有如下特征：
 
 包含多个共享IPC、Network和UTC namespace的容器，可直接通过localhost通信 
-所有Pod内容器都可以访问共</div>
-      </a>
+所有Pod内容器都可以访问共
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-04
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-04 00:00" pubdate>
+              2019-12-04
+            </time>
           </div>
         
         
@@ -312,21 +365,27 @@ Pod具有如下特征：
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/11/29/2019-11-29-kubernetes1-architecture-component/">【Kubernetes系列】第1篇 架构及组件介绍 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/11/29/2019-11-29-kubernetes1-architecture-component/" target="_self">
+          【Kubernetes系列】第1篇 架构及组件介绍 
+        </a>
+      </h1>
 
-      <a href="/2019/11/29/2019-11-29-kubernetes1-architecture-component/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/11/29/2019-11-29-kubernetes1-architecture-component/" target="_self">
           
-        
-        <div>1、Kubernetes简介Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，主要功能包括:    
+          
+            
+          
+          1、Kubernetes简介Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，主要功能包括:    
 
 基于容器的应用部署、维护和滚动升级
 
@@ -343,13 +402,17 @@ Pod具有如下特征：
 插件机制保证扩展性
 
 
-Kubernetes发展非常迅速，已经成为容器编排领域的领导</div>
-      </a>
+Kubernetes发展非常迅速，已经成为容器编排领域的领导
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-11-29
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-29 00:00" pubdate>
+              2019-11-29
+            </time>
           </div>
         
         
@@ -369,22 +432,16 @@ Kubernetes发展非常迅速，已经成为容器编排领域的领导</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/7/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+      <a class="extend prev" rel="prev" href="/page/7/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="page-number current">8</span>
     </span>
   </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -394,16 +451,15 @@ Kubernetes发展非常迅速，已经成为容器编排领域的领导</div>
         </div>
       </div>
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -424,45 +480,76 @@ Kubernetes发展非常迅速，已经成为容器编排领域的领导</div>
     </div>
   </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
     
 
     
+  </main>
 
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
+
+
+  
+
+  
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  
 
 
 
@@ -472,36 +559,28 @@ Kubernetes发展非常迅速，已经成为容器编排领域的领导</div>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "永远相信美好的事情即将发生！！！&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
 
 
 
   <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
@@ -512,67 +591,14 @@ Kubernetes发展非常迅速，已经成为容器编排领域的领导</div>
 
 
 
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
 
 
 
 
 
 
-
-
-
-
-
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

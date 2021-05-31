@@ -1,35 +1,36 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="望翔">
+  <meta name="author" content="权掌天下">
   <meta name="keywords" content="">
+  
   <title>权掌天下 Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -37,6 +38,12 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"like-ycy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -45,7 +52,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>权掌天下</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>海底捞越</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -119,8 +126,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -128,13 +141,13 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/background/header-background.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="永远相信美好的事情即将发生！！！">
               
             </span>
 
@@ -153,7 +166,7 @@
 
   <main>
     
-      <div class="container nopadding-md">
+      <div class="container nopadding-x-md">
         <div class="py-5" id="board"
           style=margin-top:0>
           
@@ -166,25 +179,35 @@
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/20/2020-07-20-nginx-logs/"> Nginx日志配置详解 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/07/20/2020-07-20-nginx-logs/" target="_self">
+           Nginx日志配置详解 
+        </a>
+      </h1>
 
-      <a href="/2020/07/20/2020-07-20-nginx-logs/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/07/20/2020-07-20-nginx-logs/" target="_self">
           
-        
-        <div>前言
+          
+            
+          
+          前言
 Nginx日志对于统计、系统服务排错很有用。
 Nginx日志主要分为两种：access_log(访问日志)和error_log(错误日志)。通过访问日志我们可以得到用户的IP地址、浏览器的信息，请求的处理时间等信息。错误日志记录了访问出错的信息，可以帮助我们定位错误的原因。
 本文将详细描述一下如何配置Nginx日志。
-设置access_log访问日志主要记录客户端的请求。客户端向Nginx服</div>
-      </a>
+设置access_log访问日志主要记录客户端的请求。客户端向Nginx服
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-20
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-20 17:07" pubdate>
+              2020-07-20
+            </time>
           </div>
         
         
@@ -197,31 +220,41 @@ Nginx日志主要分为两种：access_log(访问日志)和error_log(错误日�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/07/2020-07-07-24-jvm/"> 24个Jvm面试题总结 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/07/07/2020-07-07-24-jvm/" target="_self">
+           24个Jvm面试题总结 
+        </a>
+      </h1>
 
-      <a href="/2020/07/07/2020-07-07-24-jvm/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/07/07/2020-07-07-24-jvm/" target="_self">
           
-        
-        <div>1、JVN内存结构 
+          
+            
+          
+          1、JVN内存结构 
 方法区和对是所有线程共享的内存区域；而java栈、本地方法栈和程序员计数器是运行是线程私有的内存区域。
 
 Java堆（Heap）,是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。
-方法区（Method Area）,方法区（Method Area）与</div>
-      </a>
+方法区（Method Area）,方法区（Method Area）与
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-07
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-07 15:56" pubdate>
+              2020-07-07
+            </time>
           </div>
         
         
@@ -234,21 +267,27 @@ Java堆（Heap）,是Java虚拟机所管理的内存中最大的一块。Java堆
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/07/01/2020-07-01-user-slow-server/"> 用户访问网站慢，排查思路 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/07/01/2020-07-01-user-slow-server/" target="_self">
+           用户访问网站慢，排查思路 
+        </a>
+      </h1>
 
-      <a href="/2020/07/01/2020-07-01-user-slow-server/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/07/01/2020-07-01-user-slow-server/" target="_self">
           
-        
-        <div>当出现网站慢的时候我们脑子中要映出几点原因：
+          
+            
+          
+          当出现网站慢的时候我们脑子中要映出几点原因：
 1.程序代码执行方面
 2.大量数据库操作
 3.域名DNS解析问题
@@ -259,13 +298,17 @@ Java堆（Heap）,是Java虚拟机所管理的内存中最大的一块。Java堆
 8.系统资源不足
 9.防火墙的过多使用
 10.网络中某个端口形成了瓶颈导致网速变慢
-\1.打开访问慢的网站观察下情况，通过火狐的fixfox 插件 或者 IE的元素查看工具，你网站里面加载的信息会一览无</div>
-      </a>
+\1.打开访问慢的网站观察下情况，通过火狐的fixfox 插件 或者 IE的元素查看工具，你网站里面加载的信息会一览无
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-01
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-01 17:01" pubdate>
+              2020-07-01
+            </time>
           </div>
         
         
@@ -278,21 +321,27 @@ Java堆（Heap）,是Java虚拟机所管理的内存中最大的一块。Java堆
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/29/2020-06-29-linux-top/"> Linux top命令参数详解 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/29/2020-06-29-linux-top/" target="_self">
+           Linux top命令参数详解 
+        </a>
+      </h1>
 
-      <a href="/2020/06/29/2020-06-29-linux-top/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/06/29/2020-06-29-linux-top/" target="_self">
           
-        
-        <div>一、top前5行统计信息第1行：top - 05:43:27 up 4:52, 2 users, load average: 0.58, 0.41, 0.30第1行是任务队列信息，其参数如下：
+          
+            
+          
+          一、top前5行统计信息第1行：top - 05:43:27 up 4:52, 2 users, load average: 0.58, 0.41, 0.30第1行是任务队列信息，其参数如下：
 
 
 
@@ -314,13 +363,17 @@ up 4:52
 
 
 load average: 0.58, 0.41, 0.30
-</div>
-      </a>
+
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-29
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-29 10:17" pubdate>
+              2020-06-29
+            </time>
           </div>
         
         
@@ -333,21 +386,27 @@ load average: 0.58, 0.41, 0.30
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/29/2020-06-29-kafka-vs-mq/"> kafka和各MQ的优劣对比 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/29/2020-06-29-kafka-vs-mq/" target="_self">
+           kafka和各MQ的优劣对比 
+        </a>
+      </h1>
 
-      <a href="/2020/06/29/2020-06-29-kafka-vs-mq/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/06/29/2020-06-29-kafka-vs-mq/" target="_self">
           
-        
-        <div>目前在业界有哪些比较知名的消息引擎
+          
+            
+          
+          目前在业界有哪些比较知名的消息引擎
 ZeroMQ
 推特的Distributedlog
 ActiveMQ：Apache旗下的老牌消息引擎
@@ -356,13 +415,17 @@ RocketMQ
 Artemis：Apache的ActiveMQ下的子项目
 Apollo：同样为Apache的ActiveMQ的子项目的号称下一代消息引擎
 商业化的消息引擎IronMQ
-以及实现了JMS(Java Message Se</div>
-      </a>
+以及实现了JMS(Java Message Se
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-29
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-29 10:00" pubdate>
+              2020-06-29
+            </time>
           </div>
         
         
@@ -375,32 +438,42 @@ Apollo：同样为Apache的ActiveMQ的子项目的号称下一代消息引擎
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/29/2020-06-29-linux-devops/"> linux运维面试问题总结 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/29/2020-06-29-linux-devops/" target="_self">
+           linux运维面试问题总结 
+        </a>
+      </h1>
 
-      <a href="/2020/06/29/2020-06-29-linux-devops/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/06/29/2020-06-29-linux-devops/" target="_self">
           
-        
-        <div>K8S集群组件及作用
+          
+            
+          
+          K8S集群组件及作用
 API Server：集群资源操作的唯一入口，结果存储在etcd中
 
 etcd：保存集群的配置信息和各种资源的状态信息
 
-Controller Manager：责管理集群各种资源，保证资源处于预期的状态，Controller Manager由多种controller组成，包括replication controller、endpoints controller、namespa</div>
-      </a>
+Controller Manager：责管理集群各种资源，保证资源处于预期的状态，Controller Manager由多种controller组成，包括replication controller、endpoints controller、namespa
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-29
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-29 09:21" pubdate>
+              2020-06-29
+            </time>
           </div>
         
         
@@ -413,31 +486,41 @@ Controller Manager：责管理集群各种资源，保证资源处于预期的�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/11/2020-06-11-nginx-config-location/"> Nginx location匹配规则 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/11/2020-06-11-nginx-config-location/" target="_self">
+           Nginx location匹配规则 
+        </a>
+      </h1>
 
-      <a href="/2020/06/11/2020-06-11-nginx-config-location/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/06/11/2020-06-11-nginx-config-location/" target="_self">
           
-        
-        <div>#一、location语法
-location [=|~|~*|^~] uri &#123; … &#125;
+          
+            
+          
+          #一、location语法
+1location [=|~|~*|^~] uri &#123; … &#125;
 
 其中，方括号中的四种标识符是可选项，用来改变请求字符串和uri的匹配方式。uri是待匹配的请求字符串，可以是不包含正则的字符串，这种模式被称为“标准的uri”；也可以包含正则，这种模式被称为”正则uri”。例如：
-location ~ .*.(php|php5)?$ {　　root /v</div>
-      </a>
+location ~ .*.(php|php5)?$ {　　root /
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-11
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-11 00:00" pubdate>
+              2020-06-11
+            </time>
           </div>
         
         
@@ -450,28 +533,38 @@ location ~ .*.(php|php5)?$ {　　root /v</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/05/26/2020-05-26-nginx-config-location-proxypass/"> Nginx配置location中proxy_pass的&#39;/&#39;号的作用 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/26/2020-05-26-nginx-config-location-proxypass/" target="_self">
+           Nginx配置location中proxy_pass的&#39;/&#39;号的作用 
+        </a>
+      </h1>
 
-      <a href="/2020/05/26/2020-05-26-nginx-config-location-proxypass/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/05/26/2020-05-26-nginx-config-location-proxypass/" target="_self">
           
-        
-        <div>真实案例，就因为在配置时，少写了一个字符“/”，就造成访问不通报错，因而接到投诉。那么是怎么引起的呢？原因就是：Nginx在配置proxy_pass代理转接时，少些“/”字符造成的。有同学就有疑问，加不加“/”,区别真的那么大吗？我们带着这个疑问，来探究下这个问题。
-location目录匹配详解nginx每个location都是一个匹配目录，nginx的策略是：访问请求来时，会对访问地址进行解析，</div>
-      </a>
+          
+            
+          
+          真实案例，就因为在配置时，少写了一个字符“/”，就造成访问不通报错，因而接到投诉。那么是怎么引起的呢？原因就是：Nginx在配置proxy_pass代理转接时，少些“/”字符造成的。有同学就有疑问，加不加“/”,区别真的那么大吗？我们带着这个疑问，来探究下这个问题。
+location目录匹配详解nginx每个location都是一个匹配目录，nginx的策略是：访问请求来时，会对访问地址进行解析，
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-05-26
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-26 00:00" pubdate>
+              2020-05-26
+            </time>
           </div>
         
         
@@ -484,31 +577,41 @@ location目录匹配详解nginx每个location都是一个匹配目录，nginx的
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/05/25/2020-05-25-mysql-examination-questions/"> MySQL常见面试题（后续的面试题会更新） </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/25/2020-05-25-mysql-examination-questions/" target="_self">
+           MySQL常见面试题（后续的面试题会更新） 
+        </a>
+      </h1>
 
-      <a href="/2020/05/25/2020-05-25-mysql-examination-questions/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/05/25/2020-05-25-mysql-examination-questions/" target="_self">
           
-        
-        <div>题目一
+          
+            
+          
+          题目一
 MyISAM和InnoDB的区别，什么时候选择MyISAM
 参考回答
 InnoDB是目前MySQL主流版本(5.6、5.7、8.0)默认的存储引擎，支持事务、外键、行级锁，对于并发条件下要求数据的一致性，适用于对数据准确性要求高的场景。
-MyISAM只支持表级锁、数据排列是按照插入顺序，没有做规则排序。适合应用以查询和插入为主，只有很少量的更新和删除操作，对事务的完整性和并发性要求不是很高</div>
-      </a>
+MyISAM只支持表级锁、数据排列是按照插入顺序，没有做规则排序。适合应用以查询和插入为主，只有很少量的更新和删除操作，对事务的完整性和并发性要求不是很高
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-05-25
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-25 00:00" pubdate>
+              2020-05-25
+            </time>
           </div>
         
         
@@ -521,31 +624,41 @@ MyISAM只支持表级锁、数据排列是按照插入顺序，没有做规则�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/05/19/2020-05-19-http-interviews/"> HTTP 面试问题 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/19/2020-05-19-http-interviews/" target="_self">
+           HTTP 面试问题 
+        </a>
+      </h1>
 
-      <a href="/2020/05/19/2020-05-19-http-interviews/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/05/19/2020-05-19-http-interviews/" target="_self">
           
-        
-        <div>HTTP 和 HTTPS 的区别HTTP 是一种 超文本传输协议(Hypertext Transfer Protocol)，HTTP 是一个在计算机世界里专门在两点之间传输文字、图片、音频、视频等超文本数据的约定和规范
+          
+            
+          
+          HTTP 和 HTTPS 的区别HTTP 是一种 超文本传输协议(Hypertext Transfer Protocol)，HTTP 是一个在计算机世界里专门在两点之间传输文字、图片、音频、视频等超文本数据的约定和规范
 
 HTTP 主要内容分为三部分，超文本（Hypertext）、传输（Transfer）、协议（Protocol）。
 
-超文本就是不单单只是本文，它还可以传输图片、音频、视频，甚至点</div>
-      </a>
+超文本就是不单单只是本文，它还可以传输图片、音频、视频，甚至点
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-05-19
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-19 00:00" pubdate>
+              2020-05-19
+            </time>
           </div>
         
         
@@ -558,22 +671,16 @@ HTTP 主要内容分为三部分，超文本（Hypertext）、传输（Transfer�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -583,16 +690,15 @@ HTTP 主要内容分为三部分，超文本（Hypertext）、传输（Transfer�
         </div>
       </div>
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -613,45 +719,76 @@ HTTP 主要内容分为三部分，超文本（Hypertext）、传输（Transfer�
     </div>
   </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
     
 
     
+  </main>
 
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
+
+
+  
+
+  
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  
 
 
 
@@ -661,36 +798,28 @@ HTTP 主要内容分为三部分，超文本（Hypertext）、传输（Transfer�
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "永远相信美好的事情即将发生！！！&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
 
 
 
   <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
@@ -701,67 +830,14 @@ HTTP 主要内容分为三部分，超文本（Hypertext）、传输（Transfer�
 
 
 
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
 
 
 
 
 
 
-
-
-
-
-
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

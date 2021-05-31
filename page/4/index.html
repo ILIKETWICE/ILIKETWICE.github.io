@@ -1,35 +1,36 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="望翔">
+  <meta name="author" content="权掌天下">
   <meta name="keywords" content="">
+  
   <title>权掌天下 Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -37,6 +38,12 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"like-ycy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -45,7 +52,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>权掌天下</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>海底捞越</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -119,8 +126,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -128,13 +141,13 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/background/header-background.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="永远相信美好的事情即将发生！！！">
               
             </span>
 
@@ -153,7 +166,7 @@
 
   <main>
     
-      <div class="container nopadding-md">
+      <div class="container nopadding-x-md">
         <div class="py-5" id="board"
           style=margin-top:0>
           
@@ -166,25 +179,35 @@
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/19/2020-01-19-tcp-second-talk/"> 详解 TCP 连接的“三次握手”与“四次挥手” </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/19/2020-01-19-tcp-second-talk/" target="_self">
+           详解 TCP 连接的“三次握手”与“四次挥手” 
+        </a>
+      </h1>
 
-      <a href="/2020/01/19/2020-01-19-tcp-second-talk/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/19/2020-01-19-tcp-second-talk/" target="_self">
           
-        
-        <div>TCP connection
+          
+            
+          
+          TCP connection
 
 客户端与服务器之间数据的发送和返回的过程当中需要创建一个叫TCP connection的东西；
 由于TCP不存在连接的概念，只存在请求和响应，请求和响应都是数据包，它们之间都是经过由TCP创建的一个从客户端发起，服务器接收的类似连接的通道，这个连接可以一直保持，http请求是在这个连接的基础上发送的；
-在一个TCP连接上是可以发送多个http请求的，不同的版本这个模</div>
-      </a>
+在一个TCP连接上是可以发送多个http请求的，不同的版本这个模
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-19
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-19 00:00" pubdate>
+              2020-01-19
+            </time>
           </div>
         
         
@@ -197,30 +220,40 @@
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/17/2020-01-17-why-tcp-third-hand/"> 为什么 TCP 建立连接需要三次握手 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/17/2020-01-17-why-tcp-third-hand/" target="_self">
+           为什么 TCP 建立连接需要三次握手 
+        </a>
+      </h1>
 
-      <a href="/2020/01/17/2020-01-17-why-tcp-third-hand/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/17/2020-01-17-why-tcp-third-hand/" target="_self">
           
-        
-        <div>
+          
+            
+          
+          
 为什么这么设计（Why’s THE Design）是一系列关于计算机领域中程序设计决策的文章，我们在这个系列的每一篇文章中都会提出一个具体的问题并从不同的角度讨论这种设计的优缺点、对具体实现造成的影响。如果你有想要了解的问题，可以在文章下面留言。
 
-TCP 协议是我们几乎每天都会接触到的网络协议，绝大多数网络连接的建立都是基于 TCP 协议的，学过计算机网络或者对 TCP 协议稍有了解的人都知道</div>
-      </a>
+TCP 协议是我们几乎每天都会接触到的网络协议，绝大多数网络连接的建立都是基于 TCP 协议的，学过计算机网络或者对 TCP 协议稍有了解的人都知道
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-17
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-17 00:00" pubdate>
+              2020-01-17
+            </time>
           </div>
         
         
@@ -233,31 +266,41 @@ TCP 协议是我们几乎每天都会接触到的网络协议，绝大多数网�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/16/2020-01-16-what-is-servicemesh/"> 听上去超酷的 Service Mesh 到底是什么？ </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/16/2020-01-16-what-is-servicemesh/" target="_self">
+           听上去超酷的 Service Mesh 到底是什么？ 
+        </a>
+      </h1>
 
-      <a href="/2020/01/16/2020-01-16-what-is-servicemesh/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/16/2020-01-16-what-is-servicemesh/" target="_self">
           
-        
-        <div>Service Mesh 作为下一代微服务技术的代名词，初出茅庐却深得人心一鸣惊人，大有一统微服务时代的趋势。那么到底什么是Service Mesh？
+          
+            
+          
+          Service Mesh 作为下一代微服务技术的代名词，初出茅庐却深得人心一鸣惊人，大有一统微服务时代的趋势。那么到底什么是Service Mesh？
 一言以蔽之：Service Mesh是微服务时代的TCP协议。
 有了这样一个感性的初步认知，我们再来看到底什么是Service Mesh。提到Service Mesh，就不得不提微服务。根据维基百科的定义：
 
-微服务 (Microservices)</div>
-      </a>
+微服务 (Microservices)
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-16
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-16 00:00" pubdate>
+              2020-01-16
+            </time>
           </div>
         
         
@@ -270,37 +313,44 @@ TCP 协议是我们几乎每天都会接触到的网络协议，绝大多数网�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/15/2020-01-15-why-exec-program/"> 为什么执行自己的程序要在前面加./ </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/15/2020-01-15-why-exec-program/" target="_self">
+           为什么执行自己的程序要在前面加./ 
+        </a>
+      </h1>
 
-      <a href="/2020/01/15/2020-01-15-why-exec-program/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/15/2020-01-15-why-exec-program/" target="_self">
           
-        
-        <div>在Linux中，我们执行内置命令时，直接输入命令名称即可，如：
-$ mv a b #将a重命名为b
+          
+            
+          
+          在Linux中，我们执行内置命令时，直接输入命令名称即可，如：
+1$ mv a b #将a重命名为b
 
 而在执行自己写好的程序时，却要带上./，例如：
-$ hello
-hello: command not found
-$ ./hello
-hello world
+1234$ hellohello: command not found$ ./hellohello world
 
 这是为什么呢？它们有什么区别呢？
-shell是如何运行程序的在说明清楚问题之前，我们必须了解shell是如何运行程序的。首先我们必须要清楚</div>
-      </a>
+shell是如何运行程序的在说明清楚问题之前，我们必须了解shell是如何运行程序的。首先我们必须要
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-15
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-15 00:00" pubdate>
+              2020-01-15
+            </time>
           </div>
         
         
@@ -313,28 +363,38 @@ shell是如何运行程序的在说明清楚问题之前，我们必须了解she
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/14/2020-01-14-distributed-and-cluster-difference/"> 分布式和集群的区别 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/14/2020-01-14-distributed-and-cluster-difference/" target="_self">
+           分布式和集群的区别 
+        </a>
+      </h1>
 
-      <a href="/2020/01/14/2020-01-14-distributed-and-cluster-difference/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/14/2020-01-14-distributed-and-cluster-difference/" target="_self">
           
-        
-        <div>分布式开发的时代实际上早已悄悄地成为了时代的主流，吵得很热的云计算实际上只是包装在分布式之外的商业概念，很多开发者（包括我）都想加入研究云计算这个潮流，在 Google 上通过 “云计算” 这个关键词来查询资料，查到的都是些概念性或商业性的宣传资料，其实真正需要深入的还是那个早以被人熟知的概念——分布式。
-分布式可繁也可以简，最简单的分布式就是大家最常用的，在负载均衡服务器后加一堆 Web 服务器</div>
-      </a>
+          
+            
+          
+          分布式开发的时代实际上早已悄悄地成为了时代的主流，吵得很热的云计算实际上只是包装在分布式之外的商业概念，很多开发者（包括我）都想加入研究云计算这个潮流，在 Google 上通过 “云计算” 这个关键词来查询资料，查到的都是些概念性或商业性的宣传资料，其实真正需要深入的还是那个早以被人熟知的概念——分布式。
+分布式可繁也可以简，最简单的分布式就是大家最常用的，在负载均衡服务器后加一堆 Web 服务器
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-14
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-14 00:00" pubdate>
+              2020-01-14
+            </time>
           </div>
         
         
@@ -347,33 +407,43 @@ shell是如何运行程序的在说明清楚问题之前，我们必须了解she
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/13/2020-01-13-why-microservice-gateway/">为什么需要微服务网关</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/13/2020-01-13-why-microservice-gateway/" target="_self">
+          为什么需要微服务网关
+        </a>
+      </h1>
 
-      <a href="/2020/01/13/2020-01-13-why-microservice-gateway/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/13/2020-01-13-why-microservice-gateway/" target="_self">
           
-        
-        <div>一、什么是服务网关服务网关 = 路由转发 + 过滤器
+          
+            
+          
+          一、什么是服务网关服务网关 = 路由转发 + 过滤器
 1、路由转发：接收一切外界请求，转发到后端的微服务上去；
 2、过滤器：在服务网关中可以完成一系列的横切功能，例如权限校验、限流以及监控等，这些都可以通过过滤器完成（其实路由转发也是通过过滤器实现的）。
 二、为什么需要服务网关上述所说的横切功能（以权限校验为例）可以写在三个位置：
 
 每个服务自己实现一遍
-写到一个公共的服务中，然后其他所有服务都依</div>
-      </a>
+写到一个公共的服务中，然后其他所有服务都依
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-13
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-13 00:00" pubdate>
+              2020-01-13
+            </time>
           </div>
         
         
@@ -386,31 +456,41 @@ shell是如何运行程序的在说明清楚问题之前，我们必须了解she
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/10/2020-01-10-sync-async/"> 迄今为止把同步/异步/阻塞/非阻塞/BIO/NIO/AIO讲的这么清楚的好文章 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/10/2020-01-10-sync-async/" target="_self">
+           迄今为止把同步/异步/阻塞/非阻塞/BIO/NIO/AIO讲的这么清楚的好文章 
+        </a>
+      </h1>
 
-      <a href="/2020/01/10/2020-01-10-sync-async/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/10/2020-01-10-sync-async/" target="_self">
           
-        
-        <div>常规的误区
+          
+            
+          
+          常规的误区
 假设有一个展示用户详情的需求，分两步，先调用一个HTTP接口拿到详情数据，然后使用适合的视图展示详情数据。
 如果网速很慢，代码发起一个HTTP请求后，就卡住不动了，直到十几秒后才拿到HTTP响应，然后继续往下执行。
 这个时候你问别人，刚刚代码发起的这个请求是不是一个同步请求，对方一定回答是。这是对的，它确实是。
-但你要问它为什么是呢？对方一定是这样回答的，“因为发起请求后，代码就卡住不</div>
-      </a>
+但你要问它为什么是呢？对方一定是这样回答的，“因为发起请求后，代码就卡住不
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-10
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-10 00:00" pubdate>
+              2020-01-10
+            </time>
           </div>
         
         
@@ -423,27 +503,37 @@ shell是如何运行程序的在说明清楚问题之前，我们必须了解she
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/09/2020-01-09-aliyun-terway/"> 阿里云terway源码分析 </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/09/2020-01-09-aliyun-terway/" target="_self">
+           阿里云terway源码分析 
+        </a>
+      </h1>
 
-      <a href="/2020/01/09/2020-01-09-aliyun-terway/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/09/2020-01-09-aliyun-terway/" target="_self">
           
-        
-        <div>背景随着公司业务的发展，底层容器环境也需要在各个区域部署，实现多云架构， 使用各个云厂商提供的CNI插件是k8s多云环境下网络架构的一种高效的解法。我们在阿里云的方案中，便用到了阿里云提供的CNI插件terway。terway所提供的VPC互通的网络方案，方便对接已有的基础设施，同时没有overlay网络封包解包的性能损耗，简单易用，出现网络问题方便诊断。本文对该插件做简单的代码分析，理解其原理，</div>
-      </a>
+          
+            
+          
+          背景随着公司业务的发展，底层容器环境也需要在各个区域部署，实现多云架构， 使用各个云厂商提供的CNI插件是k8s多云环境下网络架构的一种高效的解法。我们在阿里云的方案中，便用到了阿里云提供的CNI插件terway。terway所提供的VPC互通的网络方案，方便对接已有的基础设施，同时没有overlay网络封包解包的性能损耗，简单易用，出现网络问题方便诊断。本文对该插件做简单的代码分析，理解其原理，
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-09
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-09 00:00" pubdate>
+              2020-01-09
+            </time>
           </div>
         
         
@@ -456,34 +546,38 @@ shell是如何运行程序的在说明清楚问题之前，我们必须了解she
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/07/2020-01-07-sonarqube-and-gitlab/"> sonarqube 搭配gitlab-ci </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/07/2020-01-07-sonarqube-and-gitlab/" target="_self">
+           sonarqube 搭配gitlab-ci 
+        </a>
+      </h1>
 
-      <a href="/2020/01/07/2020-01-07-sonarqube-and-gitlab/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/07/2020-01-07-sonarqube-and-gitlab/" target="_self">
           
-        
-        <div>1、项目文件中创建sonar-project.properties 文件
-#项目的key
-sonar.projectKey=admin
-#sonarqube的主机地址
-sonar.host.url=https://192.168.1.6:9000
-#项目的名字（这个名字在sonar界面显示的,此处根据项目名称修改）
-sonar.projectName=sonar-test
-#项目的版本（这个名字在</div>
-      </a>
+          
+            
+          
+          1、项目文件中创建sonar-project.properties 文件
+1234567891011121314151617181920#项目的keysonar.projectKey=admin#sonarqube的主机地址sonar.host.url=https://192.168.1.6:9000#项目的名字（这个名字在sonar界面显示的,此处根据项目名称修改）sonar.projectNa
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-07
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-07 00:00" pubdate>
+              2020-01-07
+            </time>
           </div>
         
         
@@ -496,34 +590,42 @@ sonar.projectName=sonar-test
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/06/2020-01-06-sonarqube-install/"> Docker安装sonarqube </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/06/2020-01-06-sonarqube-install/" target="_self">
+           Docker安装sonarqube 
+        </a>
+      </h1>
 
-      <a href="/2020/01/06/2020-01-06-sonarqube-install/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/06/2020-01-06-sonarqube-install/" target="_self">
           
-        
-        <div>Sonarqube，是一种自动代码审查工具，可检测代码中的错误，漏洞和代码异常。它可以与您现有的工作流程集成，以实现跨项目分支和请求请求的连续代码检查。
+          
+            
+          
+          Sonarqube，是一种自动代码审查工具，可检测代码中的错误，漏洞和代码异常。它可以与您现有的工作流程集成，以实现跨项目分支和请求请求的连续代码检查。
 1、拉取镜像
-docker pull soanrqube 
-docker pull postgres
+12docker pull soanrqube docker pull postgres
 
 2、启动postgres
-docker run -d --name postgresql --restart=always \
--p 5432</div>
-      </a>
+123456docker run -d --name postgresql --restart=always \-
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-06
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-06 00:00" pubdate>
+              2020-01-06
+            </time>
           </div>
         
         
@@ -536,22 +638,16 @@ docker run -d --name postgresql --restart=always \
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/5/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -561,16 +657,15 @@ docker run -d --name postgresql --restart=always \
         </div>
       </div>
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -591,45 +686,76 @@ docker run -d --name postgresql --restart=always \
     </div>
   </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
     
 
     
+  </main>
 
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
+
+
+  
+
+  
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  
 
 
 
@@ -639,36 +765,28 @@ docker run -d --name postgresql --restart=always \
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "永远相信美好的事情即将发生！！！&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
 
 
 
   <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
@@ -679,67 +797,14 @@ docker run -d --name postgresql --restart=always \
 
 
 
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
 
 
 
 
 
 
-
-
-
-
-
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

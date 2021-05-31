@@ -1,44 +1,52 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="望翔">
+  <meta name="author" content="权掌天下">
   <meta name="keywords" content="">
+  
   <title>【Kubernetes系列】第9篇 网络原理解析 - 权掌天下 Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -46,6 +54,12 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"like-ycy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -54,7 +68,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>权掌天下</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>海底捞越</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -128,8 +142,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -137,25 +157,33 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('https://image.my-blog.wang/header/header.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="【Kubernetes系列】第9篇 网络原理解析">
               
             </span>
 
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2019-12-11 00:00">
-      2019年12月11日 凌晨
-    </time>
-  </div>
-
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      权掌天下
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-12-11 00:00" pubdate>
+        2019年12月11日 凌晨
+      </time>
+    </span>
+  
+</div>
 
 <div class="mt-1">
   
@@ -179,6 +207,14 @@
 
   
   
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
 </div>
 
             
@@ -194,13 +230,15 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <div class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【Kubernetes系列】第9篇 网络原理解析</h1>
             
               <p class="note note-info">
                 
@@ -208,7 +246,7 @@
                 
               </p>
             
-            <article class="markdown-body">
+            <div class="markdown-body">
               <h1 id="1、Linux网络基础"><a href="#1、Linux网络基础" class="headerlink" title="1、Linux网络基础"></a>1、Linux网络基础</h1><p><strong>Network Namespace(网络命名空间)：</strong></p>
 <p>Linux在网络栈中引入网络命名空间，将独立的网络协议栈隔离到不同的命令空间中，彼此间无法通信；docker利用这一特性，实现不容器间的网络隔离。</p>
 <p><strong>Iptables/Netfilter：</strong></p>
@@ -225,15 +263,15 @@
 <p>这个Pod IP被该Pod内的所有容器共享，并且其它所有Pod都可以路由到该Pod。你可曾注意到，你的Kubernetes节点上运行着一些”pause”容器？它们被称作“沙盒容器（sandbox containers）”，其唯一任务是保留并持有一个网络命名空间（netns），该命名空间被Pod内所有容器共享。通过这种方式，即使一个容器死掉，新的容器创建出来代替这个容器，Pod IP也不会改变。这种IP-per-pod模型的巨大优势是，Pod和底层主机不会有IP或者端口冲突。我们不用担心应用使用了什么端口。</p>
 <p>这点满足后，Kubernetes唯一的要求是，这些Pod IP可被其它所有Pod访问，不管那些Pod在哪个节点。</p>
 <h2 id="2-1-节点内通信"><a href="#2-1-节点内通信" class="headerlink" title="2.1 节点内通信"></a>2.1 节点内通信</h2><p>第一步是确保同一节点上的Pod可以相互通信，然后可以扩展到跨节点通信、internet上的通信，等等。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-1-a.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-1-a.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>在每个Kubernetes节点（本场景指的是Linux机器）上，都有一个根（root）命名空间（root是作为基准，而不是超级用户）– root netns(root network namespace)。</p>
 <p>主要的网络接口 eth0 就是在这个root netns下。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-1-b.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-1-b.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>类似的，每个Pod都有其自身的netns(network namespace)，通过一个虚拟的以太网对连接到root netns。这基本上就是一个管道对，一端在root netns内，另一端在Pod的netns内。</p>
 <p>我们把Pod端的网络接口叫 eth0，这样Pod就不需要知道底层主机，它认为它拥有自己的根网络设备。另一端命名成比如 vethxxx。你可以用 ifconfig 或者 ip a 命令列出你的节点上的所有这些接口。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-1-c.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-1-c.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>节点上的所有Pod都会完成这个过程。这些Pod要相互通信，就要用到linux的以太网桥 cbr0 了。Docker使用了类似的网桥，称为docker0。你可以用 brctl show 命令列出所有网桥。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-1-d.gif" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-1-d.gif" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>假设一个网络数据包要由pod1到pod2</p>
 <p>1) 它由pod1中netns的eth0网口离开，通过vethxxx进入root netns。</p>
 <p>2) 然后被传到cbr0，cbr0使用ARP请求，说“谁拥有这个IP”，从而发现目标地址。</p>
@@ -243,7 +281,7 @@
 <h2 id="2-2-不同节点间通信"><a href="#2-2-不同节点间通信" class="headerlink" title="2.2 不同节点间通信"></a>2.2 不同节点间通信</h2><p>正如我前面提到，Pod也需要跨节点可达。Kubernetes不关心如何实现。我们可以使用L2（ARP跨节点），L3（IP路由跨节点，就像云提供商的路由表），Overlay网络，或者甚至信鸽。无所谓，只要流量能到达另一个节点的期望Pod就好。每个节点都为Pod IPs分配了唯一的CIDR块（一段IP地址范围），因此每个Pod都拥有唯一的IP，不会和其它节点上的Pod冲突。</p>
 <p>大多数情况下，特别是在云环境上，云提供商的路由表就能确保数据包到达正确的目的地。我们在每个节点上建立正确的路由也能达到同样的目的。许多其它的网络插件通过自己的方式达到这个目的。</p>
 <p>这里我们有两个节点，与之前看到的类似。每个节点有不同的网络命名空间、网络接口以及网桥。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-2-a.gif" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-2-a.gif" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>假设一个数据包要从pod1到达pod4（在不同的节点上）</p>
 <p>1）它由pod1中netns的eth0网口离开，通过vethxxx进入root netns。</p>
 <p>2）然后被传到cbr0，cbr0通过发送ARP请求来找到目标地址。</p>
@@ -251,19 +289,19 @@
 <p>4）数据包的源地址为pod1，目标地址为pod4，它以这种方式离开node1进入电缆。</p>
 <p>5）路由表有每个节点的CIDR块的路由设定，它把数据包路由到CIDR块包含pod4的IP的节点。</p>
 <p>6）因此数据包到达了node2的主网络接口eth0。现在即使pod4不是eth0的IP，数据包也仍然能转发到cbr0，因为节点配置了IP forwarding enabled。节点的路由表寻找任意能匹配pod4 IP的路由。它发现了 cbr0 是这个节点的CIDR块的目标地址。你可以用route -n命令列出该节点的路由表，它会显示cbr0的路由，类型如下：</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-2-b.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/2-2-2-b.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>7）网桥接收了数据包，发送ARP请求，发现目标IP属于vethyyy。</p>
 <p>8）数据包跨过管道对到达pod4。</p>
 <h1 id="3、覆盖网络"><a href="#3、覆盖网络" class="headerlink" title="3、覆盖网络"></a>3、覆盖网络</h1><p>覆盖⽹络(overlay network)是将TCP数据包装在另⼀种⽹络包⾥⾯进⾏路由转发和通信的技术。Overlay⽹络不是默认必须的，但是它们在特定场景下⾮常有⽤。⽐如当我们没有⾜够的IP空间，或者⽹络⽆法处理额外路由，抑或当我们需要Overlay提供的某些额外管理特性。⼀个常⻅的场景是当云提供商的路由表能处理的路由数是有限制时，例如AWS路由表最多⽀持50条路由才不⾄于影响⽹络性能。因此如果我们有超过50个Kubernetes节点， AWS路由表将不够。这种情况下，使⽤Overlay⽹络将帮到我们。</p>
 <p>本质上来说， Overlay就是在跨节点的本地⽹络上的包中再封装⼀层包。你可能不想使⽤Overlay⽹络，因为它会带来由封装和解封所有报⽂引起的时延和复杂度开销。通常这是不必要的，因此我们应当在知道为什么我们需要它时才使⽤它。</p>
 <p>为了理解Overlay⽹络中流量的流向，我们拿Flannel做例⼦，它是CoreOS 的⼀个开源项⽬。Flannel通过给每台宿主机分配⼀个⼦⽹的⽅式为容器提供虚拟⽹络，它基于Linux TUN/TAP，使⽤UDP封装IP包来创建overlay⽹络，并借助etcd维护⽹络的分配情况。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/3-1.gif" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/3-1.gif" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>这⾥我们注意到它和之前我们看到的设施是⼀样的，只是在root netns中新增了⼀个虚拟的以太⽹设备，称为flannel0。它是虚拟扩展⽹络Virtual Extensible LAN（VXLAN）的⼀种实现，但是在Linux上，它只是另⼀个⽹络接⼝。</p>
 <p>从pod1到pod4（在不同节点）的数据包的流向类似如下：</p>
 <p>1）它由pod1中netns的eth0⽹⼝离开，通过vethxxx进⼊root netns。<br>2）然后被传到cbr0， cbr0通过发送ARP请求来找到⽬标地址。<br>3）数据封装</p>
 <p>  3a. 由于本节点上没有Pod拥有pod4的IP地址，因此⽹桥把数据包发送给了flannel0，因为节点的路由表上flannel0被配成了Pod⽹段的⽬标地址。</p>
 <p>  3b. flanneld daemon和Kubernetes apiserver或者底层的etcd通信，它知道所有的Pod IP，并且知道它们在哪个节点上。因此Flannel创建了Pod IP和Node IP之间的映射（在⽤户空间）。flannel0取到这个包，并在其上再⽤⼀个UDP包封装起来，该UDP包头部的源和⽬的IP分别被改成了对应节点的IP，然后发送这个新包到特定的VXLAN端⼝（通常是8472）。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/3-2.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/3-2.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>尽管这个映射发⽣在⽤户空间，真实的封装以及数据的流动发⽣在内核空间，因此仍然是很快的。  </p>
 <p>  3c. 封装后的包通过eth0发送出去，因为它涉及了节点间的路由流量。</p>
 <p>\4. 包带着节点IP信息作为源和⽬的地址离开本节点。<br>\5. 云提供商的路由表已经知道了如何在节点间发送报⽂，因此该报⽂被发送到⽬标地址node2。<br>\6. 数据解包</p>
@@ -272,23 +310,12 @@
 <p>这就是Kubernetes中Overlay⽹络的⼯作⽅式，虽然不同的实现还是会有细微的差别。<strong>有个常⻅的误区是，当我们使⽤Kubernetes，我们就不得不使⽤Overlay⽹络。事实是，这完全依赖于特定场景。因此请确保在确实需要的场景下才使⽤</strong>。</p>
 <h1 id="4、动态集群"><a href="#4、动态集群" class="headerlink" title="4、动态集群"></a>4、动态集群</h1><p>由于Kubernetes（更通⽤的说法是分布式系统）天⽣具有不断变化的特性，因此它的Pod（以及Pod的IP）总是在改变。变化的原因可以是针对不可预测的Pod或节点崩溃⽽进⾏的滚动升级和扩展。这使得Pod IP不能直接⽤于通信。</p>
 <p>我们看⼀下Kubernetes Service，它是⼀个虚拟IP，并伴随着⼀组Pod IP作为Endpoint（通过标签选择器识别）。它们充当虚拟负载均衡器，其IP保持不变，⽽后端Pod IP可能会不断变化。</p>
-<pre><code class="hljs yaml"><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span>
-<span class="hljs-attr">apiVersion:</span> <span class="hljs-string">V1</span>
-<span class="hljs-attr">metadata:</span>
-  <span class="hljs-attr">name:</span> <span class="hljs-string">svc2</span>
-<span class="hljs-attr">spec:</span>
-  <span class="hljs-attr">type:</span> <span class="hljs-string">ClusterIP</span>
-  <span class="hljs-attr">selector:</span>
-    <span class="hljs-attr">app:</span> <span class="hljs-string">myapp</span>
-  <span class="hljs-attr">ClusterIP:</span> <span class="hljs-number">10.200</span><span class="hljs-number">.100</span><span class="hljs-number">.214</span>
-  <span class="hljs-attr">ports:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">http</span>
-    <span class="hljs-attr">port:</span> <span class="hljs-number">80</span></code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span><br><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">V1</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">svc2</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">ClusterIP</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">myapp</span><br>  <span class="hljs-attr">ClusterIP:</span> <span class="hljs-number">10.200</span><span class="hljs-number">.100</span><span class="hljs-number">.214</span><br>  <span class="hljs-attr">ports:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">http</span><br>    <span class="hljs-attr">port:</span> <span class="hljs-number">80</span><br></code></pre></div></td></tr></table></figure>
 
 <p>整个虚拟IP的实现实际上是⼀组iptables（最新版本可以选择使⽤IPVS，但这是另⼀个讨论）规则，由Kubernetes组件kube-proxy管理。这个名字现在实际上是误导性的。它在v 1.0之前确实是⼀个代理，并且由于其实现是内核空间和⽤户空间之间的不断复制，它变得⾮常耗费资源并且速度较慢。现在，它只是⼀个控制器，就像Kubernetes中的许多其它控制器⼀样，它watch api serverendpoint的更改并相应地更新iptables规则。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/4-0-a.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/4-0-a.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>有了这些iptables规则，每当数据包发往Service IP时，它就进⾏DNAT（DNAT=⽬标⽹络地址转换）操作，这意味着⽬标IP从Service IP更改为其中⼀个Endpoint - Pod IP - 由iptables随机选择。这可确保负载均匀分布在后端Pod中。</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/4-0-b.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/4-0-b.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p>当这个DNAT发⽣时，这个信息存储在conntrack中——Linux连接跟踪表（iptables规则5元组转译并完成存储：protocol， srcIP， srcPort， dstIP， dstPort）。这样当请求回来时，它可以un-DNAT，这意味着将源IP从Pod IP更改为Service IP。这样，客户端就不⽤关⼼后台如何处理数据包流。</p>
 <p>因此通过使⽤Kubernetes Service，我们可以使⽤相同的端⼝⽽不会发⽣任何冲突（因为我们可以将端⼝重新映射到Endpoint）。这使服务发现变得⾮常容易。我们可以使⽤内部DNS并对服务主机名进⾏硬编码。</p>
 <p>我们甚⾄可以使⽤Kubernetes提供的service主机和端⼝的环境变量来完成服务发现。</p>
@@ -309,7 +336,7 @@
 <p>许多不同的⼯具，如Nginx， Traefik， HAProxy等，保留了http主机名/路径和各⾃后端的映射。通常这是基于负载均衡器和nodePort的流量⼊⼝点，其优点是我们可以有⼀个⼊⼝处理所有服务的⼊站流量，⽽不需要多个nodePort和负载均衡器。</p>
 <h2 id="4-3-网站策略"><a href="#4-3-网站策略" class="headerlink" title="4.3 网站策略"></a>4.3 网站策略</h2><p>可以把它想象为Pod的安全组/ ACL。NetworkPolicy规则允许/拒绝跨Pod的流量。确切的实现取决于⽹络层/CNI，但⼤多数只使⽤iptables。</p>
 
-            </article>
+            </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
@@ -324,11 +351,15 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
-                <div class="post-prevnext row">
-                  <div class="post-prev col-6">
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
                     
                     
                       <a href="/2019/12/12/2019-12-12-nginx-chinese/">
@@ -337,8 +368,8 @@
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
-                  </div>
-                  <div class="post-next col-6">
+                  </article>
+                  <article class="post-next col-6">
                     
                     
                       <a href="/2019/12/10/2019-12-10-kubernetes8-cicd-full/">
@@ -347,13 +378,13 @@
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
-                  </div>
+                  </article>
                 </div>
               
             </div>
 
             
-          </div>
+          </article>
         </div>
       </div>
     </div>
@@ -361,7 +392,7 @@
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -371,24 +402,17 @@
 
 <!-- Custom -->
 
-  <div class="col-lg-7 mx-auto nopadding-md">
-    <div class="container custom post-content mx-auto">
-      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
-    </div>
-  </div>
-
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -409,140 +433,113 @@
     </div>
   </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
     
 
     
+  </main>
 
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
+
+
+  
+
+  
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: 'article.markdown-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "【Kubernetes系列】第9篇 网络原理解析&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
 
 
 
   <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
@@ -551,55 +548,6 @@
 
 
 
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
 
 
 
@@ -608,10 +556,8 @@
 
 
 
-
-
-
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>

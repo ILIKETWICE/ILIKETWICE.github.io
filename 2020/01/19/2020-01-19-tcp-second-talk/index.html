@@ -1,44 +1,52 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="望翔">
+  <meta name="author" content="权掌天下">
   <meta name="keywords" content="">
+  
   <title> 详解 TCP 连接的“三次握手”与“四次挥手”  - 权掌天下 Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -46,6 +54,12 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"like-ycy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -54,7 +68,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>权掌天下</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>海底捞越</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -128,8 +142,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -137,25 +157,33 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('https://image.my-blog.wang/header/header.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title=" 详解 TCP 连接的“三次握手”与“四次挥手” ">
               
             </span>
 
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-01-19 00:00">
-      2020年1月19日 凌晨
-    </time>
-  </div>
-
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      权掌天下
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-01-19 00:00" pubdate>
+        2020年1月19日 凌晨
+      </time>
+    </span>
+  
+</div>
 
 <div class="mt-1">
   
@@ -179,6 +207,14 @@
 
   
   
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
 </div>
 
             
@@ -194,13 +230,15 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <div class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"> 详解 TCP 连接的“三次握手”与“四次挥手” </h1>
             
               <p class="note note-info">
                 
@@ -208,16 +246,16 @@
                 
               </p>
             
-            <article class="markdown-body">
-              <h1 id="TCP-connection"><a href="#TCP-connection" class="headerlink" title="TCP connection"></a>TCP connection</h1><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/1.png" srcset="/img/loading.gif" alt="1.png"></p>
-<p><img src="https://image.my-blog.wang/2020-01-19-tcp-second-talk/2.png" srcset="/img/loading.gif" alt="2.png"></p>
+            <div class="markdown-body">
+              <h1 id="TCP-connection"><a href="#TCP-connection" class="headerlink" title="TCP connection"></a>TCP connection</h1><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/1.png" srcset="/img/loading.gif" lazyload alt="1.png"></p>
+<p><img src="https://image.my-blog.wang/2020-01-19-tcp-second-talk/2.png" srcset="/img/loading.gif" lazyload alt="2.png"></p>
 <p>客户端与服务器之间数据的发送和返回的过程当中需要创建一个叫TCP connection的东西；</p>
 <p>由于TCP不存在连接的概念，只存在请求和响应，请求和响应都是数据包，它们之间都是经过由TCP创建的一个从客户端发起，服务器接收的类似连接的通道，这个连接可以一直保持，http请求是在这个连接的基础上发送的；</p>
 <p>在一个TCP连接上是可以发送多个http请求的，不同的版本这个模式不一样。</p>
 <p>在HTTP/1.0中这个TCP连接是在http请求创建的时候同步创建的，http请求发送到服务器端，服务器端响应了之后，这个TCP连接就关闭了；</p>
 <p>HTTP/1.1中可以以某种方式声明这个连接一直保持，一个请求传输完之后，另一个请求可以接着传输。这样的好处是：在创建一个TCP连接的过程中需要“三次握手”的消耗，“三次握手”代表有三次网络传输。</p>
 <p>如果TCP连接保持，第二个请求发送就没有这“三次握手”的消耗。HTTP/2中同一个TCP连接里还可以并发地传输http请求。</p>
-<h1 id="TCP报文格式简介"><a href="#TCP报文格式简介" class="headerlink" title="TCP报文格式简介"></a>TCP报文格式简介</h1><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/3.png" srcset="/img/loading.gif" alt=""></p>
+<h1 id="TCP报文格式简介"><a href="#TCP报文格式简介" class="headerlink" title="TCP报文格式简介"></a>TCP报文格式简介</h1><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>其中比较重要的字段有：</p>
 <p>（1）序号（sequence number）：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。</p>
 <p>（2）确认号（acknowledgement number）：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。</p>
@@ -237,7 +275,7 @@
 <p>不要将确认序号Ack与标志位中的ACK搞混了。<br>确认方Ack=发起方Seq+1，两端配对。</p>
 </blockquote>
 <h1 id="TCP的三次握手（Three-Way-Handshake）"><a href="#TCP的三次握手（Three-Way-Handshake）" class="headerlink" title="TCP的三次握手（Three-Way Handshake）"></a>TCP的三次握手（Three-Way Handshake）</h1><h2 id="1-“三次握手”的详解"><a href="#1-“三次握手”的详解" class="headerlink" title="1.“三次握手”的详解"></a>1.“三次握手”的详解</h2><p>所谓的三次握手即TCP连接的建立。这个连接必须是一方主动打开，另一方被动打开的。<br>以下为客户端主动发起连接的图解：</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/4.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>握手之前主动打开连接的客户端结束CLOSED阶段，被动打开的服务器端也结束CLOSED阶段，并进入LISTEN阶段。随后开始“三次握手”：</p>
 <p>（1）首先客户端向服务器端发送一段TCP报文，其中：</p>
 <ul>
@@ -261,8 +299,8 @@
 <p>服务器收到来自客户端的“确认收到服务器数据”的TCP报文之后，明确了从服务器到客户端的数据传输是正常的。结束SYN-SENT阶段，进入ESTABLISHED阶段。</p>
 <p>在客户端与服务器端传输的TCP报文中，双方的确认号Ack和序号Seq的值，都是在彼此Ack和Seq值的基础上进行计算的，这样做保证了TCP报文传输的连贯性。一旦出现某一方发出的TCP报文丢失，便无法继续”握手”，以此确保了”三次握手”的顺利完成。</p>
 <p>此后客户端和服务器端进行正常的数据传输。这就是“三次握手”的过程。</p>
-<h2 id="2-“三次握手”的动态过程"><a href="#2-“三次握手”的动态过程" class="headerlink" title="2.“三次握手”的动态过程"></a>2.“三次握手”的动态过程</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/5.gif" srcset="/img/loading.gif" alt=""></p>
-<h2 id="3-“三次握手”的通俗理解"><a href="#3-“三次握手”的通俗理解" class="headerlink" title="3.“三次握手”的通俗理解"></a>3.“三次握手”的通俗理解</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/6.png" srcset="/img/loading.gif" alt=""></p>
+<h2 id="2-“三次握手”的动态过程"><a href="#2-“三次握手”的动态过程" class="headerlink" title="2.“三次握手”的动态过程"></a>2.“三次握手”的动态过程</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/5.gif" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="3-“三次握手”的通俗理解"><a href="#3-“三次握手”的通俗理解" class="headerlink" title="3.“三次握手”的通俗理解"></a>3.“三次握手”的通俗理解</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/6.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>举个栗子：把客户端比作男孩，服务器比作女孩。用他们的交往来说明“三次握手”过程：</p>
 <p>（1）男孩喜欢女孩，于是写了一封信告诉女孩：我爱你，请和我交往吧！;写完信之后，男孩焦急地等待，因为不知道信能否顺利传达给女孩。</p>
 <p>（2）女孩收到男孩的情书后，心花怒放，原来我们是两情相悦呀！于是给男孩写了一封回信：我收到你的情书了，也明白了你的心意，其实，我也喜欢你！我愿意和你交往！;</p>
@@ -276,13 +314,13 @@
 <p>客户端可能设置了一个超时时间，时间到了就关闭了连接创建的请求。再重新发出创建连接的请求，而服务器端是不知道的，如果没有第三次握手告诉服务器端客户端收的到服务器端传输的数据的话，</p>
 <p>服务器端是不知道客户端有没有接收到服务器端返回的信息的。</p>
 <p>这个过程可理解为：</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/7.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/7.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>这样没有给服务器端一个创建还是关闭连接端口的请求，服务器端的端口就一直开着，等到客户端因超时重新发出请求时，服务器就会重新开启一个端口连接。那么服务器端上没有接收到请求数据的上一个端口就一直开着，长此以往，这样的端口多了，就会造成服务器端开销的严重浪费。</p>
 <p>还有一种情况是已经失效的客户端发出的请求信息，由于某种原因传输到了服务器端，服务器端以为是客户端发出的有效请求，接收后产生错误。</p>
 <p>所以我们需要“第三次握手”来确认这个过程，让客户端和服务器端能够及时地察觉到因为网络等一些问题导致的连接创建失败，这样服务器端的端口就可以关闭了不用一直等待。</p>
 <p>也可以这样理解：“第三次握手”是客户端向服务器端发送数据，这个数据就是要告诉服务器，客户端有没有收到服务器“第二次握手”时传过去的数据。若发送的这个数据是“收到了”的信息，接收后服务器就正常建立TCP连接，否则建立TCP连接失败，服务器关闭连接端口。由此减少服务器开销和接收到失效请求发生的错误。</p>
 <h2 id="5-抓包验证"><a href="#5-抓包验证" class="headerlink" title="5.抓包验证"></a>5.抓包验证</h2><p>下面是用抓包工具抓到的一些数据包，可用来分析TCP的三次握手：</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/8.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/8.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>图中显示的就是完整的TCP连接的”三次握手”过程。在52528 -&gt; 80中，52528是本地(客户端)端口，80是服务器的端口。80端口和52528端口之间的三次来回就是”三次握手”过程。</p>
 <p>注意到”第一次握手”客户端发送的TCP报文中以[SYN]作为标志位，并且客户端序号Seq=0；</p>
 <p>接下来”第二次握手”服务器返回的TCP报文中以[SYN，ACK]作为标志位；并且服务器端序号Seq=0；确认号Ack=1(“第一次握手”中客户端序号Seq的值+1);</p>
@@ -291,7 +329,7 @@
 <p>这就完成了”三次握手”的过程，符合前面分析的结果。</p>
 <h1 id="TCP的四次挥手（Four-Way-Wavehand）"><a href="#TCP的四次挥手（Four-Way-Wavehand）" class="headerlink" title="TCP的四次挥手（Four-Way Wavehand）"></a>TCP的四次挥手（Four-Way Wavehand）</h1><h2 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h2><p>对于”三次握手”我们耳熟能详，因为其相对的简单。但是，我们却不常听见“四次挥手”，就算听过也未必能详细地说明白它的具体过程。下面就为大家详尽，直观，完整地介绍“四次挥手”的过程。</p>
 <h2 id="2、“四次挥手”的详解"><a href="#2、“四次挥手”的详解" class="headerlink" title="2、“四次挥手”的详解"></a>2、“四次挥手”的详解</h2><p>所谓的四次挥手即TCP连接的释放(解除)。连接的释放必须是一方主动释放，另一方被动释放。以下为客户端主动发起释放连接的图解：</p>
-<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/9.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/9.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <blockquote>
 <p>挥手之前主动释放连接的客户端结束ESTABLISHED阶段。随后开始“四次挥手”：</p>
 </blockquote>
@@ -336,7 +374,7 @@
 <p>后“两次挥手”既让客户端知道了服务器端准备好释放连接了，也让服务器端知道了客户端了解了自己准备好释放连接了。于是，可以确认关闭服务器端到客户端方向上的连接了，由此完成“四次挥手”。</p>
 </blockquote>
 <p>与“三次挥手”一样，在客户端与服务器端传输的TCP报文中，双方的确认号Ack和序号Seq的值，都是在彼此Ack和Seq值的基础上进行计算的，这样做保证了TCP报文传输的连贯性，一旦出现某一方发出的TCP报文丢失，便无法继续”挥手”，以此确保了”四次挥手”的顺利完成。</p>
-<h2 id="3、“四次挥手”的通俗理解"><a href="#3、“四次挥手”的通俗理解" class="headerlink" title="3、“四次挥手”的通俗理解"></a>3、“四次挥手”的通俗理解</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/10.png" srcset="/img/loading.gif" alt=""></p>
+<h2 id="3、“四次挥手”的通俗理解"><a href="#3、“四次挥手”的通俗理解" class="headerlink" title="3、“四次挥手”的通俗理解"></a>3、“四次挥手”的通俗理解</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <blockquote>
 <p>举个栗子：把客户端比作男孩，服务器比作女孩。通过他们的分手来说明“四次挥手”过程。</p>
 </blockquote>
@@ -374,7 +412,7 @@
 </ul>
 </blockquote>
 <p>所以，客户端要经历时长为2SML的TIME-WAIT阶段；这也是为什么客户端比服务器端晚进入CLOSED阶段的原因</p>
-<h2 id="6-抓包验证"><a href="#6-抓包验证" class="headerlink" title="6.抓包验证"></a>6.抓包验证</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/11.png" srcset="/img/loading.gif" alt=""></p>
+<h2 id="6-抓包验证"><a href="#6-抓包验证" class="headerlink" title="6.抓包验证"></a>6.抓包验证</h2><p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2020-01-19/11.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>图中显示的就是完整的TCP连接释放的”四次挥手”过程。在 80 -&gt; 55389 中，假设80是本地(客户端)端口，55389是服务器端口。80端口与55389之间的四次来回就是”四次挥手”过程。</p>
 <ul>
 <li>”第一次挥手”客户端发送的FIN请求释放连接报文以[FIN，ACK]作为标志位，其中报文序号Seq=2445；确认号Ack=558；<br>注意：这里与“第三次握手”的ACK并不是表示确认的ACK报文。</li>
@@ -387,7 +425,7 @@
 </blockquote>
 <p>故这是连续的“四次挥手”过程，与前面的分析相符。</p>
 
-            </article>
+            </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
@@ -402,11 +440,15 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
-                <div class="post-prevnext row">
-                  <div class="post-prev col-6">
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
                     
                     
                       <a href="/2020/05/19/2020-05-19-http-interviews/">
@@ -415,8 +457,8 @@
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
-                  </div>
-                  <div class="post-next col-6">
+                  </article>
+                  <article class="post-next col-6">
                     
                     
                       <a href="/2020/01/17/2020-01-17-why-tcp-third-hand/">
@@ -425,13 +467,13 @@
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
-                  </div>
+                  </article>
                 </div>
               
             </div>
 
             
-          </div>
+          </article>
         </div>
       </div>
     </div>
@@ -439,7 +481,7 @@
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -449,24 +491,17 @@
 
 <!-- Custom -->
 
-  <div class="col-lg-7 mx-auto nopadding-md">
-    <div class="container custom post-content mx-auto">
-      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
-    </div>
-  </div>
-
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -487,140 +522,113 @@
     </div>
   </div>
 </div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
     
 
     
+  </main>
 
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
+
+
+  
+
+  
 </footer>
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: 'article.markdown-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        " 详解 TCP 连接的“三次握手”与“四次挥手” &nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
 
 
 
   <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
@@ -629,55 +637,6 @@
 
 
 
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
 
 
 
@@ -686,10 +645,8 @@
 
 
 
-
-
-
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 </body>
