@@ -400,7 +400,13 @@ UV（用户量）
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/03/03/interview-questions10-redis/" target="_self">
+          <img src="https://gitee.com/like-ycy/images/raw/master/interview/redis/coverpage.webp" srcset="/img/loading.gif" lazyload alt=" 运维面试题系列--Redis问题 ">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
         <a href="/2021/03/03/interview-questions10-redis/" target="_self">
@@ -414,12 +420,15 @@ UV（用户量）
           
             
           
-          Redis 面试问题1、redis主从同步原理
-slave服务器向master发送psync命令（此时发送的是psync ? -1），告诉master我需要同步数据了；
-master接收到psync命令后会进行BGSAVE命令生成RDB文件快照；
-生成完后，会将RDB文件发送给slave；
-slave接收到文件会载入RDB快照，并且将数据库状态变更为master在执行BGSAVE时的状态一致；
-m
+          Redis 面试问题1、redis的特点及优势特点：
+
+Redis 支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。
+Redis 不仅仅支持简单的 key-value 类型的数据，同时还提供 list，set，zset，hash 等数据结构的存储。
+Redis 支持数据的备份，即 master-slave 模式的数据备份。
+
+优势：
+
+性能极高：Redis 能读的
         </a>
       </p>
 
