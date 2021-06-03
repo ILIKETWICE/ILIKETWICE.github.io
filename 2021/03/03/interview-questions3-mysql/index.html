@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      933 字
+      1.2k 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      13
        分钟
     </span>
   
@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月12日 上午
+                  本文最后更新于：2021年6月3日 下午
                 
               </p>
             
@@ -274,6 +274,27 @@
 
 
 
+<h3 id="mysql参数优化"><a href="#mysql参数优化" class="headerlink" title="mysql参数优化"></a>mysql参数优化</h3><p>最大允许传输包大小</p>
+<p>最大允许错误连接数</p>
+<p>7天自动清理binlog</p>
+<p>临时表大小</p>
+<p>最大连接数</p>
+<p>最大打开文件数</p>
+<p>临时文件大小</p>
+<p>缓冲池大小</p>
+<p>query cache内存大小</p>
+<p>blok发送超时时间</p>
+<p>并发查询数目</p>
+<p>innodb_buffer_pool_size： 一般设置为内存的60%，缓冲池大小</p>
+<p>back_log：处理大量短链接时设置的，默认3000，建议提高</p>
+<p>innodb_autoinc_lock_mode：控制自增主键的锁机制，默认1，建议设置为2，表示所有情况插入都使用轻量级别的mutex锁，但是binlog的格式需要被设置为row</p>
+<p>query_cache_size：控制MySQL query cache的内存大小。</p>
+<p> net_write_timeout：等待将一个block发送给客户端的超时时间。默认60秒，建议提高</p>
+<p>tmp_table_size：内部内存临时表的最大值。内存足够是建议提高</p>
+<p>loose_rds_max_tmp_disk_space：MySQL能够使用的临时文件的大小</p>
+<p>loose_tokudb_buffer_pool_ratio：TokuDB引擎能够使用的buffer内存大小</p>
+<p>loose_max_statement_time：查询在MySQL的最长执行时间</p>
+<p>loose_rds_threads_running_high_watermark：查询在MySQL的最长执行时间，</p>
 <h2 id="SQL语句问题"><a href="#SQL语句问题" class="headerlink" title="SQL语句问题"></a>SQL语句问题</h2><ul>
 <li>数据库根据学生表和分数表查学生的学号、姓名、课程，分数</li>
 </ul>
