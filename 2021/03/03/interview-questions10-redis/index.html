@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.3k 字
+      4.4k 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      46
+      47
        分钟
     </span>
   
@@ -455,6 +455,10 @@
 <p>我估计现在你很想把面试官一棒打死如果你手上有一根棒球棍的话，怎么问得这么详细。但是你很克制，然后神态自若地回答道：使用 sortedset，拿时间戳作为score，消息内容作为 key 调用 zadd 来生产消息，消费者用 zrangebyscore 指令获取 N 秒之前的数据轮询进行处理。</p>
 <h3 id="20、使用过-Redis-分布式锁么，它是什么回事？"><a href="#20、使用过-Redis-分布式锁么，它是什么回事？" class="headerlink" title="20、使用过 Redis 分布式锁么，它是什么回事？"></a>20、使用过 Redis 分布式锁么，它是什么回事？</h3><p>先拿 setnx 来争抢锁，抢到之后，再用 expire 给锁加一个过期时间防止锁忘记了释放。</p>
 <p>这时候对方会告诉你说你回答得不错，然后接着问如果在 setnx 之后执行 expire之前进程意外 crash 或者要重启维护了，那会怎么样？这时候你要给予惊讶的反馈：唉，是喔，这个锁就永远得不到释放了。紧接着你需要抓一抓自己的脑袋，故作思考片刻，好像接下来的结果是你主动思考出来的，然后回答：我记得 set 指令有非常复杂的参数，这个应该是可以同时把 setnx 和expire 合成一条指令来用的！</p>
+<h3 id="21、redis参数优化"><a href="#21、redis参数优化" class="headerlink" title="21、redis参数优化"></a>21、redis参数优化</h3><p>设置禁用命令：flushall，flushdb，keys</p>
+<p>单个连接允许堆积的最大请求数</p>
+<p>缓存数据的有效时间，单位为毫秒，取值：100~60000，默认值为1000。</p>
+<p>设置Redis后台任务执行频率，建议取值不要超过100</p>
 
             </div>
             <hr>
