@@ -236,6 +236,113 @@ mysq
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/11/08/2021-11-08-redis-acl/" target="_self">
+          <img src="https://gitee.com/like-ycy/images/raw/master/interview/redis/coverpage.webp" srcset="/img/loading.gif" lazyload alt=" Redis 访问控制列表(ACL) ">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/08/2021-11-08-redis-acl/" target="_self">
+           Redis 访问控制列表(ACL) 
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/08/2021-11-08-redis-acl/" target="_self">
+          
+          
+            
+          
+          背景在 Redis6.0 之前的版本中，登陆 Redis Server 只需要输入密码（前提配置了密码 requirepass ）即可，不需要输入用户名，而且密码也是明文配置到配置文件中，安全性不高。并且应用连接也使用该密码，导致应用有所有权限处理数据，风险也极高。在 Redis6.0 有了 ACL 之后，终于解决了这些不安全的因素，可以按照不同的需求设置相关的用户和权限。本文来介绍下 Redis
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-08 19:40" pubdate>
+              2021-11-08
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/11/08/2021-02-10-redis-high-availability/" target="_self">
+          <img src="https://gitee.com/like-ycy/images/raw/master/interview/redis/coverpage.webp" srcset="/img/loading.gif" lazyload alt=" Redis高可用总结：Redis主从复制、哨兵集群、脑裂... ">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/08/2021-02-10-redis-high-availability/" target="_self">
+           Redis高可用总结：Redis主从复制、哨兵集群、脑裂... 
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/08/2021-02-10-redis-high-availability/" target="_self">
+          
+          
+            
+          
+          redis在实际的项目中，服务高可用非常重要，如，当Redis作为缓存服务使用时， 缓解数据库的压力，提高数据的访问速度，提高网站的性能 ，但如果使用Redis 是单机模式运行 ，只要一个服务器宕机就不可以提供服务，这样会可能造成服务效率低下，甚至出现其相对应的服务应用不可用。
+因此为了实现高可用，Redis 提供了哪些高可用方案？
+
+Redis主从复制
+Redis持久化
+哨兵集群
+…
+
+
+Red
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-08 19:28" pubdate>
+              2021-11-08
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/08/17/2021-08-17-github-to-gitee/" target="_self">
           <img src="https://gitee.com/like-ycy/images/raw/master/blog/2021-08-17/github-to-gitee-index.webp" srcset="/img/loading.gif" lazyload alt=" 利用Github Action实现Github到Gitee的持续同步 ">
         </a>
@@ -583,97 +690,6 @@ Redis 支持数据的备份，即 master-slave 模式的数据备份。
 
 4、Kubernetes 具有如下特点:
 便携性: 无论公有
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-03 00:00" pubdate>
-              2021-03-03
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/03/interview-questions11-nginx/" target="_self">
-           运维面试题系列--Nginx、LVS 
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/03/interview-questions11-nginx/" target="_self">
-          
-          
-            
-          
-          Nginx LVS Apache理论部分1、LVS的模式：
-NAT模式
-
-工作过程
-（1）：用户将请求发送至调度器上，此时LVS根据算法选择一个后端的真实服务器，将数据请求包转发给真实服务器，并在转发之前LVS会修改数据包中的目标地址以及目标端口，此时修改为后端服务器ip地址
-（2）：后端服务器将响应的数据包返回给LVS调度器，调度器在响应数据包后会将源地址和源端口修改为vip及调度器相应端口，修
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-03 00:00" pubdate>
-              2021-03-03
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/03/interview-questions12-docker/" target="_self">
-           运维面试题系列--Docker 
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/03/interview-questions12-docker/" target="_self">
-          
-          
-            
-          
-          Docker 面试问题Docker与LXC（Linux Container）有何不同？123LXC利用Linux上相关技术实现容器，Docker则在如下的几个方面进行了改进：移植性：通过抽象容器配置，容器可以实现一个平台移植到另一个平台；  镜像系统：基于AUFS的镜像系统为容器的分发带来了很多的便利，同时共同的镜像层只需要存储一份，实现高效率的存储；  版本管理：类似于GIT的版本管理理念，用户
         </a>
       </p>
 

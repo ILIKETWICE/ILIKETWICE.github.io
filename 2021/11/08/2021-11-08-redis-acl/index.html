@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="权掌天下">
+  <meta name="keywords" content="">
+  
+  <title> Redis 访问控制列表(ACL)  - 权掌天下 Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"like-ycy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>海底捞越</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://gitee.com/like-ycy/images/raw/master/blog/header.webp') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title=" Redis 访问控制列表(ACL) ">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      权掌天下
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-08 19:40" pubdate>
+        2021年11月8日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      69
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"> Redis 访问控制列表(ACL) </h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年11月8日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在 Redis6.0 之前的版本中，登陆 Redis Server 只需要输入密码（前提配置了密码 requirepass ）即可，不需要输入用户名，而且密码也是明文配置到配置文件中，安全性不高。并且应用连接也使用该密码，导致应用有所有权限处理数据，风险也极高。在 Redis6.0 有了 <a href="https://redis.io/topics/acl" target="_blank" rel="noopener">ACL</a> 之后，终于解决了这些不安全的因素，可以按照不同的需求设置相关的用户和权限。本文来介绍下 Redis 6.0 ACL 相关的配置和使用。具体的说明可以查看官方文档：<strong><a href="https://redis.io/topics/acl" target="_blank" rel="noopener">ACL</a></strong> </p>
+<h2 id="ACL介绍"><a href="#ACL介绍" class="headerlink" title="ACL介绍"></a>ACL介绍</h2><p>Redis ACL 是 Access Control List 的缩写，是一种特性，它可以限制某些连接的<strong>可执行命令</strong>和<strong>访问 key</strong> 的权限。它的工作方式是，在连接之后，客户端需要提供用户名和有效密码进行身份验证：如果身份验证阶段成功，则连接与给定用户相关联，并限制用户的权限。Redis 可以配置为已经使用 <strong>“default”</strong> 用户（这是默认配置）对新连接进行了身份验证，所以配置 <strong>default</strong> 的用户，作为一个副作用，仅提供一个特定功能的子集，没有明确身份验证的连接。</p>
+<p>在默认配置下 ，Redis 6（第一个拥有 ACL 的版本）的工作原理与旧版本的 Redis 完全相同，也就是说，每一个新的连接都能够调用每一个可能的命令和访问每一个 key ，所以ACL功能是向后兼容的。另外，使用requirepass配置指令配置密码的旧方法仍然可以正常工作，但现在它所做的只是为default用户设置密码。</p>
+<p>Redis <a href="https://redis.io/commands/auth" target="_blank" rel="noopener">AUTH</a>命令在 Redis 6 中被扩展了，所以它现在可以在两个参数的形式使用它：</p>
+<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml">AUTH <span class="hljs-tag">&lt;<span class="hljs-name">username</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>按旧形式使用时，即：</p>
+<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml">AUTH <span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>实际情况是，用于身份验证的用户名是“default”，因此仅指定密码就意味着我们要针对默认用户进行身份验证。这提供了与过去完美的向后兼容性。</p>
+<h2 id="ACL的作用"><a href="#ACL的作用" class="headerlink" title="ACL的作用"></a>ACL的作用</h2><p>在使用acl之前，您可能想问问自己，通过实现这一层保护，您希望实现什么目标。通常acl可以很好地实现两个主要目标:</p>
+<ul>
+<li><p>限制对命令和密钥的访问来：</p>
+<p>以便不受信任的客户机没有访问权限，而受信任的客户机只有对数据库的最低访问级别，以便执行所需的工作。例如，某些客户端只能执行只读命令。</p>
+</li>
+<li><p>提高操作安全性：</p>
+<p>以防止由于软件错误或人为错误而导致进程或人员访问 Redis，从而破坏数据或配置。例如，从Redis获取延迟作业的worker没有理由能够调用FLUSHALL命令。</p>
+</li>
+</ul>
+<h2 id="ACL-规则"><a href="#ACL-规则" class="headerlink" title="ACL 规则"></a>ACL 规则</h2><p>以下是有效的ACL规则列表。某些规则只是单个单词，用于激活或删除标志，或执行对用户ACL的给定更改。其他规则是与命令或类别名称或键模式等连接的字符前缀。</p>
+<h4 id="启用和禁用用户"><a href="#启用和禁用用户" class="headerlink" title="启用和禁用用户"></a>启用和禁用用户</h4><p><code>on</code>：启用用户，可以使用该用户进行身份验证。</p>
+<p><code>off</code>：禁用用户，不再可能与该用户进行身份验证，但是已经通过身份验证的连接仍将工作。</p>
+<p>注意，如果默认用户被标记为关闭，新的连接开始时将不经过身份验证，并且将要求用户发送带有AUTH选项的AUTH或HELLO以某种方式进行身份验证，而不管默认用户配置如何。</p>
+<h4 id="允许和禁止命令"><a href="#允许和禁止命令" class="headerlink" title="允许和禁止命令"></a>允许和禁止命令</h4><p><code>+&lt;command&gt;</code>：将该命令添加到用户可以调用的命令列表中。可以与<code>|</code>一起使用以允许子命令(例如“+config|get”)。</p>
+<p><code>—&lt;command&gt;</code>：将命令从用户可以调用的命令列表中移除。可以与<code>|</code>一起用于阻塞子命令(例如“-config|set”)。</p>
+<p><code>+@&lt;category&gt;</code>：为用户添加一类命令的权限，有效的类如@admin， @set， @sortedset，…等等，通过调用ACL CAT命令查看完整的列表。特殊类别@all表示所有命令，包括当前在服务器中存在的命令和将来将通过模块加载的命令。</p>
+<p><code>-@&lt;category&gt;</code>：类似<strong>+@&lt;category&gt;</strong>，从客户端可以调用的命令列表中删除命令</p>
+<p><code>+\&lt;command&gt;|first-arg</code>：允许一个特定的第一个参数，否则禁用命令。注意，这个表单不允许是负数，比如-SELECT|1，而只能是以“+”开头的加法。</p>
+<p><code>allcommands</code>：+@all的别名。注意，它意味着能够执行通过模块系统加载的所有未来命令。</p>
+<p><code>nocommands</code>： -@all的别名。</p>
+<h4 id="允许和禁止某些-key"><a href="#允许和禁止某些-key" class="headerlink" title="允许和禁止某些 key"></a>允许和禁止某些 key</h4><p><code>~&lt;pattern&gt;</code>：添加可以作为命令的一部分提到的键模式。例如~*允许所有的键。该模式是一个全局样式的模式，类似于KEYS模式。可以指定多个模式。</p>
+<p><code>allkeys</code>:  也就是~*。</p>
+<p><code>resetkeys</code>：刷新允许的键模式列表。例如ACL ~foo:* ~bar:* resetkeys ~objects:*，将导致客户端只能访问匹配模式对象:*的键。</p>
+<h4 id="允许和禁止发布-订阅频道"><a href="#允许和禁止发布-订阅频道" class="headerlink" title="允许和禁止发布/订阅频道"></a>允许和禁止发布/订阅频道</h4><p><code>&amp;&lt;pattern&gt;</code>：添加一个用户可以访问的发布/订阅通道的glob样式模式。可以指定多个通道模式。注意，模式匹配只对PUBLISH和SUBSCRIBE提到的通道进行，而PSUBSCRIBE要求在其通道模式和用户允许的通道模式之间进行文字匹配。</p>
+<p><code>allchannels</code>：&amp;*别名，允许用户访问所有发布/订阅通道</p>
+<p><code>resetchannels</code>：刷新允许的通道模式列表，如果用户的发布/订阅客户端不再能够访问各自的通道和/或通道模式，则断开这些客户端。</p>
+<h4 id="为用户配置有效的密码"><a href="#为用户配置有效的密码" class="headerlink" title="为用户配置有效的密码"></a>为用户配置有效的密码</h4><p><code>&gt;&lt;password&gt;</code>：将此密码添加到用户的有效密码列表中。例如，&gt;mypass将把“mypass”添加到有效密码列表中。该指令清除nopass标志(参见后面的内容)。每个用户可以有任意数量的密码。</p>
+<p><code>&lt;&lt;password&gt;</code>：从有效密码列表中删除此密码。如果删除的密码实际上没有设置，则将发出错误。</p>
+<p><code>#&lt;hash&gt;</code>：将此SHA-256哈希值添加到该用户的有效密码列表中。此hash值将与为ACL用户输入的密码的hash值进行比较。这允许用户将hash值存储在acl.conf文件中，而不是存储明文密码。只能接受SHA-256哈希值，因为密码hash值必须为64个字符，且只能包含小写的十六进制字符。</p>
+<p><code>!&lt;hash&gt;</code>：从有效密码列表中删除此hash值。当您不知道由hash值指定的密码，但希望从用户中删除密码时，这是非常有用的。</p>
+<p><code>nopass</code>：用户设置的所有密码都被删除，用户被标记为不需要密码:这意味着每个密码都适用于该用户。如果将此指令用于默认用户，则每个新连接都将立即使用默认用户进行身份验证，而不需要任何显式的AUTH命令。注意，resetpass指令将清除这个条件。</p>
+<p><code>resetpass</code>：清除允许的密码列表。此外，还删除了nopass状态。重置后，用户没有相关的密码，如果不添加一些密码(或稍后设置为nopass)，就无法进行身份验证。</p>
+<h4 id="重置用户"><a href="#重置用户" class="headerlink" title="重置用户"></a>重置用户</h4><p><code>rest</code>：执行以下操作:resetpass, resetkeys, resetchannels, off， -@all。用户在创建后立即返回到相同的状态。</p>
+<h2 id="使用-ACL-命令配置-ACL"><a href="#使用-ACL-命令配置-ACL" class="headerlink" title="使用 ACL 命令配置 ACL"></a>使用 ACL 命令配置 ACL</h2><p>acl是使用DSL(领域特定语言)定义的，DSL描述了给定用户能够做什么或不能做什么。这样的规则总是从第一个到最后一个，从左到右实现，因为有时规则的顺序对理解用户真正能够做什么很重要。</p>
+<p>首先看 ACL 的 help，了解大致的使用方法：ACL help</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">&gt; ACL <span class="hljs-built_in">help</span><br> 1) ACL &lt;subcommand&gt; arg arg ... arg. Subcommands are:<br> 2) LOAD                             -- 从ACL文件中重新载入用户信息.<br> 3) SAVE                             -- 保存当前的用户配置信息到ACL文件.<br> 4) LIST                             -- 以配置文件格式显示用户详细信息.<br> 5) USERS                            -- 列出所有注册的用户名.<br> 6) SETUSER &lt;username&gt; [attribs ...] -- 创建或则修改一个用户.<br> 7) GETUSER &lt;username&gt;               -- 得到一个用户的详细信息.<br> 8) DELUSER &lt;username&gt; [...]         -- 删除列表中的用户.<br> 9) CAT                              -- 列出可用的类别.<br>10) CAT &lt;category&gt;                   -- 列出指定类别中的命令.<br>11) GENPASS [&lt;bits&gt;]                 -- 生成一个安全的用户密码.<br>12) WHOAMI                           -- 返回当前的连接用户.<br>13) LOG [&lt;count&gt; | RESET]            -- 显示ACL日志条目.<br></code></pre></div></td></tr></table></figure>
+
+<p>默认情况下，redis只定义了一个用户，称为<strong>default</strong>。</p>
+<p>我们可以使用<strong>ACL LIST</strong>命令来检查当前启用的ACL，并验证一个刚启动的、默认配置的Redis实例的配置是什么:</p>
+<p>默认 default 用户，没有配置密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">127.0.0.1:6379&gt; acl list<br>1) <span class="hljs-string">"user default on nopass ~* &amp;* +@all"</span><br></code></pre></div></td></tr></table></figure>
+
+<p>配置密码的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">127.0.0.1:6379&gt; acl list<br>1) <span class="hljs-string">"user onlyread on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br></code></pre></div></td></tr></table></figure>
+
+
+<table>
+<thead>
+<tr>
+<th>参 数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>user</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>default</td>
+<td>表示默认用户名，或则自己定义的用户名</td>
+</tr>
+<tr>
+<td>on</td>
+<td>表示是否启用该用户，默认为 off（禁用）</td>
+</tr>
+<tr>
+<td>#…</td>
+<td>表示用户密码，nopass 表示不需要密码</td>
+</tr>
+<tr>
+<td>~*</td>
+<td>表示可以访问的 Key（正则匹配）</td>
+</tr>
+<tr>
+<td>&amp;*</td>
+<td>Pub/Sub通道(发布/订阅)</td>
+</tr>
+<tr>
+<td>+@</td>
+<td>表示用户的权限，+/- 表示授权还是销权； @为权限类。+@all 表示所有权限</td>
+</tr>
+</tbody></table>
+<p>权限对 key 的类型和命令的类型进行了分类，如有对数据类型进行分类：string、hash、list、set、sortedset，和对命令类型进行分类：connection、admin、dangerous。</p>
+<h2 id="配置实例"><a href="#配置实例" class="headerlink" title="配置实例"></a>配置实例</h2><h4 id="密码相关"><a href="#密码相关" class="headerlink" title="密码相关"></a>密码相关</h4><p>1、配置密码：一个用户可以设置不同的密码，即一个用户可以有多个密码。</p>
+<figure class="highlight clean"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs clean">-- 添加密码 <br>## &gt;开头: &gt;password，明文密码；<br>&gt; ACL SETUSER zhoujy on &gt;abc<br>OK<br><br># 获取哈希值密码 echo -n <span class="hljs-string">"cba"</span> | shasum -a <span class="hljs-number">256</span><br><span class="hljs-number">6</span>d970874d0db767a7058798973f22cf6589601edab57996312f2ef7b56e5584d<br><br>## #开头: #hash，SHA<span class="hljs-number">-256</span>哈希值<br>&gt; ACL SETUSER zhoujy on #<span class="hljs-number">6</span>d970874d0db767a7058798973f22cf6589601edab57996312f2ef7b56e5584d<br>OK<br><br>## 查看<br>&gt; ACL GETUSER zhoujy<br><span class="hljs-number">1</span>) <span class="hljs-string">"flags"</span><br><span class="hljs-number">2</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"on"</span><br><span class="hljs-number">3</span>) <span class="hljs-string">"passwords"</span><br><span class="hljs-number">4</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"</span><br>   <span class="hljs-number">2</span>) <span class="hljs-string">"6d970874d0db767a7058798973f22cf6589601edab57996312f2ef7b56e5584d"</span><br><span class="hljs-number">5</span>) <span class="hljs-string">"commands"</span><br><span class="hljs-number">6</span>) <span class="hljs-string">"-@all"</span><br><span class="hljs-number">7</span>) <span class="hljs-string">"keys"</span><br><span class="hljs-number">8</span>) (empty array)<br><br>## 认证密码<br>&gt; AUTH zhoujy abc<br>OK<br>&gt; AUTH zhoujy cba<br>OK<br><br><br>-- 移除密码<br>## &lt;开头: &lt;password ，明文密码<br>&gt; ACL SETUSER zhoujy &lt;abc<br>OK<br><br>## 用!开头: !hash，SHA<span class="hljs-number">-256</span>哈希值<br>&gt; ACL SETUSER zhoujy on !<span class="hljs-number">6</span>d970874d0db767a7058798973f22cf6589601edab57996312f2ef7b56e5584d<br>OK<br><br>## 查看<br>&gt; ACL GETUSER zhoujy<br><span class="hljs-number">1</span>) <span class="hljs-string">"flags"</span><br><span class="hljs-number">2</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"on"</span><br><span class="hljs-number">3</span>) <span class="hljs-string">"passwords"</span><br><span class="hljs-number">4</span>) (empty array)<br><span class="hljs-number">5</span>) <span class="hljs-string">"commands"</span><br><span class="hljs-number">6</span>) <span class="hljs-string">"-@all"</span><br><span class="hljs-number">7</span>) <span class="hljs-string">"keys"</span><br><span class="hljs-number">8</span>) (empty array)<br><br>## 认证密码<br>&gt; AUTH zhoujy abc<br>(error) WRONGPASS invalid username-password pair<br></code></pre></div></td></tr></table></figure>
+
+<p>2、清理 / 删除密码：通过 nopass 清理用户的密码，但是该用户连接还是需要 AUTH，只是密码可以是任意值</p>
+<figure class="highlight lsl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs lsl">-- 清理/删除密码，可以用任意密码登陆<br>## 查看<br>&gt; ACL GETUSER zhoujy<br><span class="hljs-number">1</span>) <span class="hljs-string">"flags"</span><br><span class="hljs-number">2</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"on"</span><br>   <span class="hljs-number">2</span>) <span class="hljs-string">"allkeys"</span><br>   <span class="hljs-number">3</span>) <span class="hljs-string">"allcommands"</span><br><span class="hljs-number">3</span>) <span class="hljs-string">"passwords"</span><br><span class="hljs-number">4</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"</span><br>   <span class="hljs-number">2</span>) <span class="hljs-string">"6d970874d0db767a7058798973f22cf6589601edab57996312f2ef7b56e5584d"</span><br><span class="hljs-number">5</span>) <span class="hljs-string">"commands"</span><br><span class="hljs-number">6</span>) <span class="hljs-string">"+@all"</span><br><span class="hljs-number">7</span>) <span class="hljs-string">"keys"</span><br><span class="hljs-number">8</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"*"</span><br><br>## 删除、清理用户密码<br>&gt; ACL SETUSER zhoujy nopass<br>OK<br><br>## 查看<br>&gt; ACL GETUSER zhoujy<br><span class="hljs-number">1</span>) <span class="hljs-string">"flags"</span><br><span class="hljs-number">2</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"on"</span><br>   <span class="hljs-number">2</span>) <span class="hljs-string">"allkeys"</span><br>   <span class="hljs-number">3</span>) <span class="hljs-string">"allcommands"</span><br>   <span class="hljs-number">4</span>) <span class="hljs-string">"nopass"</span><br><span class="hljs-number">3</span>) <span class="hljs-string">"passwords"</span><br><span class="hljs-number">4</span>) (empty array)<br><span class="hljs-number">5</span>) <span class="hljs-string">"commands"</span><br><span class="hljs-number">6</span>) <span class="hljs-string">"+@all"</span><br><span class="hljs-number">7</span>) <span class="hljs-string">"keys"</span><br><span class="hljs-number">8</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"*"</span><br><br>## 验证<br>&gt; AUTH zhoujy  --需要AUTH<br>(error) WRONGPASS invalid username-password pair<br><br>&gt; AUTH zhoujy ''  --可以输入任何密码<br>OK<br><br><br>-- 清理/删除密码，不能登陆，需要设置密码后才能登陆<br>## 查看<br>&gt; ACL GETUSER zhoujy<br><span class="hljs-number">1</span>) <span class="hljs-string">"flags"</span><br><span class="hljs-number">2</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"on"</span><br>   <span class="hljs-number">2</span>) <span class="hljs-string">"allkeys"</span><br>   <span class="hljs-number">3</span>) <span class="hljs-string">"allcommands"</span><br><span class="hljs-number">3</span>) <span class="hljs-string">"passwords"</span><br><span class="hljs-number">4</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"</span><br>   <span class="hljs-number">2</span>) <span class="hljs-string">"6d970874d0db767a7058798973f22cf6589601edab57996312f2ef7b56e5584d"</span><br><span class="hljs-number">5</span>) <span class="hljs-string">"commands"</span><br><span class="hljs-number">6</span>) <span class="hljs-string">"+@all"</span><br><span class="hljs-number">7</span>) <span class="hljs-string">"keys"</span><br><span class="hljs-number">8</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"*"</span><br><br>## 删除、清理用户密码<br>&gt; ACL SETUSER zhoujy resetpass<br>OK<br>&gt; ACL GETUSER zhoujy<br><span class="hljs-number">1</span>) <span class="hljs-string">"flags"</span><br><span class="hljs-number">2</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"on"</span><br>   <span class="hljs-number">2</span>) <span class="hljs-string">"allkeys"</span><br>   <span class="hljs-number">3</span>) <span class="hljs-string">"allcommands"</span><br><span class="hljs-number">3</span>) <span class="hljs-string">"passwords"</span><br><span class="hljs-number">4</span>) (empty array)<br><span class="hljs-number">5</span>) <span class="hljs-string">"commands"</span><br><span class="hljs-number">6</span>) <span class="hljs-string">"+@all"</span><br><span class="hljs-number">7</span>) <span class="hljs-string">"keys"</span><br><span class="hljs-number">8</span>) <span class="hljs-number">1</span>) <span class="hljs-string">"*"</span><br><br>## 验证，被resetpass重置密码之后，不能登陆，只能设置密码或则设置nopass才能登陆<br>&gt; AUTH zhoujy<br>(error) WRONGPASS invalid username-password pair<br><br>&gt; AUTH zhoujy ''<br>(error) WRONGPASS invalid username-password pair<br></code></pre></div></td></tr></table></figure>
+
+<p>3、重置用户和密码：实际上是执行 resetpass，resetkeys，off，-@all</p>
+<figure class="highlight perl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs perl"><span class="hljs-comment">## 查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><br><span class="hljs-comment">## 重置用户</span><br>&gt; ACL SETUSER zhoujy <span class="hljs-keyword">reset</span><br>OK<br><br><span class="hljs-comment">## 查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy off -@all"</span><br></code></pre></div></td></tr></table></figure>
+
+<p>4、获取随机密码：</p>
+<figure class="highlight ada"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ada"><span class="hljs-comment">-- 生成随机密码</span><br>&gt; ACL GENPASS<br><span class="hljs-string">"7a3288b05577cb6fea9b1a9a8bcfe10d9589e64be74e8a0e16c131ba896c7bde"</span><br></code></pre></div></td></tr></table></figure>
+
+<h4 id="键模式"><a href="#键模式" class="headerlink" title="键模式"></a>键模式</h4><p><code>~&lt;pattern&gt;</code>，通配符模式。比如： <del>* 表示允许访问所有 key，也可以用 `<strong>allkeys</strong>来表示**</del>*<strong>。</strong>resetkeys** 表示清空它之前所有的键模式，之后的键模式不影响。`</p>
+  <figure class="highlight livescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs livescript">-- 可以操作foo开头和bar:开头的所有key<br>&gt; ACL SETUSER zhoujy <span class="hljs-literal">on</span> &gt;abc ~foo* ~bar:*+@all<br>OK<br><br><span class="hljs-comment">## 查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on <span class="hljs-subst">#ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</span> ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on <span class="hljs-subst">#ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</span> ~foo* ~bar:*+@all"</span><br><br>--  只能操作ob:开头的key，前面的key模式被resetkeys清空了<br>&gt; ACL SETUSER zhoujy <span class="hljs-literal">on</span> &gt;abc ~foo* ~bar:* resetkeys ~ob:*+@all<br>OK<br><br><span class="hljs-comment">## 查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on <span class="hljs-subst">#ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</span> ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on <span class="hljs-subst">#ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</span> ~ob:*+@all"</span><br><br>-- 操作所有key，allkeys 和 ~* 一样<br>&gt; ACL SETUSER zhoujy allkeys +@all<br>OK<br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on <span class="hljs-subst">#ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</span> ~* +@all"</span><br><br><span class="hljs-comment">## 查看</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on <span class="hljs-subst">#ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</span> ~*+@all"</span><br></code></pre></div></td></tr></table></figure>
+
+<h4 id="权限相关"><a href="#权限相关" class="headerlink" title="权限相关"></a>权限相关</h4><p>权限这块涉及到的比较多：权限的类别、类别里包含的命令，以及子权限。<br>注意：<strong>-@all</strong> 表示没有任何权限；<strong>+@all</strong> 表示有所有权限；</p>
+  <figure class="highlight lsl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs lsl">-- 返回权限的类别<br>&gt; ACL CAT<br> <span class="hljs-number">1</span>) <span class="hljs-string">"keyspace"</span><br> <span class="hljs-number">2</span>) <span class="hljs-string">"read"</span><br> <span class="hljs-number">3</span>) <span class="hljs-string">"write"</span><br> <span class="hljs-number">4</span>) <span class="hljs-string">"set"</span><br> <span class="hljs-number">5</span>) <span class="hljs-string">"sortedset"</span><br> <span class="hljs-number">6</span>) <span class="hljs-string">"list"</span><br> <span class="hljs-number">7</span>) <span class="hljs-string">"hash"</span><br> <span class="hljs-number">8</span>) <span class="hljs-string">"string"</span><br> <span class="hljs-number">9</span>) <span class="hljs-string">"bitmap"</span><br><span class="hljs-number">10</span>) <span class="hljs-string">"hyperloglog"</span><br><span class="hljs-number">11</span>) <span class="hljs-string">"geo"</span><br><span class="hljs-number">12</span>) <span class="hljs-string">"stream"</span><br><span class="hljs-number">13</span>) <span class="hljs-string">"pubsub"</span><br><span class="hljs-number">14</span>) <span class="hljs-string">"admin"</span><br><span class="hljs-number">15</span>) <span class="hljs-string">"fast"</span><br><span class="hljs-number">16</span>) <span class="hljs-string">"slow"</span><br><span class="hljs-number">17</span>) <span class="hljs-string">"blocking"</span><br><span class="hljs-number">18</span>) <span class="hljs-string">"dangerous"</span><br><span class="hljs-number">19</span>) <span class="hljs-string">"connection"</span><br><span class="hljs-number">20</span>) <span class="hljs-string">"transaction"</span><br><span class="hljs-number">21</span>) <span class="hljs-string">"scripting"</span><br><br>-- 返回指定类别中的命令，下面hash是上面返回的一个结果<br>&gt; ACL CAT hash<br> <span class="hljs-number">1</span>) <span class="hljs-string">"hsetnx"</span><br> <span class="hljs-number">2</span>) <span class="hljs-string">"hset"</span><br> <span class="hljs-number">3</span>) <span class="hljs-string">"hlen"</span><br> <span class="hljs-number">4</span>) <span class="hljs-string">"hmget"</span><br> <span class="hljs-number">5</span>) <span class="hljs-string">"hincrbyfloat"</span><br> <span class="hljs-number">6</span>) <span class="hljs-string">"hgetall"</span><br> <span class="hljs-number">7</span>) <span class="hljs-string">"hvals"</span><br> <span class="hljs-number">8</span>) <span class="hljs-string">"hscan"</span><br> <span class="hljs-number">9</span>) <span class="hljs-string">"hkeys"</span><br><span class="hljs-number">10</span>) <span class="hljs-string">"hstrlen"</span><br><span class="hljs-number">11</span>) <span class="hljs-string">"hget"</span><br><span class="hljs-number">12</span>) <span class="hljs-string">"hdel"</span><br><span class="hljs-number">13</span>) <span class="hljs-string">"hexists"</span><br><span class="hljs-number">14</span>) <span class="hljs-string">"hincrby"</span><br><span class="hljs-number">15</span>) <span class="hljs-string">"hmset"</span><br></code></pre></div></td></tr></table></figure>
+
+<p>从上面的权限列表里看到：权限对 key 的类型和命令的类型进行了分类，如有对类型进行分类：string、hash、list、set、sortedset，和对命令类型进行分类：connection、admin、dangerous。 以及对每个分类的方法进行说明，如上面查看 hash 类型 key 的一些方法。</p>
+<p><strong>授权方法</strong>：</p>
+  <figure class="highlight gherkin"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs gherkin">+<span class="hljs-variable">&lt;command&gt;</span>：将命令添加到用户可以调用的命令列表中，如+<span class="hljs-meta">@hash</span><br>-<span class="hljs-variable">&lt;command&gt;</span>: 将命令从用户可以调用的命令列表中移除<br>+<span class="hljs-meta">@&lt;category&gt;:</span> 添加一类命令，如：<span class="hljs-meta">@admin,</span> <span class="hljs-meta">@set,</span> <span class="hljs-meta">@hash</span> ... 可以ACL CAT 查看具体的操作指令。特殊类别<span class="hljs-meta">@all表示所有命令，包括当前在服务器中存在的命令，以及将来将通过模块加载的命令</span><br>-<span class="hljs-meta">@&lt;category&gt;:</span> 类似+<span class="hljs-meta">@&lt;category&gt;，从客户端可以调用的命令列表中删除命令</span><br>+<span class="hljs-variable">&lt;command&gt;</span>|<span class="hljs-string">subcommand: 允许否则禁用特定子命令。注意，这种形式不允许像-DEBUG </span>|<span class="hljs-string"> SEGFAULT那样，而只能以“ +”开头</span><br><span class="hljs-string">allcommands：+@all的别名，允许所有命令操作执行。注意，这意味着可以执行将来通过模块系统加载的所有命令。</span><br><span class="hljs-string">nocommands：-@all的别名，不允许所有命令操作执行。</span><br></code></pre></div></td></tr></table></figure>
+
+<p>1、添加指定类型的权限：+@hash</p>
+  <figure class="highlight perl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs perl">-- 添加hash类型key的所有权限<br>&gt; ACL SETUSER zhoujy +@hash<br>OK<br><br><span class="hljs-comment">## 查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* -@all +@hash"</span><br></code></pre></div></td></tr></table></figure>
+
+<p><strong>说明</strong>：用户 zhoujy 只有对 hash 类型的 key 有权限。</p>
+<p>2、删除指定类型的权限：-@hash</p>
+  <figure class="highlight perl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs perl">-- 删除hash类型key的所有权限<br>&gt; ACL SETUSER zhoujy -@hash +@string<br>OK<br><br><span class="hljs-comment">## 查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad -@all +@string"</span><br></code></pre></div></td></tr></table></figure>
+
+<p><strong>说明</strong>：用户 zhoujy 移除对 hash 类型的 key 有权限。</p>
+<p>3、指定特定 key 的权限：如 sortedset：~z*，z 开头的 key</p>
+  <figure class="highlight perl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs perl">-- 访问指定key的正则<br>&gt; ACL SETUSER zhoujy ~z* +@sortedset -@string<br>OK<br><br><span class="hljs-comment">## 查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~z* -@all +@sortedset"</span><br></code></pre></div></td></tr></table></figure>
+
+<p><strong>说明</strong>：用户 zhoujy 只有对 z 开头的 key 有权限。</p>
+<p>4、授权只读 / 只写的权限：+@read、+@write</p>
+  <figure class="highlight perl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs perl">-- 授权所有key的只读权限<br>&gt; ACL SETUSER zhoujy ~* +@read<br>OK<br><br><span class="hljs-comment">##查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* -@all +@read +@hash +@bitmap +@geo -georadiusbymember -hsetnx -setbit -hset -geoadd -bitop -hincrbyfloat -hdel -bitfield -hincrby -hmset -georadius"</span><br><br>-- 授权所有key的只写权限<br>&gt; ACL SETUSER zhoujy +@write<br>OK<br><br><span class="hljs-comment">##查看</span><br><span class="hljs-number">192.168</span>.<span class="hljs-number">163.134</span>:<span class="hljs-number">8379</span>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* -@all +@write +@list +@string +@stream +@fast +@blocking -dbsize -getrange -scard -xrevrange -zrank -llen -xread -ttl -get -ping -watch -publish -hlen -xrange -stralgo -zcount -getbit -lastsave -readonly -hmget -hello -zcard -discard -hstrlen -xinfo -hget -exists -bitfield_ro -select -role -zlexcount -zrevrank -lolwut -hexists -touch -lindex -unwatch -sismember -strlen -xlen -asking -type -mget -time -xpending -echo -multi -auth -readwrite -lrange -pttl -zscore -substr"</span><br></code></pre></div></td></tr></table></figure>
+
+<p><strong>说明</strong>：用户 zhoujy 对所有 key 有只读或则只写的权限，如果下个这对指定 key，则替换 <strong>~*</strong> 即可。</p>
+<p>5、授权管理权限：@admin</p>
+  <figure class="highlight perl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs perl">-- 授权管理权限<br>&gt; ACL SETUSER zhoujy on &gt;abc ~* +@admin<br>OK<br><br><span class="hljs-comment">## 查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* -@all +@admin +@dangerous -flushall -flushdb -swapdb -keys -role -sort -migrate -restore-asking -restore -info"</span><br></code></pre></div></td></tr></table></figure>
+
+<p><strong>说明</strong>：用户 zhoujy 有管理权限，包含了危险操作的类型，但排除了 <strong>-</strong> 开头命令的权限。</p>
+<p>6、允许特定类型 key 的子命令权限：</p>
+  <figure class="highlight applescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs applescript"><span class="hljs-comment">-- 设置子命令。</span><br>&gt; ACL SETUSER zhoujy <span class="hljs-keyword">on</span> &gt;abc ~* -client +client|getname +client|setname<br>OK<br><br><span class="hljs-comment">##查看</span><br>&gt; ACL LIST<br><span class="hljs-number">1</span>) <span class="hljs-string">"user default on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all"</span><br><span class="hljs-number">2</span>) <span class="hljs-string">"user zhoujy on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* -@all +client|getname +client|setname"</span><br></code></pre></div></td></tr></table></figure>
+
+<p><strong>说明</strong>：开始删除 CLIENT 命令，然后添加了两个允许的子命令。请注意，不能相反，即不能 + 在前面，只能添加而不是排除子命令，因为将来可能会添加新的子命令。<strong>注意</strong>子命令匹配可能会增加一些性能损失。</p>
+<p>7、特定用途的账号权限：Sentinel 和 Replicas</p>
+  <figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-comment">-- Sentinel：允许用户在主和副本实例中都有以下命令权限</span><br>&gt; ACL SETUSER sentinel-<span class="hljs-keyword">user</span> &gt;somepassword +client +subscribe +publish +ping +<span class="hljs-keyword">info</span> +multi +slaveof +config +client +exec <span class="hljs-keyword">on</span><br>OK<br><br><span class="hljs-comment">-- Replicas:副本需要在主实例上有以下命令权限</span><br>&gt; ACL SETUSER <span class="hljs-keyword">replica</span>-<span class="hljs-keyword">user</span> &gt;somepassword +psync +replconf +ping <span class="hljs-keyword">on</span><br>OK<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h4 id="保存、加载相关：save、load"><a href="#保存、加载相关：save、load" class="headerlink" title="保存、加载相关：save、load"></a>保存、加载相关：save、load</h4><p>通过 ACL 创建的用户是保存在内存里的，如果 Redis Server 重启则 ACL 创建的用户会丢失，所以在创建完用户后需要用 <strong>save</strong> 保存，在重启之后需要用 <strong>load</strong> 加载。有两种方式进行保存和加载：</p>
+  <figure class="highlight basic"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs basic"><span class="hljs-number">1</span>，使用ACL命令:ACL <span class="hljs-keyword">SAVE</span>、ACL <span class="hljs-keyword">LOAD</span><br><span class="hljs-number">2</span>，使用Redis配置，用户被定义，然后重启服务器并生效。 或者使用外部ACL文件，使用ACL <span class="hljs-keyword">LOAD</span> 来导入ACL信息<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>注意：ACL 的配合文件需要事先手动 touch，否则实例启动会失败。</strong>在 redis.conf 里配置和 acl 文件里配置的方法互不兼容，Redis 会要求使用其中一种。 否则实例启动报错：</p>
+  <figure class="highlight vhdl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs vhdl"><span class="hljs-comment">-- 报错信息</span><br>#Configuring Redis <span class="hljs-keyword">with</span> users defined <span class="hljs-keyword">in</span> redis.conf <span class="hljs-keyword">and</span> at the same setting an ACL <span class="hljs-keyword">file</span> path <span class="hljs-keyword">is</span> invalid. This setup <span class="hljs-keyword">is</span> very likely <span class="hljs-keyword">to</span> lead <span class="hljs-keyword">to</span> <span class="hljs-keyword">configuration</span> errors <span class="hljs-keyword">and</span> security holes, please define either an ACL <span class="hljs-keyword">file</span> <span class="hljs-keyword">or</span> declare users directly <span class="hljs-keyword">in</span> your redis.conf, but <span class="hljs-keyword">not</span> both.<br></code></pre></div></td></tr></table></figure>
+
+<p>在 redis.conf 中指定用户是一种非常简单的方法，适用于简单的用例。 当有多个用户要定义时，在复杂的环境中，强烈建议使用 ACL 文件。该 2 个文件里的配置内容是一致的，可以相互进行配置，如格式如下：在 redis.conf 和 users.acl 里的格式</p>
+  <figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros">-- 配置文件<br>user<span class="hljs-built_in"> default </span>on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all<br>user zhoujy on #ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad ~* +@all<br></code></pre></div></td></tr></table></figure>
+
+<p>1、保存 ACL 规则</p>
+  <figure class="highlight ada"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ada"><span class="hljs-comment">-- 保存ACL规则</span><br>&gt; ACL SAVE<br>OK<br></code></pre></div></td></tr></table></figure>
+
+<p>2、加载 ACL 规则</p>
+  <figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-comment">-- 加载ACL规则</span><br>&gt; ACL <span class="hljs-keyword">LOAD</span><br>OK<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>说明</strong>：在使用 ACL 配置文件之后，如果设置了默认用户（default）规则的话，需要看配置文件中 aclfile 和 requirepass 参数的先后顺序，密码以最后出现的为准。</p>
+<h4 id="日志相关"><a href="#日志相关" class="headerlink" title="日志相关"></a>日志相关</h4><p>显示最近的 ACL 安全事件列表<br>通过 ACL LOG [<count> | RESET] 返回 ACL 的日志信息，可以指定条目显示，也可以进行重置：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs lsl">-- 显示日志信息<br>&gt; ACL LOG <span class="hljs-number">1</span><br><span class="hljs-number">1</span>)  <span class="hljs-number">1</span>) <span class="hljs-string">"count"</span><br>    <span class="hljs-number">2</span>) (<span class="hljs-type">integer</span>) <span class="hljs-number">1</span><br>    <span class="hljs-number">3</span>) <span class="hljs-string">"reason"</span><br>    <span class="hljs-number">4</span>) <span class="hljs-string">"auth"</span><br>    <span class="hljs-number">5</span>) <span class="hljs-string">"context"</span><br>    <span class="hljs-number">6</span>) <span class="hljs-string">"toplevel"</span><br>    <span class="hljs-number">7</span>) <span class="hljs-string">"object"</span><br>    <span class="hljs-number">8</span>) <span class="hljs-string">"AUTH"</span><br>    <span class="hljs-number">9</span>) <span class="hljs-string">"username"</span><br>   <span class="hljs-number">10</span>) <span class="hljs-string">"zhoujy"</span><br>   <span class="hljs-number">11</span>) <span class="hljs-string">"age-seconds"</span><br>   <span class="hljs-number">12</span>) <span class="hljs-string">"282.90499999999997"</span><br>   <span class="hljs-number">13</span>) <span class="hljs-string">"client-info"</span><br>   <span class="hljs-number">14</span>) <span class="hljs-string">"id=5 addr=192.168.163.134:35246 fd=7 name= age=403 idle=0 flags=N db=0 sub=0 psub=0 multi=-1 qbuf=36 qbuf-free=32732 obl=0 oll=0 omem=0 events=r cmd=auth user=zhoujy"</span><br><br>-- 重置日志，类似slow<br>&gt; acl log reset<br>OK<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="场景说明"><a href="#场景说明" class="headerlink" title="场景说明"></a>场景说明</h2><p><strong>注意：</strong>以上操作完只有需要执行 ACL SAVE。不然重置之后用户信息全部都清空了。</p>
+<ol>
+<li><p>创建 DBA 管理账号</p>
+<figure class="highlight applescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs applescript">&gt; ACL SETUSER dba <span class="hljs-keyword">on</span> <span class="hljs-comment">#6d0ac515af9df81653ed0aa3ffa692663c3f556079791e2f00a4578990da66f3 allkeys +@all</span><br>OK<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>创建读写账号</p>
+<figure class="highlight applescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs applescript">&gt; ACL SETUSER readwrite <span class="hljs-keyword">on</span> &gt;abc allkeys -@all +@<span class="hljs-built_in">read</span> +@<span class="hljs-built_in">write</span><br>OK<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>创建只读账号</p>
+<figure class="highlight applescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs applescript">&gt; ACL SETUSER readonly <span class="hljs-keyword">on</span> &gt;abc allkeys -@all +@<span class="hljs-built_in">read</span><br>OK<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>创建只写账号</p>
+<figure class="highlight applescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs applescript">&gt; ACL SETUSER write_user <span class="hljs-keyword">on</span> &gt;abc allkeys -@all +@<span class="hljs-built_in">write</span><br>OK<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>创建复制账号</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql">&gt; ACL SETUSER <span class="hljs-keyword">replica</span>-<span class="hljs-keyword">user</span> &gt;abc -@<span class="hljs-keyword">all</span> +psync +replconf +ping <span class="hljs-keyword">on</span><br>OK<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>创建哨兵账号</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql">&gt; ACL SETUSER sentinel-<span class="hljs-keyword">user</span> &gt;abc -@<span class="hljs-keyword">all</span> +client +subscribe +publish +ping +<span class="hljs-keyword">info</span> +multi +slaveof +config +client +exec <span class="hljs-keyword">on</span><br>OK<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>创建监控账号</p>
+<figure class="highlight smali"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs smali">&gt; ACL SETUSER<span class="hljs-built_in"> monitor </span>on &gt;abc +monitor<br>OK<br></code></pre></div></td></tr></table></figure>
+</li>
+<li><p>创建指定 key、有指定类型权限的账号</p>
+<figure class="highlight applescript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs applescript"><span class="hljs-comment">-- 指定对h开头的hash类型的key有权限</span><br>&gt; ACL SETUSER ops_user <span class="hljs-keyword">on</span> &gt;abc ~h* +@hash<br>OK<br></code></pre></div></td></tr></table></figure>
+
+<p>其中 key 的模式是正则匹配，需要 <strong>~</strong> 开头，针对权限则是 hash 的类，其权限可以通过 ACL CAT hash 查看。</p>
+</li>
+</ol>
+<h2 id="使用外部-ACL-文件"><a href="#使用外部-ACL-文件" class="headerlink" title="使用外部 ACL 文件"></a>使用外部 ACL 文件</h2><p>有两种方法可以将用户存储在 Redis 配置中，一种是 <code>redis.conf</code> 中配置，一种是使用一个独立的外部 acl 文件，这两种方式不兼容，只能选择一种方式。</p>
+<p>在<code>redis.conf</code>内部指定用户是一种非常简单的方法，适用于简单的用例。当需要定义多个用户时，在复杂的环境中，我们强烈建议您使用 ACL 文件。</p>
+<p>通常外部文件的方式更灵活，推荐使用。</p>
+<p>配置内容如下：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs crmsh"><span class="hljs-keyword">user</span> <span class="hljs-title">&lt;username</span>&gt; ... acl rules ...<br></code></pre></div></td></tr></table></figure>
+
+<p>来看一个示例：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">user</span> worker +<span class="hljs-variable">@list</span> +<span class="hljs-variable">@connection</span> ~jobs:* <span class="hljs-literal">on</span> &gt;ffa9203c493aa99<br></code></pre></div></td></tr></table></figure>
+
+<p>当您要使用外部 ACL 文件时，需要在 redis.conf 文件中设置 <code>aclfile</code>文件的路径，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">aclfile /etc/redis/users.acl<br></code></pre></div></td></tr></table></figure>
+
+<p>当仅在 redis.conf 文件内部直接指定几个用户时，可以使用 CONFIG REWRITE 以便通过重写将新的用户配置存储在文件中。</p>
+<p>但是，外部 ACL 文件功能更强大。您可以执行以下操作：</p>
+<ul>
+<li>使用 <code>ACL LOAD</code> 重新加载外部 ACL 文件，通常在你手动修改了这个文件，希望 redis 重新加载的时候使用，需要注意的是要确保 acl 文件内容的正确性</li>
+<li>使用 <code>ACL SAVE</code> 将当前 ACL 配置保存到一个外部文件</li>
+</ul>
+<div class="note note-success">
+            <p><strong>参考文档</strong></p><p><a href="https://redis.io/topics/acl" target="_blank" rel="noopener">https://redis.io/topics/acl</a></p><p><a href="https://redis.io/commands/acl-setuser" target="_blank" rel="noopener">https://redis.io/commands/acl-setuser</a></p>
+          </div>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/08/2021-02-10-redis-high-availability/">
+                        <span class="hidden-mobile"> Redis高可用总结：Redis主从复制、哨兵集群、脑裂... </span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

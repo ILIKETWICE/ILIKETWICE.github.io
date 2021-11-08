@@ -182,6 +182,97 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/03/03/interview-questions11-nginx/" target="_self">
+           运维面试题系列--Nginx、LVS 
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/03/interview-questions11-nginx/" target="_self">
+          
+          
+            
+          
+          Nginx LVS Apache理论部分1、LVS的模式：
+NAT模式
+
+工作过程
+（1）：用户将请求发送至调度器上，此时LVS根据算法选择一个后端的真实服务器，将数据请求包转发给真实服务器，并在转发之前LVS会修改数据包中的目标地址以及目标端口，此时修改为后端服务器ip地址
+（2）：后端服务器将响应的数据包返回给LVS调度器，调度器在响应数据包后会将源地址和源端口修改为vip及调度器相应端口，修
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-03 00:00" pubdate>
+              2021-03-03
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/03/interview-questions12-docker/" target="_self">
+           运维面试题系列--Docker 
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/03/interview-questions12-docker/" target="_self">
+          
+          
+            
+          
+          Docker 面试问题Docker与LXC（Linux Container）有何不同？123LXC利用Linux上相关技术实现容器，Docker则在如下的几个方面进行了改进：移植性：通过抽象容器配置，容器可以实现一个平台移植到另一个平台；  镜像系统：基于AUFS的镜像系统为容器的分发带来了很多的便利，同时共同的镜像层只需要存储一份，实现高效率的存储；  版本管理：类似于GIT的版本管理理念，用户
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-03 00:00" pubdate>
+              2021-03-03
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/03/03/interview-questions2-linux/" target="_self">
            运维面试题系列--Linux问题 
         </a>
@@ -566,107 +657,6 @@ git checkout — files把文件从暂存区域复制到工作目录，用来丢�
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Git/">Git</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/02/10/2021-02-10-redis-high-availability/" target="_self">
-           Redis高可用总结：Redis主从复制、哨兵集群、脑裂... 
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/02/10/2021-02-10-redis-high-availability/" target="_self">
-          
-          
-            
-          
-          在实际的项目中，服务高可用非常重要，如，当Redis作为缓存服务使用时， 缓解数据库的压力，提高数据的访问速度，提高网站的性能 ，但如果使用Redis 是单机模式运行 ，只要一个服务器宕机就不可以提供服务，这样会可能造成服务效率低下，甚至出现其相对应的服务应用不可用。
-因此为了实现高可用，Redis 提供了哪些高可用方案？
-
-Redis主从复制
-Redis持久化
-哨兵集群
-…
-
-
-Redis基于一
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-02-10 19:37" pubdate>
-              2021-02-10
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Redis/">Redis</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/01/2020-10-01-mysql-interview-questions/" target="_self">
-           Mysql面试题50道 
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/10/01/2020-10-01-mysql-interview-questions/" target="_self">
-          
-          
-            
-          
-          1、MySQL 中有哪几种锁？
-（1）表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最 高，并发度最低。
-（2）行级锁：开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最 低，并发度也最高。
-（3）页面锁：开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表 锁和行锁之间，并发度一般。
-2、MySQL 中有哪些不同的表格？
-共有 5 种类型的表格：
-（1）My
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-01 10:25" pubdate>
-              2020-10-01
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
             
           </div>
         
