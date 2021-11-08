@@ -1,6 +1,7 @@
 # Linux Engginner's Blog
 
 Hey, buddy, welcome here
+
 I am a Linux engineer, currently learning Python, and this blog is a record of knowledge from my work experience
 
 The main technical points in this blog include: Docker, K8S, Redis, Nginx, Interview
