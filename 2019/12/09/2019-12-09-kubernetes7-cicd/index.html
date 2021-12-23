@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月3日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -259,7 +259,7 @@
 <p>​    b.通过Dockerfile生成镜像。</p>
 <p>​    c.将镜像提送（Push）到私有Harbor。</p>
 <p>​    d.Jenkins再次控制Kubernetes进行最新的镜像部署。</p>
-<p>注:    </p>
+<p>注:</p>
 <ul>
 <li><em>上面所述为一般步骤，中间还可能会涉及自动化测试等步骤，可自行根据业务场景添加。</em></li>
 <li><em>上面流水线步骤一般由应用代码库的根目录下Jenkinsfile决定，Jenkins会自动读取该文件；另外如果需要对具体的应用流水线实施强管控，可以独立管理jenkinsfile模板，然后根据jenkins API接口即时生成流水线。</em></li>
@@ -270,7 +270,7 @@
 <p><strong>step3：</strong>harbor 安装配置指南  <a href="https://github.com/goharbor/harbor/blob/v1.7.4/docs/installation_guide.md" target="_blank" rel="noopener">https://github.com/goharbor/harbor/blob/v1.7.4/docs/installation_guide.md</a></p>
 <p><strong>step4：</strong>jenkins</p>
 <p><em>注: 本文主要说明下jenkins的部署及配置，其他组件如果你部署有问题，欢迎留言。</em></p>
-<h1 id="5、Jenkins部署及配置"><a href="#5、Jenkins部署及配置" class="headerlink" title="5、Jenkins部署及配置"></a>5、Jenkins部署及配置</h1><p><strong>0. 说明:</strong> </p>
+<h1 id="5、Jenkins部署及配置"><a href="#5、Jenkins部署及配置" class="headerlink" title="5、Jenkins部署及配置"></a>5、Jenkins部署及配置</h1><p><strong>0. 说明:</strong></p>
 <ul>
 <li><p>以下的yaml文件均在 k8s master节点的 /home/jenkins_deploy目录下。</p>
 </li>

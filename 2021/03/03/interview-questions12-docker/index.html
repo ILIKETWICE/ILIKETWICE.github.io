@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月24日 下午
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -255,7 +255,7 @@
 
 <h3 id="本地的镜像文件都存放在哪里？"><a href="#本地的镜像文件都存放在哪里？" class="headerlink" title="本地的镜像文件都存放在哪里？"></a><strong>本地的镜像文件都存放在哪里</strong>？</h3><figure class="highlight crystal"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs crystal">与Docker相关的本地资源存放在/var/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">docker</span>/目录下，其中<span class="hljs-title">container</span>目录存放容器信息， <span class="hljs-title">graph</span>目录存放镜像信息，<span class="hljs-title">aufs</span>目录下存放具体的镜像底层文件。</span><br></code></pre></div></td></tr></table></figure>
 
-<h3 id="构建Docker镜像应该遵循哪些原则？"><a href="#构建Docker镜像应该遵循哪些原则？" class="headerlink" title="构建Docker镜像应该遵循哪些原则？"></a>构建Docker镜像应该遵循哪些原则？</h3><figure class="highlight vala"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs vala">整体原则上，尽量保持镜像功能的明确和内容的精简，要点包括：  <br><span class="hljs-meta"># 尽量选取满足需求但较小的基础系统镜像，建议选择debian:wheezy镜像，仅有86MB大小  </span><br><span class="hljs-meta"># 清理编译生成文件、安装包的缓存等临时文件  </span><br><span class="hljs-meta"># 安装各个软件时候要指定准确的版本号，并避免引入不需要的依赖  </span><br><span class="hljs-meta"># 从安全的角度考虑，应用尽量使用系统的库和依赖  </span><br><span class="hljs-meta"># 使用Dockerfile创建镜像时候要添加.dockerignore文件或使用干净的工作目录</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="构建Docker镜像应该遵循哪些原则？"><a href="#构建Docker镜像应该遵循哪些原则？" class="headerlink" title="构建Docker镜像应该遵循哪些原则？"></a>构建Docker镜像应该遵循哪些原则？</h3><figure class="highlight vala"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs vala">整体原则上，尽量保持镜像功能的明确和内容的精简，要点包括：<br><span class="hljs-meta"># 尽量选取满足需求但较小的基础系统镜像，建议选择debian:wheezy镜像，仅有86MB大小</span><br><span class="hljs-meta"># 清理编译生成文件、安装包的缓存等临时文件</span><br><span class="hljs-meta"># 安装各个软件时候要指定准确的版本号，并避免引入不需要的依赖</span><br><span class="hljs-meta"># 从安全的角度考虑，应用尽量使用系统的库和依赖</span><br><span class="hljs-meta"># 使用Dockerfile创建镜像时候要添加.dockerignore文件或使用干净的工作目录</span><br></code></pre></div></td></tr></table></figure>
 
 <h3 id="如何获取某个容器的PID信息"><a href="#如何获取某个容器的PID信息" class="headerlink" title="如何获取某个容器的PID信息?"></a>如何获取某个容器的PID信息?</h3><figure class="highlight sqf"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sqf">docker inspect --<span class="hljs-built_in">format</span> <span class="hljs-string">'&#123;&#123; .State.Pid &#125;&#125;'</span> &lt;CONTANINERID <span class="hljs-built_in">or</span> <span class="hljs-built_in">NAME</span>&gt;<br></code></pre></div></td></tr></table></figure>
 

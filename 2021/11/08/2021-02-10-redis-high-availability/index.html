@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年11月8日 晚上
+                  本文最后更新于：2021年12月15日 上午
                 
               </p>
             
@@ -274,7 +274,7 @@
 <li><strong>全量同步：</strong>通常是主从服务器刚刚连接的时候，会先进行全量同步</li>
 <li><strong>增量同步 ：</strong>一般在全同步结束后，进行增量同步，比如主从库间网络断，再进行数据同步。</li>
 </ul>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="全量同步"><a href="#全量同步" class="headerlink" title="全量同步"></a><strong>全量同步</strong></h4><p>主从库间第一次全量同步，具体分成三个阶段：</p>
+<h4 id="全量同步"><a href="#全量同步" class="headerlink" title="全量同步"></a><strong>全量同步</strong></h4><p>主从库间第一次全量同步，具体分成三个阶段：</p>
 <ul>
 <li>当一个从库启动时，从库给主库发送 psync 命令进行数据同步（psync 命令包含：主库的 runID 和复制进度 offset 两个参数），</li>
 <li>当主库接收到psync 命令后将会保存RDB 文件并发送给从库，发送期间会使用缓存区（replication buffer）记录后续的所有写操作 ，从库收到数据后，会先清空当前数据库，然后加载从主库获取的RDB 文件，</li>
@@ -372,7 +372,8 @@
 <li><strong>脑裂导致的数据丢失</strong></li>
 <li><strong>主备切换的过程，异步复制导致数据不一致</strong></li>
 </ul>
-<h4 id="-1"><a href="#-1" class="headerlink" title=""></a></h4><h4 id="数据丢失-主从异步复制"><a href="#数据丢失-主从异步复制" class="headerlink" title="数据丢失-主从异步复制"></a><strong>数据丢失-主从异步复制</strong></h4><p>因为master 将数据复制给slave是异步实现的，在复制过程中，这可能存在master有部分数据还没复制到slave，master就宕机了，此时这些部分数据就丢失了。</p>
+<p>####</p>
+<h4 id="数据丢失-主从异步复制"><a href="#数据丢失-主从异步复制" class="headerlink" title="数据丢失-主从异步复制"></a><strong>数据丢失-主从异步复制</strong></h4><p>因为master 将数据复制给slave是异步实现的，在复制过程中，这可能存在master有部分数据还没复制到slave，master就宕机了，此时这些部分数据就丢失了。</p>
 <p><strong>总结：主库的数据还没有同步到从库，结果主库发生了故障，未同步的数据就丢失了。</strong></p>
 <h4 id="数据丢失-脑裂"><a href="#数据丢失-脑裂" class="headerlink" title="数据丢失-脑裂"></a><strong>数据丢失-脑裂</strong></h4><p>何为脑裂？当一个集群中的 master 恰好网络故障，导致与 sentinal 通信不上了，sentinal会认为master下线，且sentinal选举出一个slave 作为新的 master，此时就存在两个 master了。</p>
 <p>此时，可能存在client还没来得及切换到新的master，还继续写向旧master的数据，当master再次恢复的时候，会被作为一个slave挂到新的master 上去，自己的数据将会清空，重新从新的master 复制数据，这样就会导致数据缺失。</p>

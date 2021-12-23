@@ -182,6 +182,100 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2020/01/15/2020-01-15-why-exec-program/" target="_self">
+           为什么执行自己的程序要在前面加./ 
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/01/15/2020-01-15-why-exec-program/" target="_self">
+          
+          
+            
+          
+          在Linux中，我们执行内置命令时，直接输入命令名称即可，如：
+1$ mv a b #将a重命名为b
+
+而在执行自己写好的程序时，却要带上./，例如：
+1234$ hellohello: command not found$ ./hellohello world
+
+这是为什么呢？它们有什么区别呢？
+shell是如何运行程序的在说明清楚问题之前，我们必须了解shell是如何运行程序的。首先我们必须要
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-15 00:00" pubdate>
+              2020-01-15
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/01/14/2020-01-14-distributed-and-cluster-difference/" target="_self">
+           分布式和集群的区别 
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/01/14/2020-01-14-distributed-and-cluster-difference/" target="_self">
+          
+          
+            
+          
+          分布式开发的时代实际上早已悄悄地成为了时代的主流，吵得很热的云计算实际上只是包装在分布式之外的商业概念，很多开发者（包括我）都想加入研究云计算这个潮流，在 Google 上通过 “云计算” 这个关键词来查询资料，查到的都是些概念性或商业性的宣传资料，其实真正需要深入的还是那个早以被人熟知的概念——分布式。
+分布式可繁也可以简，最简单的分布式就是大家最常用的，在负载均衡服务器后加一堆 Web 服务器
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-14 00:00" pubdate>
+              2020-01-14
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%9E%B6%E6%9E%84/">架构</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2020/01/13/2020-01-13-why-microservice-gateway/" target="_self">
           为什么需要微服务网关
         </a>
@@ -378,10 +472,10 @@
           
           Sonarqube，是一种自动代码审查工具，可检测代码中的错误，漏洞和代码异常。它可以与您现有的工作流程集成，以实现跨项目分支和请求请求的连续代码检查。
 1、拉取镜像
-12docker pull soanrqube docker pull postgres
+12docker pull soanrqubedocker pull postgres
 
 2、启动postgres
-123456docker run -d --name postgresql --restart=always \-
+123456docker run -d --name postgresql --restart=always \-p
         </a>
       </p>
 
@@ -548,103 +642,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/12/31/2019-12-31-tcp-timeout-and-retransmission/" target="_self">
-           TCP 超时与重传 
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/12/31/2019-12-31-tcp-timeout-and-retransmission/" target="_self">
-          
-          
-            
-          
-          我们都知道 TCP 协议具有重传机制，也就是说，如果发送方认为发生了丢包现象，就重发这些数据包。很显然，我们需要一个方法来「猜测」是否发生了丢包。最简单的想法就是，接收方每收到一个包，就向发送方返回一个 ACK，表示自己已经收到了这段数据，反过来，如果发送方一段时间内没有收到 ACK，就知道很可能是数据包丢失了，紧接着就重发该数据包，直到收到 ACK 为止。
-你可能注意到我用的是「猜测」，因为即使
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-12-31 00:00" pubdate>
-              2019-12-31
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Nginx/">Nginx</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/12/30/2019-12-30-tcp-handshake/" target="_self">
-           TCP 协议，握手挥手不是你想的那么简单 
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/12/30/2019-12-30-tcp-handshake/" target="_self">
-          
-          
-            
-          
-          TCP 报文段结构一谈到 TCP 协议，大家最先想到的词就是「面向连接」和「可靠」。没错，TCP 协议的设计就是为了能够在客户端和服务器之间建立起一个可靠连接。
-在讲连接过程之前，我们先来看看 TCP 的报文段结构，通过这个结构，我们可以知道 TCP 能够提供什么信息：
-
-这里有几点是需要注意的：
-
-TCP 协议需要一个四元组（源IP，源端口，目的IP，目的端口）来确定连接，这要和 UDP 协议区
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-12-30 00:00" pubdate>
-              2019-12-30
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/TCP/">TCP</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

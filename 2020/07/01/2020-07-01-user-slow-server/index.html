@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月3日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -267,7 +267,7 @@
 <p>   b. 查看了下timewait的量: 发现有mysqld 和 httpd 的，大部分来自于 httpd  ； 命令 netstat -ae|grep TIME_WAIT</p>
 <div class="hljs code-wrapper"><pre><code>如何来解决timewait的量问题呢？</code></pre></div><p>TIME_WAIT解决办法：</p>
 <p>vi /etc/sysctl.conf</p>
-<p>编辑文件，加入以下内容：<br>net.ipv4.tcp_syncookies = 1<br>net.ipv4.tcp_tw_reuse = 1<br>net.ipv4.tcp_tw_recycle = 1<br>net.ipv4.tcp_fin_timeout = 30<br>net.ipv4.tcp_keepalive_time = 30  保持连接的时间<br>net.ipv4.tcp_max_tw_buckets = 100 这个是设置服务器同时保持的time_wait的数目 </p>
+<p>编辑文件，加入以下内容：<br>net.ipv4.tcp_syncookies = 1<br>net.ipv4.tcp_tw_reuse = 1<br>net.ipv4.tcp_tw_recycle = 1<br>net.ipv4.tcp_fin_timeout = 30<br>net.ipv4.tcp_keepalive_time = 30  保持连接的时间<br>net.ipv4.tcp_max_tw_buckets = 100 这个是设置服务器同时保持的time_wait的数目</p>
 <p>然后执行 /sbin/sysctl -p 让参数生效。</p>
 <p>如果还不够满意可以 再设置下Ulimit参数<br>cat &gt;&gt;/etc/security/limits.conf&lt;&lt;EOF<br>* soft nofile 655350<br>* hard nofile 655350<br>EOF<br>然后ulimit -SHn 了 让生效。</p>
 

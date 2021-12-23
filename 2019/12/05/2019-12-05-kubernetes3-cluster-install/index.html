@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月3日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -274,7 +274,7 @@
 
 <p><strong>3.1.4 更改镜像地址并修改Docker配置</strong></p>
 <p>在inventory/testcluster/group_vars/k8s-cluster/k8s-cluster.yml文件中添加如下配置：</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> kubernetes image repo define</span><br>kube_image_repo: "10.0.0.183:5000/google_containers"<br><span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># modified by: robbin</span></span><br><span class="hljs-meta">#</span><span class="bash"> comment: 将使⽤的组件的镜像仓库修改为私有镜像仓库地址</span><br>etcd_image_repo: "10.0.0.183:5000/coreos/etcd"<br>coredns_image_repo: "10.0.0.183:5000/coredns"<br>calicoctl_image_repo: "10.0.0.183:5000/calico/ctl"<br>calico_node_image_repo: "10.0.0.183:5000/calico/node"<br>calico_cni_image_repo: "10.0.0.183:5000/calico/cni"<br>calico_policy_image_repo: "10.0.0.183:5000/calico/kube-controllers"<br>hyperkube_image_repo: "&#123;&#123; kube_image_repo &#125;&#125;/hyperkube-&#123;&#123; image_arch &#125;&#125;"<br>pod_infra_image_repo: "&#123;&#123; kube_image_repo &#125;&#125;/pause-&#123;&#123; image_arch &#125;&#125;"<br>dnsautoscaler_image_repo: "&#123;&#123; kube_image_repo &#125;&#125;/cluster-proportional-autoscaler-&#123;&#123; image_arch &#125;&#125;"<br>dashboard_image_repo: "&#123;&#123; kube_image_repo &#125;&#125;/kubernetes-dashboard-&#123;&#123; image_arch &#125;&#125;"<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> kubernetes image repo define</span><br>kube_image_repo: "10.0.0.183:5000/google_containers"<br><br><span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment"># modified by: robbin</span></span><br><br><span class="hljs-meta">#</span><span class="bash"> comment: 将使⽤的组件的镜像仓库修改为私有镜像仓库地址</span><br>etcd_image_repo: "10.0.0.183:5000/coreos/etcd"<br>coredns_image_repo: "10.0.0.183:5000/coredns"<br>calicoctl_image_repo: "10.0.0.183:5000/calico/ctl"<br>calico_node_image_repo: "10.0.0.183:5000/calico/node"<br>calico_cni_image_repo: "10.0.0.183:5000/calico/cni"<br>calico_policy_image_repo: "10.0.0.183:5000/calico/kube-controllers"<br>hyperkube_image_repo: "&#123;&#123; kube_image_repo &#125;&#125;/hyperkube-&#123;&#123; image_arch &#125;&#125;"<br>pod_infra_image_repo: "&#123;&#123; kube_image_repo &#125;&#125;/pause-&#123;&#123; image_arch &#125;&#125;"<br>dnsautoscaler_image_repo: "&#123;&#123; kube_image_repo &#125;&#125;/cluster-proportional-autoscaler-&#123;&#123; image_arch &#125;&#125;"<br>dashboard_image_repo: "&#123;&#123; kube_image_repo &#125;&#125;/kubernetes-dashboard-&#123;&#123; image_arch &#125;&#125;"<br></code></pre></div></td></tr></table></figure>
 
 <p>由于我们的私有镜像仓库未配置https证书，需要在 inventory/testcluster/group_vars/all/docker.yml文件中添加如下配置：</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">docker_insecure_registries:<br>- 10.0.0.183:5000<br></code></pre></div></td></tr></table></figure>
@@ -295,7 +295,7 @@
 <p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-05/3-3-1.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
 <p><strong>可选插件列表</strong></p>
 <p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-05/3-3-2.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
-<h2 id="3-4-DNS方案"><a href="#3-4-DNS方案" class="headerlink" title="3.4 DNS方案"></a>3.4 DNS方案</h2><p>k8s的服务发现依赖于DNS，涉及到两种类型的网络：主机网络和容器网络，所以Kubespray提供了两种配置来进行管理 </p>
+<h2 id="3-4-DNS方案"><a href="#3-4-DNS方案" class="headerlink" title="3.4 DNS方案"></a>3.4 DNS方案</h2><p>k8s的服务发现依赖于DNS，涉及到两种类型的网络：主机网络和容器网络，所以Kubespray提供了两种配置来进行管理</p>
 <p><strong>3.4.1 dns_mode</strong></p>
 <p>dns_mode 主要用于集群内的域名解析，有如下几种类型，我们的技术选型是coredns，注意：选择某种dns_mode，可能需要下载安装多个容器镜像，其镜像版本也可能不同</p>
 <p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-05/3-4-1.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
@@ -313,6 +313,7 @@
 
 <p>部署完成，可以登录到k8s-master所在的主机，执行如下命令，可以看到各个组件正常</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">kubectl cluster-info<br>kubectl get node<br>kubectl get pods --all-namespaces<br></code></pre></div></td></tr></table></figure>
+
             </div>
             <hr>
             <div>

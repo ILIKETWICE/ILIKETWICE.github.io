@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月3日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -302,7 +302,7 @@
 <p>  3a. 由于本节点上没有Pod拥有pod4的IP地址，因此⽹桥把数据包发送给了flannel0，因为节点的路由表上flannel0被配成了Pod⽹段的⽬标地址。</p>
 <p>  3b. flanneld daemon和Kubernetes apiserver或者底层的etcd通信，它知道所有的Pod IP，并且知道它们在哪个节点上。因此Flannel创建了Pod IP和Node IP之间的映射（在⽤户空间）。flannel0取到这个包，并在其上再⽤⼀个UDP包封装起来，该UDP包头部的源和⽬的IP分别被改成了对应节点的IP，然后发送这个新包到特定的VXLAN端⼝（通常是8472）。</p>
 <p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-11/3-2.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
-<p>尽管这个映射发⽣在⽤户空间，真实的封装以及数据的流动发⽣在内核空间，因此仍然是很快的。  </p>
+<p>尽管这个映射发⽣在⽤户空间，真实的封装以及数据的流动发⽣在内核空间，因此仍然是很快的。</p>
 <p>  3c. 封装后的包通过eth0发送出去，因为它涉及了节点间的路由流量。</p>
 <p>\4. 包带着节点IP信息作为源和⽬的地址离开本节点。<br>\5. 云提供商的路由表已经知道了如何在节点间发送报⽂，因此该报⽂被发送到⽬标地址node2。<br>\6. 数据解包</p>
 <p>  6a. 包到达node2的eth0⽹卡，由于⽬标端⼝是特定的VXLAN端⼝，内核将报⽂发送给了<br>flannel0。<br>  6b. flannel0解封报⽂，并将其发送到 root 命名空间下。从这⾥开始，报⽂的路径和我们之前在Part1 中看到的⾮Overlay⽹络就是⼀致的了。<br>  6c. 由于IP forwarding开启着，内核按照路由表将报⽂转发给了cbr0。</p>

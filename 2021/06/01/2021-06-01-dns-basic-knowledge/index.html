@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年6月18日 下午
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -368,17 +368,11 @@
 <li>总公司在 nameserver 上增加一条 NS 记录， 把 a.hello.com 域授权给 A 部门的 nameserver</li>
 </ol>
 <p>第一步我们在用 bind 搭建域名解析服务器里讲过， 只要在 zone 配置文件里指定SOA记录就好:</p>
-<ul>
-<li><figure class="highlight stylus"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs stylus">@       IN     SOA      ns<span class="hljs-selector-class">.a</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span>    admin<span class="hljs-selector-class">.a</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span>. (……)复制代码<br></code></pre></div></td></tr></table></figure>
+<p>-</p>
+<figure class="highlight stylus"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs stylus">@       IN     SOA      ns<span class="hljs-selector-class">.a</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span>    admin<span class="hljs-selector-class">.a</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span>. (……)复制代码<br></code></pre></div></td></tr></table></figure>
 
-</li>
-</ul>
 <p>第二步，在 hello.com 域的 nameserver 上添加一条NS记录:</p>
-<ul>
-<li></li>
-<li></li>
-</ul>
-<figure class="highlight stylus"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs stylus"><span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span>      IN       NS       ns<span class="hljs-selector-class">.a</span><span class="hljs-selector-class">.hello</span>.com<br>ns<span class="hljs-selector-class">.a</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span>      IN      A        xx<span class="hljs-selector-class">.xx</span><span class="hljs-selector-class">.xx</span><span class="hljs-selector-class">.xx</span> (自建nameserver的IP)复制代码<br></code></pre></div></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title="-"></a>-</h2><figure class="highlight stylus"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs stylus"><span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span>      IN       NS       ns<span class="hljs-selector-class">.a</span><span class="hljs-selector-class">.hello</span>.com<br>ns<span class="hljs-selector-class">.a</span><span class="hljs-selector-class">.hello</span><span class="hljs-selector-class">.com</span>      IN      A        xx<span class="hljs-selector-class">.xx</span><span class="hljs-selector-class">.xx</span><span class="hljs-selector-class">.xx</span> (自建nameserver的IP)复制代码<br></code></pre></div></td></tr></table></figure>
 
 <p>这样当解析 xx.a.hello.com 域名时，hello.com nameserver 发现配置中有 NS 记录，就会继续递归向下解析</p>
 <h2 id="DNS-调试工具"><a href="#DNS-调试工具" class="headerlink" title="DNS 调试工具"></a>DNS 调试工具</h2><p>OPS 常用的 DNS 调试工具有：host，nslookup，dig</p>

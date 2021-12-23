@@ -242,14 +242,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月3日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
             <div class="markdown-body">
               <p>本次 Prometheus 实践采用的是 Prometheus Sever + Kube-state-metrics + Grafana 的架构，每一个组件的作用如下:</p>
 <p><strong>Promethues：</strong>提供强大的数据采集、数据存储、数据展示、告警等，天生完美支持 kubernetes，CNCF 基金会的第二个成员，第一个是 Kubernetes。而且 Prometheus 里面很多思想都来源于Google 内部的监控系统 Borgmon，可以说是 Google 的干儿子。</p>
-<p><strong>kube-state-metrics：</strong>在这里作为 prometheus 的一个 exporter 来使用，提供 deployment、daemonset、cronjob 等服务的监控数据，由 kubernestes 官方提供，与 prometheus 紧密结合。因为prometheus 不能获取集群中 Deployment, Job, CronJob 的监控信息。 更多关于 kube-state-metrics 的信息可以参考：<a href="https://github.com/kubernetes/kube-state-metrics" target="_blank" rel="noopener">https://github.com/kubernetes/kube-state-metrics</a> </p>
+<p><strong>kube-state-metrics：</strong>在这里作为 prometheus 的一个 exporter 来使用，提供 deployment、daemonset、cronjob 等服务的监控数据，由 kubernestes 官方提供，与 prometheus 紧密结合。因为prometheus 不能获取集群中 Deployment, Job, CronJob 的监控信息。 更多关于 kube-state-metrics 的信息可以参考：<a href="https://github.com/kubernetes/kube-state-metrics" target="_blank" rel="noopener">https://github.com/kubernetes/kube-state-metrics</a></p>
 <p><strong>Grafana</strong>: 开源 dashboard，后端支持多种数据库，如：Influxdb、Prometheus…，插件也比较多，功能强大。非常适合用于做展示。</p>
 <p>基本架构图可以参考下图所示：</p>
 <p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-12-18/191218.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>

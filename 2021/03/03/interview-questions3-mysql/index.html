@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年6月3日 下午
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -266,11 +266,11 @@
 
 <h3 id="4、mysql索引分类"><a href="#4、mysql索引分类" class="headerlink" title="4、mysql索引分类"></a>4、mysql索引分类</h3><figure class="highlight plain"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs plain">主键索引、唯一索引、普通索引、全文索引、组合索引<br></code></pre></div></td></tr></table></figure>
 
-<h3 id="5、B-Tree索引和Hash索引区别？"><a href="#5、B-Tree索引和Hash索引区别？" class="headerlink" title="5、B+ Tree索引和Hash索引区别？"></a>5、B+ Tree索引和Hash索引区别？</h3><figure class="highlight asciidoc"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asciidoc"><span class="hljs-bullet">- </span>哈希索引适合等值查询，但是无法进行范围查询 <br><span class="hljs-bullet">- </span>哈希索引没办法利用索引完成排序 <br><span class="hljs-bullet">- </span>哈希索引不支持多列联合索引的最左匹配规则 <br><span class="hljs-bullet">- </span>如果有大量重复键值的情况下，哈希索引的效率会很低，因为存在哈希碰撞问题<br></code></pre></div></td></tr></table></figure>
+<h3 id="5、B-Tree索引和Hash索引区别？"><a href="#5、B-Tree索引和Hash索引区别？" class="headerlink" title="5、B+ Tree索引和Hash索引区别？"></a>5、B+ Tree索引和Hash索引区别？</h3><figure class="highlight asciidoc"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs asciidoc"><span class="hljs-bullet">- </span>哈希索引适合等值查询，但是无法进行范围查询<br><span class="hljs-bullet">- </span>哈希索引没办法利用索引完成排序<br><span class="hljs-bullet">- </span>哈希索引不支持多列联合索引的最左匹配规则<br><span class="hljs-bullet">- </span>如果有大量重复键值的情况下，哈希索引的效率会很低，因为存在哈希碰撞问题<br></code></pre></div></td></tr></table></figure>
 
 <h3 id="6、mysql两种引擎的区别"><a href="#6、mysql两种引擎的区别" class="headerlink" title="6、mysql两种引擎的区别"></a>6、mysql两种引擎的区别</h3><figure class="highlight angelscript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs angelscript"><span class="hljs-number">1</span>、MyISAM是非事务安全的，而InnoDB是事务安全的<br><span class="hljs-number">2</span>、MyISAM锁的粒度是表级的，而InnoDB支持行级锁<br><span class="hljs-number">3</span>、MyISAM支持全文类型索引，而InnoDB不支持全文索引<br><span class="hljs-number">4</span>、MyISAM相对简单，效率上要优于InnoDB，小型应用可以考虑使用MyISAM<br><span class="hljs-number">5</span>、MyISAM表保存成文件形式，跨平台使用更加方便<br></code></pre></div></td></tr></table></figure>
 
-<h3 id="7、两种引擎的应用场景"><a href="#7、两种引擎的应用场景" class="headerlink" title="7、两种引擎的应用场景"></a>7、两种引擎的应用场景</h3><figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql">InnoDB：支持事务处理，支持外键，支持崩溃修复能力和并发控制。如果需要对事务的完整性要求比较高（比如银行），要求实现并发控制（比如售票），那选择InnoDB有很大的优势。如果需要频繁的更新、删除操作的数据库，也可以选择InnoDB，因为支持事务的提交（<span class="hljs-keyword">commit</span>）和回滚（<span class="hljs-keyword">rollback</span>）。 <br>MyISAM：插入数据快，空间和内存使用比较低。如果表主要是用于插入新记录和读出记录，那么选择MyISAM能实现处理高效率。如果应用的完整性、并发性要求比 较低，也可以使用。<br></code></pre></div></td></tr></table></figure>
+<h3 id="7、两种引擎的应用场景"><a href="#7、两种引擎的应用场景" class="headerlink" title="7、两种引擎的应用场景"></a>7、两种引擎的应用场景</h3><figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql">InnoDB：支持事务处理，支持外键，支持崩溃修复能力和并发控制。如果需要对事务的完整性要求比较高（比如银行），要求实现并发控制（比如售票），那选择InnoDB有很大的优势。如果需要频繁的更新、删除操作的数据库，也可以选择InnoDB，因为支持事务的提交（<span class="hljs-keyword">commit</span>）和回滚（<span class="hljs-keyword">rollback</span>）。<br>MyISAM：插入数据快，空间和内存使用比较低。如果表主要是用于插入新记录和读出记录，那么选择MyISAM能实现处理高效率。如果应用的完整性、并发性要求比 较低，也可以使用。<br></code></pre></div></td></tr></table></figure>
 
 
 

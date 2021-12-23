@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月3日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -263,7 +263,7 @@
 <p>本次我们采用DaemonSet部署nginx-ingress组件，并且使用了主机的80和443接口用来分别接收http和https请求，我们将相应的域名解析到nginx-ingress Pod所在的主机IP之后，就可以通过域名来进行相应的域名访问了。</p>
 <p>但上述配置方式无法做到高可用，当nginx-ingress的Pod实例故障或者其所在主机发生故障时，会导致相应的域名无法访问，所以建议在公有云购买负载均衡设备并配置相应的后端服务器列表以实现高可用的目的。</p>
 <p><strong>2.5 安装调试</strong></p>
-<p>在上文中我们通过helm部署了一个wordpress应用，本文我们继续通过该应用进行域名访问，在本机控制台输入 </p>
+<p>在上文中我们通过helm部署了一个wordpress应用，本文我们继续通过该应用进行域名访问，在本机控制台输入</p>
 <figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">&gt; curl -i http:<span class="hljs-regexp">//</span><span class="hljs-number">10.0</span>.<span class="hljs-number">0.182</span> -H <span class="hljs-string">'Host: blog.hankercloud.com'</span><br></code></pre></div></td></tr></table></figure>
 
 <p>如果看到有正常返回则说明部署成功。</p>
@@ -276,7 +276,7 @@
 <p><strong>Step2:</strong> 对于需要暴露到公网的域名，修改其ingress的定义，相应配置参考如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">www</span><br>  <span class="hljs-attr">annotations:</span><br>    <span class="hljs-attr">kubernetes.io/ingress.class:</span> <span class="hljs-string">"nginx-external"</span><br></code></pre></div></td></tr></table></figure>
 
-<p><strong>Step3:</strong> 检查是否配置成功，执行 </p>
+<p><strong>Step3:</strong> 检查是否配置成功，执行</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">kubectl exec $&#123;POD_NAME&#125; -n kube-system cat /etc/nginx/nginx.conf<br></code></pre></div></td></tr></table></figure>
 
 <p>查看配置文件中是否已经包含外网域名的相关配置，并在本地进行测试验证。</p>

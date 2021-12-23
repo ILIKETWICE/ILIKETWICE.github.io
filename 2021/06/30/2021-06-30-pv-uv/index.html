@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年8月17日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -277,9 +277,9 @@
 <p><strong>关系</strong></p>
 <p>QPS(TPS)=并发数/平均响应时间</p>
 <p>一个系统吞吐量通常有QPS(TPS),并发数两个因素决定，每套系统这个两个值都有一个相对极限值，在应用场景访问压力下，只要某一项达到系统最高值，系统吞吐量就上不去了，如果压力继续增大，系统的吞吐量反而会下降，原因是系统超负荷工作，上下文切换，内存等等其他消耗导致系统性能下降。</p>
-<h3 id="PV"><a href="#PV" class="headerlink" title="PV"></a>PV</h3><p><strong>PV</strong>（Page View）：页面访问量，即页面浏览量或点击量，用户每次刷新即被计算一次。可以统计服务一天的访问日志得到。 </p>
-<h3 id="UV"><a href="#UV" class="headerlink" title="UV"></a>UV</h3><p><strong>UV</strong>（Unique Visitor）：独立访客，统计1天内访问某站点的用户数。可以统计服务一天的访问日志并根据用户的唯一标识去重得到。 响应时间（RT）：响应时间是指系统对请求作出响应的时间，一般取平均响应时间。可以通过Nginx、Apache之类的Web Server得到。 </p>
-<h3 id="DAU"><a href="#DAU" class="headerlink" title="DAU"></a>DAU</h3><p><strong>DAU</strong>(Daily Active User)，日活跃用户数量。常用于反映网站、互联网应用或网络游戏的运营情况。DAU通常统计一日（统计日）之内，登录或使用了某个产品的用户数（去除重复登录的用户），与UV概念相似 </p>
+<h3 id="PV"><a href="#PV" class="headerlink" title="PV"></a>PV</h3><p><strong>PV</strong>（Page View）：页面访问量，即页面浏览量或点击量，用户每次刷新即被计算一次。可以统计服务一天的访问日志得到。</p>
+<h3 id="UV"><a href="#UV" class="headerlink" title="UV"></a>UV</h3><p><strong>UV</strong>（Unique Visitor）：独立访客，统计1天内访问某站点的用户数。可以统计服务一天的访问日志并根据用户的唯一标识去重得到。 响应时间（RT）：响应时间是指系统对请求作出响应的时间，一般取平均响应时间。可以通过Nginx、Apache之类的Web Server得到。</p>
+<h3 id="DAU"><a href="#DAU" class="headerlink" title="DAU"></a>DAU</h3><p><strong>DAU</strong>(Daily Active User)，日活跃用户数量。常用于反映网站、互联网应用或网络游戏的运营情况。DAU通常统计一日（统计日）之内，登录或使用了某个产品的用户数（去除重复登录的用户），与UV概念相似</p>
 <h3 id="MAU"><a href="#MAU" class="headerlink" title="MAU"></a>MAU</h3><p><strong>MAU</strong>(Month Active User)：月活跃用户数量，指网站、app等去重后的月活跃用户数量</p>
 <h2 id="系统吞吐量评估"><a href="#系统吞吐量评估" class="headerlink" title="系统吞吐量评估"></a>系统吞吐量评估</h2><p>我们在做系统设计的时候就需要考虑CPU运算，IO，外部系统响应因素造成的影响以及对系统性能的初步预估。</p>
 <p>而通常情况下，我们面对需求，我们评估出来的出来QPS，并发数之外，还有另外一个维度：日pv。</p>

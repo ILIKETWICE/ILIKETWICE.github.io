@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      484 字
+      483 字
     </span>
   
 
@@ -242,14 +242,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月3日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
             <div class="markdown-body">
               <p><strong>Sonarqube</strong>，是一种自动代码审查工具，可检测代码中的错误，漏洞和代码异常。它可以与您现有的工作流程集成，以实现跨项目分支和请求请求的连续代码检查。</p>
 <p>1、拉取镜像</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">docker pull soanrqube <br>docker pull postgres<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">docker pull soanrqube<br>docker pull postgres<br></code></pre></div></td></tr></table></figure>
 
 <p>2、启动postgres</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">docker run -d --name postgresql --restart=always \<br>-p 5432:5432 \<br>-e POSTGRES_USER=sonarqube \<br>-e POSTGRES_PASSWORD=sonarqube \<br>-e POSTGRES_DB=sonarqube \<br>postgres<br></code></pre></div></td></tr></table></figure>

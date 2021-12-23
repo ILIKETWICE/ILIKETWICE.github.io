@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月28日 中午
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -286,7 +286,7 @@
 <h3 id="9、service四种type"><a href="#9、service四种type" class="headerlink" title="9、service四种type"></a>9、service四种type</h3><ul>
 <li>ClusterIP（默认） - 在集群中内部IP上暴露服务。此类型使Service只能从群集中访问。</li>
 <li>NodePort - 通过每个 Node 上的 IP 和静态端口（NodePort）暴露服务。NodePort 服务会路由到 ClusterIP 服务，这个ClusterIP 服务会自动创建。通过请求 <NodeIP>:<NodePort>，可以从集群的外部访问一个 NodePort 服务。</li>
-<li>LoadBalancer - 使用云提供商的负载均衡器（如果支持），可以向外部暴露服务。外部的负载均衡器可以路由到 NodePort 服务和 ClusterIP 服务。 </li>
+<li>LoadBalancer - 使用云提供商的负载均衡器（如果支持），可以向外部暴露服务。外部的负载均衡器可以路由到 NodePort 服务和 ClusterIP 服务。</li>
 <li>ExternalName - 通过返回 CNAME 和它的值，可以将服务映射到 externalName 字段的内容，没有任何类型代理被创建。</li>
 </ul>
 <h3 id="10、volum支持类型"><a href="#10、volum支持类型" class="headerlink" title="10、volum支持类型"></a>10、volum支持类型</h3><p>hostPath、nfs、glusterfs、rbd、cephfs、local</p>
@@ -296,9 +296,9 @@
 <li>ResourceQuota Controller            资源配额管理确保指定的资源对象在任何时候都不会超量占用系统物理资源</li>
 <li>Namespace Controller                   Namespace Controller定时通过API Server读取用户创建的保存在etcd的namespace</li>
 <li>endpoint controller                        负责生成和维护所有Endpoints对象的控制器</li>
-<li>service controller                            监听Service变化 </li>
-<li>serviceAccount controller   </li>
-<li>Token controller </li>
+<li>service controller                            监听Service变化</li>
+<li>serviceAccount controller</li>
+<li>Token controller</li>
 </ul>
 <h3 id="12、k8s-pod之间的通信"><a href="#12、k8s-pod之间的通信" class="headerlink" title="12、k8s pod之间的通信"></a>12、k8s pod之间的通信</h3><ul>
 <li><p>同一个Pod中容器之间的通信<br>这种场景对于Kubernetes来说没有任何问题，根据Kubernetes的架构设计。Kubernetes创建Pod时，首先会创建一个pause容器，为Pod指派一个唯一的IP地址。然后，以pause的网络命名空间为基础，创建同一个Pod内的其它容器（–net=container:xxx）。因此，同一个Pod内的所有容器就会共享同一个网络命名空间，在同一个Pod之间的容器可以直接使用localhost进行通信。</p>

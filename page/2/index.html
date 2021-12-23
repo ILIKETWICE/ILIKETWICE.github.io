@@ -182,6 +182,126 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/03/03/interview-questions1-company/" target="_self">
+           运维面试题系列--公司业务问题 
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/03/interview-questions1-company/" target="_self">
+          
+          
+            
+          
+          公司业务问题
+
+
+并发（系统同时处理的request/事务数）
+3万
+
+
+
+QPS（每秒查询率）
+2万
+
+
+PV（点击量）
+3千万
+
+
+UV（用户量）
+30万
+
+
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-03 00:00" pubdate>
+              2021-03-03
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/03/03/interview-questions10-redis/" target="_self">
+          <img src="https://gitee.com/like-ycy/images/raw/master/interview/redis/coverpage.webp" srcset="/img/loading.gif" lazyload alt=" 运维面试题系列--Redis问题 ">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/03/interview-questions10-redis/" target="_self">
+           运维面试题系列--Redis问题 
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/03/interview-questions10-redis/" target="_self">
+          
+          
+            
+          
+          Redis 面试问题1、redis的特点及优势特点：
+
+Redis 支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。
+Redis 不仅仅支持简单的 key-value 类型的数据，同时还提供 list，set，zset，hash 等数据结构的存储。
+Redis 支持数据的备份，即 master-slave 模式的数据备份。
+
+优势：
+
+性能极高：Redis 能读的
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-03 00:00" pubdate>
+              2021-03-03
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/03/03/interview-questions13-k8s/" target="_self">
            运维面试题系列--Kubernetes 
         </a>
@@ -541,106 +661,13 @@ java能否正确识别docker的资源限制
             
           
           网络问题1、当用户在浏览器当中输入一个网站，说说计算机对dns解释经过那些流程
-用户输入网址到浏览器 
-浏览器发出DNS请求报文 
-计算机首先查询本机HOSTS文件，看是否存在，存在直接返回结果，不存在，继续转发请求报文 
+用户输入网址到浏览器
+浏览器发出DNS请求报文
+计算机首先查询本机HOSTS文件，看是否存在，存在直接返回结果，不存在，继续转发请求报文
 计算机按照本地DNS的顺序，向合法dns服务器查询IP结果，
 合法dns返回dns结果给本地dns，管理该域的本地dns服务器缓存本结果，直到缓存时间过期，才再次查询此结果
 
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-03 00:00" pubdate>
-              2021-03-03
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/03/interview-questions6-analysis/" target="_self">
-           运维面试题系列--思路分析类问题 
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/03/interview-questions6-analysis/" target="_self">
-          
-          
-            
-          
-          思路分析类型1、排查java进程cpu占用过高（内存占用高同理）1、使用top命令查看占用CPU过高的进程，获取到其PID；
-2、jstack pid &gt; java.txt  导出CPU占用高进程的线程栈；
-3、top -H -p PID 查看对应进程的哪个线程占用CPU过高；
-4、在java.txt文件中根据线程id找到对应的线程栈（需要将线程id转换为16进制）；
-5、分析负载高的线程栈
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-03 00:00" pubdate>
-              2021-03-03
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/03/interview-questions4-shell/" target="_self">
-           运维面试题系列--shell脚本问题 
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/03/interview-questions4-shell/" target="_self">
-          
-          
-            
-          
-          shell脚本理论部分1、在当前脚本中调用另一个脚本
-exec（exec /home/script.sh）：使用exec来调用脚本，被执行的脚本会继承当前shell的环境变量。但事实上exec产生了新的进程，他会把主shell的进程资源占用并替换脚本内容，继承了原主shell的PID号，即原主shell剩下的内容不会执行。
-
-source（source /home/script.sh）使用sour
+2、d
         </a>
       </p>
 
@@ -670,7 +697,7 @@ source（source /home/script.sh）使用sour
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

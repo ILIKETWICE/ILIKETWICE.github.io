@@ -242,12 +242,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月3日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="1、Kubernetes简介"><a href="#1、Kubernetes简介" class="headerlink" title="1、Kubernetes简介"></a>1、Kubernetes简介</h1><p>Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，主要功能包括:    </p>
+              <h1 id="1、Kubernetes简介"><a href="#1、Kubernetes简介" class="headerlink" title="1、Kubernetes简介"></a>1、Kubernetes简介</h1><p>Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，主要功能包括:</p>
 <ul>
 <li><p>基于容器的应用部署、维护和滚动升级</p>
 </li>
@@ -257,9 +257,9 @@
 </li>
 <li><p>自动伸缩</p>
 </li>
-<li><p>无状态服务和有状态服务 </p>
+<li><p>无状态服务和有状态服务</p>
 </li>
-<li><p>广泛的Volume支持 </p>
+<li><p>广泛的Volume支持</p>
 </li>
 <li><p>插件机制保证扩展性</p>
 </li>
@@ -312,18 +312,16 @@
 <li><p>key的过期及续约机制，用于监控和服务发现</p>
 </li>
 <li><p>原子CAS和CAD，用于分布式锁和leader选举</p>
+<p><strong>Etcd基于RAFT的一致性</strong></p>
+<p><strong>leader节点选举方法</strong></p>
 </li>
-</ul>
-<p> <strong>Etcd基于RAFT的一致性</strong></p>
-<p> <strong>leader节点选举方法</strong></p>
-<ul>
 <li><p>初始启动时，节点处于follower状态并被设定一个election timeout，如果在这一时间周期内没有收到来自leader的心跳检测，节点将发起选举，将自己切换为candidate（候选人）节点之后，向集群中的其他follow节点发送请求，询问其是否选举自己为leader</p>
 </li>
 <li><p>当收到来自集群中过半数节点的接受投票后，节点即成为leader，开始接收保存client的数据并向其他的follower节点同步日志。如果没有达成一致，则candidate节点随机选择一个等待时间（150ms ～ 300ms）再次发起投票，得到集群中半数以上的follower接受的candidate将成为leader</p>
 </li>
 <li><p>leader节点依靠定时向follower节点发送心跳检测来保持其地位</p>
 </li>
-<li><p>任何时候如果其他follower在election timeout期间没有收到来自leader的心跳检测，同样会将自己的状态切换为candidate并发起选举。每成功选举一次，新leader的步进数（Term）都会比之前leader的步进数加1 </p>
+<li><p>任何时候如果其他follower在election timeout期间没有收到来自leader的心跳检测，同样会将自己的状态切换为candidate并发起选举。每成功选举一次，新leader的步进数（Term）都会比之前leader的步进数加1</p>
 </li>
 </ul>
 <p><strong>失效处理</strong></p>
@@ -332,7 +330,7 @@
 </li>
 <li><p>follower节点不可用：follower节点不可用的情况相对比较容易解决。因为集群中的日志内容始终是从leader节点同步，只要这一节点再次加入集群时重新从leader节点处复制日志即可</p>
 </li>
-<li><p>多个候选人（candidate）：冲突后candidate将随机选择一个等待时间（150ms ～ 300ms）再次发起投票，得到集群中半数以上的follower接受的candidate将成为leader  </p>
+<li><p>多个候选人（candidate）：冲突后candidate将随机选择一个等待时间（150ms ～ 300ms）再次发起投票，得到集群中半数以上的follower接受的candidate将成为leader</p>
 </li>
 </ul>
 <p>讲到这里可能有同学发现Etcd和Zookeeper、Consul等一致性协议实现框架有些类似，的确这些中间件是比较类似的，关于其中的异同点，大家可以自行查阅资料。</p>
@@ -346,15 +344,15 @@
 <h3 id="2-2-3-kube-scheduler"><a href="#2-2-3-kube-scheduler" class="headerlink" title="2.2.3 kube-scheduler"></a>2.2.3 kube-scheduler</h3><p>kube-scheduler负责分配调度Pod到集群内的节点上，它监听kube-<br>apiserver，查询还未分配Node的Pod，然后根据调度策略为这些Pod分配节点</p>
 <p>通过以下三种方式可以指定Pod只运行在特定的Node节点上</p>
 <ul>
-<li><p>nodeSelector:只调度到匹配指定label的Node上 </p>
+<li><p>nodeSelector: 只调度到匹配指定label的Node上</p>
 </li>
-<li><p>nodeAffinity:功能更丰富的Node选择器，比如支持集合操作 </p>
+<li><p>nodeAffinity: 功能更丰富的Node选择器，比如支持集合操作</p>
 </li>
-<li><p>podAffinity:调度到满足条件的Pod所在的Node上</p>
+<li><p>podAffinity: 调度到满足条件的Pod所在的Node上</p>
 </li>
 </ul>
 <h3 id="2-2-4-kube-controller-manager"><a href="#2-2-4-kube-controller-manager" class="headerlink" title="2.2.4 kube-controller-manager"></a>2.2.4 kube-controller-manager</h3><p>kube-controller-manager是Kubernetes的大脑，通过kube-<br>apiserver监控整个集群的状态，并确保集群处于预期的工作状态，它由一系列的控制器组成，这些控制器主要包括三组：</p>
-<p> <strong>1. 必须启动的控制器</strong>  </p>
+<p> <strong>1. 必须启动的控制器</strong></p>
 <ul>
 <li><p>eploymentController</p>
 </li>
@@ -369,7 +367,7 @@
 <li><p>JobController</p>
 </li>
 <li><p>…</p>
-<p><strong>2. 默认启动的控制器</strong>  </p>
+<p><strong>2. 默认启动的控制器</strong></p>
 </li>
 <li><p>NodeController</p>
 </li>
@@ -389,11 +387,11 @@
 <p> <strong>节点管理</strong></p>
 <p>主要是节点自注册和节点状态更新:</p>
 <ul>
-<li><p>Kubelet可以通过设置启动参数 –register-node 来确定是否向API Server注册自己; </p>
+<li><p>Kubelet可以通过设置启动参数 –register-node 来确定是否向API Server注册自己;</p>
 </li>
 <li><p>如果Kubelet没有选择自注册模式，则需要用户自己配置Node资源信息，同时需要在Kubelet上配置集群中API Server的信息;</p>
 </li>
-<li><p>Kubelet在启动时通过API Server注册节点信息，并定时向API Server发送节点状态消息，API Server在接收到新消息后，将信息写入etcd  </p>
+<li><p>Kubelet在启动时通过API Server注册节点信息，并定时向API Server发送节点状态消息，API Server在接收到新消息后，将信息写入etcd</p>
 <p><strong>容器健康检查</strong></p>
 </li>
 </ul>
@@ -413,7 +411,7 @@
 <p>最早的负载均衡方案，它在用户空间监听一个端口，所有请求通过 iptables 转发到这个端口，然后在其内部负载均衡到实际的<br>Pod。service的请求会先从用户空间进入内核iptables，然后再回到用户空间（kube-proxy），由kube-<br>proxy完成后端Endpoints的选择和代理工作，这样流量从用户空间进出内核带来的性能损耗是不可接受的，所以产生了iptables的代理模式</p>
 <p> <strong>2. iptables:</strong></p>
 <p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-11-29/2-2-6-2.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>
-<p>iptables<br>mode完全使用iptables来完成请求过滤和转发。但是如果集群中存在大量的Service/Endpoint，那么Node上的iptables<br>rules将会非常庞大，添加或者删除iptables规则会引起较大的延迟。  </p>
+<p>iptables<br>mode完全使用iptables来完成请求过滤和转发。但是如果集群中存在大量的Service/Endpoint，那么Node上的iptables<br>rules将会非常庞大，添加或者删除iptables规则会引起较大的延迟。</p>
 <p> <strong>3. ipvs:</strong></p>
 <p>为了解决存在大量iptables规则时的网络延迟的问题，Kubernetes引入了ipvs的模式，（ipvs是LVS - Linux Virtual<br>Server 的重要组成部分，最早是由中国的章文嵩博士推出的一个开源项目，提供软件负载均衡的解决方案），下面是ipvs模式的原理图：</p>
 <p><img src="https://gitee.com/like-ycy/images/raw/master/blog/2019-11-29/2-2-6-3.png" srcset="/img/loading.gif" lazyload alt="avatar"></p>

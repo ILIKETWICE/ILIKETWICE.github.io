@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月3日 晚上
+                  本文最后更新于：2021年12月10日 上午
                 
               </p>
             
@@ -311,12 +311,12 @@
 <li>主程序Master process启动后，通过一个 for 循环来接收和处理外部信号</li>
 </ol>
 <ol start="2">
-<li>主进程通过 fork() 函数产生 worker 子进程 ，每个 子进程 执行一个 for 循环来实现 Nginx 服务器 对事件的接收 和 处理 </li>
+<li>主进程通过 fork() 函数产生 worker 子进程 ，每个 子进程 执行一个 for 循环来实现 Nginx 服务器 对事件的接收 和 处理</li>
 </ol>
 <p>一般推荐 worker 进程数 与 CPU 内核数 一致，这样一来不存在 大量的子进程 生成和管理任务，避免了进程之间 竞争 CPU 资源 和 进程切换 的开销。</p>
 <p>而且 Nginx 为了更好的利用 多核特性 ，提供了 CPU 亲缘性 的绑定选项，我们可以将某 一个进程绑定在某一个核上，这样就不会因为 进程的切换 带来 Cache 的失效。</p>
 <p>对于每个请求，有且只有一个 工作进程 对其处理。首先，每个 worker 进程都是从 master进程 fork 过来。在 master 进程里面，先建立好需要 listen 的 socket（listenfd） 之后，然后再 fork 出多个 worker 进程。</p>
-<p>所有 worker 进程的 listenfd 会在 新连接 到来时变得 可读 ，为保证只有一个进程处理该连接，所有 worker 进程在注册 listenfd 读事件前抢占 accept_mutex </p>
+<p>所有 worker 进程的 listenfd 会在 新连接 到来时变得 可读 ，为保证只有一个进程处理该连接，所有 worker 进程在注册 listenfd 读事件前抢占 accept_mutex</p>
 <p>抢到 互斥锁 的那个进程注册 listenfd 读事件 ，在读事件里调用 accept 接受该连接。</p>
 <p>当一个 worker 进程在 accept 这个连接之后，就开始读取请求 ， 解析请求 ， 处理请求，产生数据后，再返回给客户端 ，最后才断开连接 ，一个完整的请求就是这样。</p>
 <p>我们可以看到，一个请求，完全由 worker 进程来处理，而且只在一个 worker 进程中处理。</p>
