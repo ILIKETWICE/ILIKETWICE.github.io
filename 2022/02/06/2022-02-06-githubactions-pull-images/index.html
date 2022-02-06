@@ -18,9 +18,25 @@
   <meta name="author" content="权掌天下">
   <meta name="keywords" content="">
   
-  <title>标签 - Docker - 权掌天下 Blog</title>
+  <title>无法拉取 gcr.io 镜像？用魔法来打败魔法 - 权掌天下 Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -142,14 +158,64 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/background/header-background.webp') no-repeat center center;
+         style="background: url('https://gitee.com/like-ycy/images/raw/master/blog/header.webp') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="标签 - Docker">
+            <span class="h2" id="subtitle" title="无法拉取 gcr.io 镜像？用魔法来打败魔法">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      权掌天下
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-06 00:00" pubdate>
+        2022年2月6日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      397 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      4
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -162,49 +228,105 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">无法拉取 gcr.io 镜像？用魔法来打败魔法</h1>
+            
+              <p class="note note-info">
                 
+                  本文最后更新于：2022年2月6日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>目前常用的 Docker Registry 公开服务有：</p>
+<ul>
+<li><code>docker.io</code> ：Docker Hub 官方镜像仓库，也是 Docker 默认的仓库</li>
+<li><code>gcr.io</code>、<code>k8s.gcr.io</code> ：谷歌镜像仓库</li>
+<li><code>quay.io</code> ：Red Hat 镜像仓库</li>
+<li><code>ghcr.io</code> ：GitHub 镜像仓库</li>
+</ul>
+<p>当使用 <code>docker pull 仓库地址/用户名/仓库名:标签</code> 时，会前往对应的仓库地址拉取镜像，标签无声明时默认为 <code>latest</code>， 仓库地址无声明时默认为 <code>docker.io</code> 。</p>
+<p>众所周知的原因，在国内访问这些服务异常的慢，甚至 <code>gcr.io</code> 和 <code>quay.io</code> 根本无法访问。</p>
+<h2 id="解决方案：镜像加速器"><a href="#解决方案：镜像加速器" class="headerlink" title="解决方案：镜像加速器"></a>解决方案：镜像加速器</h2><p>针对 <code>Docker Hub</code> ，Docker 官方和国内各大云服务商均提供了 Docker 镜像加速服务。</p>
+<p>你只需要简单配置一下（以 Linux 为例）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">sudo mkdir -p /etc/docker<br><br>sudo tee /etc/docker/daemon.json &lt;&lt;-<span class="hljs-string">'EOF'</span><br>&#123;<br>  <span class="hljs-string">"registry-mirrors"</span>: [<span class="hljs-string">"镜像加速器"</span>]<br>&#125;<br>EOF<br><br>sudo systemctl daemon-reload<br>sudo service docker restart<br></code></pre></div></td></tr></table></figure>
 
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2022</p>
-    
-    <a href="/2022/02/06/2022-02-06-githubactions-pull-images/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">无法拉取 gcr.io 镜像？用魔法来打败魔法</span>
-      <time style="float: right;">02-06</time>
-    </a>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/07/20/2020-07-20-dockerfile/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title"> Dockerfile就这么简单 </span>
-      <time style="float: right;">07-20</time>
-    </a>
-  
-</div>
+<p>便可以通过访问国内镜像加速器来加速 <code>Docker Hub</code> 的镜像下载。</p>
+<p>!&gt; 不过这种办法也只能针对 <code>docker.io</code> ，其它的仓库地址并没有真正实际可用的加速器（至少我目前没找到）。</p>
+<h2 id="解决方案：用魔法打败魔法"><a href="#解决方案：用魔法打败魔法" class="headerlink" title="解决方案：用魔法打败魔法"></a>解决方案：用魔法打败魔法</h2><p>既然无法治本，那治治标还是可以的吧。</p>
+<p>若我们使用一台魔法机器从 <code>gcr.io</code> 或 <code>quay.io</code> 等仓库先把我们无法下载的镜像拉取下来，然后重新上传到 <code>docker.io</code> ，是不是就可以使用 <code>Docker Hub</code> 的镜像加速器来下载了。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>本篇的实现已放在 GitHub ：<strong><code>https://github.com/togettoyou/hub-mirror</code></strong></p>
 
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Docker/">Docker</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/23/2021-12-23-python-underline-rules/">
+                        <span class="hidden-mobile"> Python下划线的5个潜规则 </span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -308,9 +430,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
 
 
 
